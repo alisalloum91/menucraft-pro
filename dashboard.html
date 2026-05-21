@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MenuCraft Pro — لوحة التحكم</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.14.0/dist/tabler-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="dash-body">
+<div id="toast-msg" class="toast-msg" role="status" aria-live="polite"></div>
+
+<div class="shell">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="left-panel" aria-label="قائمة التنقل">
+    <div class="lp-logo">
+      <div class="lp-logo-text">MENU<em>CRAFT</em></div>
+      <div class="lp-logo-sub">Restaurant Menu Builder PRO</div>
+    </div>
+    <nav class="lp-nav">
+      <div class="nav-section-lbl">إدارة المحتوى</div>
+      <button class="nav-item active" onclick="showPage('info',this)" aria-current="page">
+        <i class="ti ti-building-store" aria-hidden="true"></i>معلومات المطعم
+      </button>
+      <button class="nav-item" onclick="showPage('data',this)">
+        <i class="ti ti-table" aria-hidden="true"></i>بيانات المنيو
+      </button>
+      <button class="nav-item" onclick="showPage('design',this)">
+        <i class="ti ti-palette" aria-hidden="true"></i>التصميم
+      </button>
+      <div class="nav-section-lbl">مكتبتي</div>
+      <button class="nav-item" onclick="showPage('menus',this)">
+        <i class="ti ti-layout-grid" aria-hidden="true"></i>منيوهاتي
+      </button>
+      <div class="nav-section-lbl">أدوات</div>
+      <button class="nav-item" onclick="loadSample()">
+        <i class="ti ti-sparkles" aria-hidden="true"></i>بيانات تجريبية
+      </button>
+      <button class="nav-item" onclick="dlTpl()">
+        <i class="ti ti-file-spreadsheet" aria-hidden="true"></i>نموذج Excel
+      </button>
+      <button class="nav-item" onclick="DB.exportAll()">
+        <i class="ti ti-database-export" aria-hidden="true"></i>تصدير البيانات
+      </button>
+      <button class="nav-item" onclick="resetAll()">
+        <i class="ti ti-refresh" aria-hidden="true"></i>إعادة تعيين
+      </button>
+      <div class="nav-section-lbl">الصفحات</div>
+      <a href="index.html" class="nav-item" style="text-decoration:none">
+        <i class="ti ti-home" aria-hidden="true"></i>الصفحة الرئيسية
+      </a>
+    </nav>
+    <div class="lp-footer">
+      <button class="save-btn" onclick="saveMenu()">
+        <i class="ti ti-device-floppy" aria-hidden="true"></i>حفظ المنيو
+      </button>
+      <button class="preview-btn" onclick="syncPhone()">
+        <i class="ti ti-eye" aria-hidden="true"></i>تحديث المعاينة
+      </button>
+    </div>
+  </aside>
+
+  <!-- CENTER -->
+  <main class="center-panel">
+    <div class="cp-topbar">
+      <div>
+        <div class="cp-title" id="cp-title">معلومات المطعم</div>
+        <div class="cp-subtitle" id="cp-sub">أدخل تفاصيل مطعمك</div>
+      </div>
+      <div class="cp-actions">
+        <button class="icon-btn" onclick="loadSample()" title="بيانات تجريبية" aria-label="تحميل بيانات تجريبية">
+          <i class="ti ti-sparkles" aria-hidden="true"></i>
+        </button>
+        <button class="icon-btn" onclick="dlTpl()" title="نموذج Excel" aria-label="تحميل نموذج Excel">
+          <i class="ti ti-download" aria-hidden="true"></i>
+        </button>
+        <button class="icon-btn" onclick="saveMenu()" title="حفظ" aria-label="حفظ المنيو">
+          <i class="ti ti-device-floppy" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="cp-body">
+
+      <!-- PAGE: INFO -->
+      <div class="page on" id="pg-info">
+        <div class="sc">
+          <div class="sc-head"><i class="ti ti-id" aria-hidden="true"></i><span class="sc-title">الهوية</span></div>
+          <div class="sc-body">
+            <div class="g2" style="margin-bottom:10px">
+              <div class="fg"><label class="form-label">اسم المطعم *</label><input class="form-input" id="r-name" placeholder="Chef's Table" oninput="syncPhone()"></div>
+              <div class="fg"><label class="form-label">الأيقونة</label><input class="form-input" id="r-ico" placeholder="🍽️" style="text-align:center;font-size:17px" oninput="syncPhone()"></div>
+              <div class="fg"><label class="form-label">الشعار الفرعي</label><input class="form-input" id="r-sub" placeholder="Fine Dining Experience" oninput="syncPhone()"></div>
+              <div class="fg"><label class="form-label">العملة</label>
+                <select class="form-input" id="r-cur">
+                  <option value="ر.س">ريال (ر.س)</option>
+                  <option value="د.إ">درهم (د.إ)</option>
+                  <option value="฿">باهت (฿)</option>
+                  <option value="$">دولار ($)</option>
+                  <option value="€">يورو (€)</option>
+                  <option value="ج.م">جنيه (ج.م)</option>
+                </select>
+              </div>
+              <div class="fg" style="grid-column:1/-1">
+                <label class="form-label">وصف قصير</label>
+                <textarea class="form-input" id="r-desc" placeholder="أشهى الأطباق بمكونات طازجة ومذاق لا يُنسى..."></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sc">
+          <div class="sc-head"><i class="ti ti-link" aria-hidden="true"></i><span class="sc-title">الرابط والنشر</span></div>
+          <div class="sc-body">
+            <div class="g2">
+              <div class="fg"><label class="form-label">الرابط المخصص</label><input class="form-input" id="r-slug" placeholder="my-restaurant"></div>
+              <div class="fg" style="justify-content:flex-end">
+                <button class="btn-g" onclick="autoSlug()"><i class="ti ti-wand" aria-hidden="true"></i>توليد تلقائي</button>
+              </div>
+            </div>
+            <div id="link-box-wrap" style="display:none">
+              <div class="link-box">
+                <span class="link-url" id="link-url-txt"></span>
+                <button onclick="copyLink()" style="background:none;border:none;color:var(--tx3);cursor:pointer;font-size:14px" aria-label="نسخ الرابط">
+                  <i class="ti ti-copy" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE: DATA -->
+      <div class="page" id="pg-data">
+        <div class="g2" style="margin-bottom:12px">
+          <div class="sc">
+            <div class="sc-head"><i class="ti ti-file-spreadsheet" aria-hidden="true"></i><span class="sc-title">رفع Excel</span></div>
+            <div class="sc-body">
+              <div class="upload-zone" id="ez" onclick="document.getElementById('ei').click()"
+                ondrop="dropExcel(event)" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')"
+                role="button" tabindex="0" aria-label="رفع ملف Excel">
+                <i class="ti ti-file-spreadsheet" aria-hidden="true"></i>
+                <div class="upload-zone-title">اسحب ملف Excel هنا</div>
+                <div class="upload-zone-sub">.xlsx / .xls — الفئة، الاسم، السعر، الوصف</div>
+                <input type="file" id="ei" accept=".xlsx,.xls,.csv" style="display:none" onchange="loadExcel(this.files[0])" aria-hidden="true">
+              </div>
+              <div id="ex-msg" style="display:none;margin-top:8px;font-size:11px;color:#4ade80;font-weight:600" role="status"></div>
+              <div style="display:flex;gap:7px;margin-top:10px;flex-wrap:wrap">
+                <button class="btn-g" onclick="dlTpl()"><i class="ti ti-download" aria-hidden="true"></i>نموذج Excel</button>
+                <button class="btn-a" onclick="loadSample()"><i class="ti ti-sparkles" aria-hidden="true"></i>بيانات تجريبية</button>
+              </div>
+            </div>
+          </div>
+          <div class="sc">
+            <div class="sc-head"><i class="ti ti-photo" aria-hidden="true"></i><span class="sc-title">صور الأطباق</span></div>
+            <div class="sc-body">
+              <div class="upload-zone" id="iz" onclick="document.getElementById('ii').click()"
+                ondrop="dropImg(event)" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')"
+                role="button" tabindex="0" aria-label="رفع صور الأطباق">
+                <i class="ti ti-photo-up" aria-hidden="true"></i>
+                <div class="upload-zone-title">اسحب صور الأطباق</div>
+                <div class="upload-zone-sub">سمِّ الصورة باسم الطبق (.jpg .png)</div>
+                <input type="file" id="ii" accept="image/*" multiple style="display:none" onchange="loadImgs(this.files)" aria-hidden="true">
+              </div>
+              <div id="img-grid" class="img-thumb-grid" style="display:none"></div>
+            </div>
+          </div>
+        </div>
+        <div class="sc" style="margin-bottom:12px">
+          <div class="sc-head"><i class="ti ti-plus" aria-hidden="true"></i><span class="sc-title">إضافة طبق يدوياً</span></div>
+          <div class="sc-body">
+            <div class="g3" style="margin-bottom:8px">
+              <div class="fg"><label class="form-label">الفئة</label><input class="form-input" id="m-cat" placeholder="المقبلات"></div>
+              <div class="fg"><label class="form-label">اسم الطبق *</label><input class="form-input" id="m-name" placeholder="شيش طاووق" onkeydown="if(event.key==='Enter')addManual()"></div>
+              <div class="fg"><label class="form-label">السعر</label><input type="number" class="form-input" id="m-price" placeholder="45"></div>
+              <div class="fg"><label class="form-label">قبل الخصم</label><input type="number" class="form-input" id="m-old" placeholder="65"></div>
+              <div class="fg"><label class="form-label">الوصف</label><input class="form-input" id="m-desc" placeholder="وصف الطبق..."></div>
+              <div class="fg"><label class="form-label">شارة</label><input class="form-input" id="m-tag" placeholder="مميز / جديد"></div>
+            </div>
+            <button class="btn-a" onclick="addManual()"><i class="ti ti-plus" aria-hidden="true"></i>إضافة</button>
+          </div>
+        </div>
+        <div class="sc">
+          <div class="sc-head">
+            <i class="ti ti-list" aria-hidden="true"></i>
+            <span class="sc-title">قائمة الأطباق</span>
+            <span class="sc-badge" id="items-badge">0 طبق</span>
+          </div>
+          <div style="overflow-x:auto;max-height:280px" id="items-table-wrap">
+            <div class="empty-state"><i class="ti ti-bowl-chopsticks"></i><p>لا توجد أطباق بعد</p><small>ارفع Excel أو أضف يدوياً</small></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE: DESIGN -->
+      <div class="page" id="pg-design">
+        <div class="g2">
+          <div>
+            <div class="sc" style="margin-bottom:12px">
+              <div class="sc-head"><i class="ti ti-layout-grid" aria-hidden="true"></i><span class="sc-title">ستايل الكروت</span></div>
+              <div class="sc-body">
+                <div class="style-grid" id="style-grid"></div>
+                <button class="btn-g" style="margin-top:10px" onclick="randomStyle()">
+                  <i class="ti ti-dice-5" aria-hidden="true"></i>عشوائي
+                </button>
+              </div>
+            </div>
+            <div class="sc">
+              <div class="sc-head"><i class="ti ti-palette" aria-hidden="true"></i><span class="sc-title">اللون الرئيسي</span></div>
+              <div class="sc-body"><div class="color-row" id="color-row"></div></div>
+            </div>
+          </div>
+          <div class="sc">
+            <div class="sc-head"><i class="ti ti-sparkles" aria-hidden="true"></i><span class="sc-title">مولّد أشكال الأطباق</span></div>
+            <div class="sc-body">
+              <button class="btn-a" style="width:100%;justify-content:center;margin-bottom:10px" onclick="runDishGen()">
+                <i class="ti ti-wand" aria-hidden="true"></i>ولّد شكل إبداعي
+              </button>
+              <div class="gen-loader" id="gen-loader" aria-live="polite">
+                <div class="gen-bar-wrap"><div class="gen-bar-fill" id="gen-fill"></div></div>
+                <div class="gen-txt" id="gen-txt">جاري الابتكار...</div>
+              </div>
+              <div id="gen-result"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE: MENUS -->
+      <div class="page" id="pg-menus">
+        <div class="stat-row">
+          <div class="stat-box"><div class="stat-num" style="color:var(--gold)" id="st-m">0</div><div class="stat-lbl">منيو محفوظ</div></div>
+          <div class="stat-box"><div class="stat-num" style="color:#4ade80" id="st-i">0</div><div class="stat-lbl">إجمالي الأطباق</div></div>
+          <div class="stat-box"><div class="stat-num" style="color:#60a5fa" id="st-c">0</div><div class="stat-lbl">إجمالي الفئات</div></div>
+        </div>
+        <div id="menus-list" aria-label="قائمة المنيوهات المحفوظة">
+          <div class="empty-state"><i class="ti ti-layout-grid"></i><p>لا توجد منيوهات محفوظة</p><small>احفظ منيو من قائمة التنقل</small></div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- RIGHT PANEL -->
+  <div class="right-panel" aria-label="معاينة المنيو">
+    <div class="rp-label">معاينة مباشرة</div>
+    <div class="phone-frame" role="img" aria-label="معاينة المنيو على الجوال">
+      <div class="phone-statusbar">
+        <div class="psb-time" id="psb-time">9:41</div>
+        <div class="psb-icons">
+          <div class="psb-icon" style="width:14px;height:7px;border-radius:1px"></div>
+          <div class="psb-icon" style="width:8px;height:7px;border-radius:1px"></div>
+          <div class="psb-icon" style="width:6px;height:7px;border-radius:50%"></div>
+        </div>
+      </div>
+      <div class="phone-content" id="phone-content"></div>
+    </div>
+    <div class="rc-section">
+      <div class="rc-label">العرض</div>
+      <div class="rc-btns">
+        <button class="rc-btn on" onclick="setPhoneView('home',this)">الرئيسية</button>
+        <button class="rc-btn" onclick="setPhoneView('items',this)">الأطباق</button>
+        <button class="rc-btn" onclick="setPhoneView('cart',this)">السلة</button>
+      </div>
+    </div>
+    <div class="rc-section">
+      <div class="rc-label">اللون</div>
+      <div class="rc-swatches" id="rc-swatches"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

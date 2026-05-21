@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MenuCraft Pro — عرض المنيو</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.14.0/dist/tabler-icons.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/menu.css">
+</head>
+<body id="menu-body">
+
+<div id="menu-root">
+  <div id="loading-screen">
+    <div class="loading-inner">
+      <div class="loading-logo">MENU<span>CRAFT</span></div>
+      <div class="loading-sub">جاري التحميل...</div>
+      <div class="loading-bar-wrap"><div class="loading-bar-fill" id="lbar"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CART DRAWER -->
+<div id="cart-overlay" onclick="closeCart()" style="display:none"></div>
+<div id="cart-drawer" style="display:none">
+  <div class="cd-handle" onclick="closeCart()"></div>
+  <div class="cd-header">
+    <div class="cd-title">سلة الطلب</div>
+    <button class="cd-close" onclick="closeCart()" aria-label="إغلاق السلة">
+      <i class="ti ti-x" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="cd-body" id="cart-items"></div>
+  <div class="cd-footer" id="cart-footer" style="display:none">
+    <div class="cd-total-row">
+      <span>المجموع</span>
+      <span class="cd-total" id="cart-total-price"></span>
+    </div>
+    <button class="cd-order-btn" id="order-btn" onclick="placeOrder()">تأكيد الطلب</button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast-msg" class="toast-msg" role="status" aria-live="polite"></div>
+
+<script src="js/storage.js"></script>
+<script src="js/menu.js"></script>
+</body>
+</html>
