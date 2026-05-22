@@ -1,7 +1,40 @@
 /**
  * MenuCraft Pro — Dashboard Logic
  */
-
+const PHOTO_LIB = {
+  chicken: [
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Joojeh_kabab.jpg/320px-Joojeh_kabab.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg/320px-Good_Food_Display_-_NCI_Visuals_Online.jpg',
+  ],
+  salad: [
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Caesar_salad_(1).jpg/320px-Caesar_salad_(1).jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ensalada_griega.jpg/320px-Ensalada_griega.jpg',
+  ],
+  pizza: [
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Eq_it-na_pizza-margherita_sep2005_sml.jpg/320px-Eq_it-na_pizza-margherita_sep2005_sml.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Supreme_pizza.jpg/320px-Supreme_pizza.jpg',
+  ],
+  steak: [
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Sirloin_steak_on_BBQ.jpg/320px-Sirloin_steak_on_BBQ.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/T_bone_steak.jpg/320px-T_bone_steak.jpg',
+  ],
+  grill: [
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Kubideh_kabab.jpg/320px-Kubideh_kabab.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Joojeh_kabab.jpg/320px-Joojeh_kabab.jpg',
+  ],
+  pasta: [
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Spaghetti_bolognese_(hozinja).jpg/320px-Spaghetti_bolognese_(hozinja).jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg/320px-Spaghetti_Bolognese_mit_Parmesan_oder_Grana_Padano.jpg',
+  ],
+  dessert: [
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Creme_brulee.jpg/320px-Creme_brulee.jpg',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Chocolate_fudge_cake.jpg/320px-Chocolate_fudge_cake.jpg',
+  ],
+  drinks: [
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/320px-A_small_cup_of_coffee.JPG',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Mango_juice.jpg/320px-Mango_juice.jpg',
+  ],
+};
 // ── STATE ──
 let S = { id: null, cats: [], items: [], imgs: {}, style: 1, color: '#1B7040', colorDk: '#0F4424' };
 let CART = [];
