@@ -130,15 +130,22 @@ function openCat(catId) {
 
 function buildItemRow(item, cat, imgs, col, cd, cur, idx) {
   // Try to find matching image
+
+
+
+
+
+  
   let imgSrc = null;
   if (item.imgKey) imgSrc = imgs[item.imgKey] || imgs[item.imgKey.toLowerCase()];
   if (!imgSrc) {
     const kn = (item.name || '').toLowerCase().replace(/\s+/g,'-').replace(/[^\w-]/g,'');
     imgSrc = imgs[kn] || null;
     if (!imgSrc) {
-      const keys = Object.keys(imgs);
-      const m = keys.find(k => kn && (k.includes(kn.slice(0,5)) || kn.includes(k.slice(0,5))));
-      if (m) imgSrc = imgs[m];
+    const imgUrl = PHOTO_LIB[item.photoKey]?.[0];
+const thumbHtml = imgUrl
+  ? ``
+  : (cat?.ico || '🍽️');
     }
   }
   const thumbHtml = imgSrc
