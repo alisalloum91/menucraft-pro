@@ -6,118 +6,292 @@
 <title>MenuCraft Pro — عرض المنيو</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.14.0/dist/tabler-icons.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/menu.css">
+<style>
+/* ── RESET & BASE ── */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --accent:#c9a84c;--bg0:#06060a;--bg1:#0d0d14;--bg2:#141419;
+  --bg3:#1c1c24;--bg4:#252530;--tx0:#fafaf8;--tx1:#c8c5be;
+  --tx2:#8c897f;--tx3:#3a3a42;--r:14px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg0);color:var(--tx0);min-height:100vh;direction:rtl;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:3px;height:3px}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:3px}
+
+/* ── BANNER ── */
+.banner{position:relative;height:260px;overflow:hidden;flex-shrink:0}
+@media(min-width:600px){.banner{height:320px}}
+@media(min-width:900px){.banner{height:400px}}
+#bg-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.ov1{position:absolute;inset:0;background:rgba(0,0,0,.52)}
+.ov2{position:absolute;inset:0;background:linear-gradient(to top,rgba(6,6,10,.98) 0%,rgba(6,6,10,.35) 50%,transparent 100%)}
+.banner-top{position:absolute;top:0;left:0;right:0;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;z-index:3}
+@media(min-width:600px){.banner-top{padding:16px 28px}}
+@media(min-width:900px){.banner-top{padding:20px 48px}}
+.b-cart{position:relative;width:38px;height:38px;border-radius:10px;background:rgba(0,0,0,.55);border:.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.8);font-size:16px}
+.b-cart-badge{position:absolute;top:-5px;left:-5px;width:17px;height:17px;border-radius:50%;background:var(--accent);color:#1a0e00;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid var(--bg0);display:none}
+.b-open{background:rgba(0,0,0,.6);border:.5px solid rgba(255,255,255,.2);border-radius:24px;padding:6px 14px;display:flex;align-items:center;gap:7px}
+.b-dot{width:7px;height:7px;border-radius:50%;background:#4ade80}
+.b-open span{font-size:11px;font-weight:700;color:#fff}
+.b-menu{width:38px;height:38px;border-radius:10px;background:rgba(0,0,0,.55);border:.5px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:rgba(255,255,255,.8);font-size:16px}
+.banner-bottom{position:absolute;bottom:0;left:0;right:0;padding:14px 16px 18px;display:flex;align-items:flex-end;justify-content:space-between;z-index:3}
+@media(min-width:600px){.banner-bottom{padding:18px 28px 24px}}
+@media(min-width:900px){.banner-bottom{padding:22px 48px 32px}}
+.b-logo{width:56px;height:56px;border-radius:14px;border:2px solid var(--accent);background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--accent);letter-spacing:1px;margin-bottom:10px}
+@media(min-width:600px){.b-logo{width:66px;height:66px;font-size:24px}}
+@media(min-width:900px){.b-logo{width:78px;height:78px;font-size:28px}}
+.b-fine{font-size:9px;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:5px}
+@media(min-width:600px){.b-fine{font-size:11px}}
+.b-name{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:#fff;line-height:1;margin-bottom:7px}
+@media(min-width:600px){.b-name{font-size:36px}}
+@media(min-width:900px){.b-name{font-size:48px}}
+.b-stars-row{display:flex;align-items:center;gap:8px}
+.b-stars{display:flex;gap:2px}
+.b-rating{font-size:11px;color:rgba(255,255,255,.5)}
+.b-order{background:var(--accent);color:#1a0e00;font-family:'Cairo',sans-serif;font-size:12px;font-weight:700;padding:9px 20px;border-radius:24px;border:none;cursor:pointer;white-space:nowrap;transition:filter .15s}
+.b-order:hover{filter:brightness(1.1)}
+@media(min-width:600px){.b-order{font-size:14px;padding:11px 26px}}
+
+/* ── STATS ── */
+.stats{background:var(--bg1);border-bottom:.5px solid var(--bg3);display:grid;grid-template-columns:1fr 1fr 1fr}
+.stat{display:flex;flex-direction:column;align-items:center;padding:12px 0;border-right:.5px solid var(--bg3)}
+.stat:first-child{border:none}
+.stat-top{display:flex;align-items:center;gap:5px;margin-bottom:2px}
+.stat-top i{font-size:13px;color:var(--accent)}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--accent);letter-spacing:.5px}
+.stat-lbl{font-size:9px;font-weight:700;color:var(--tx3);letter-spacing:.5px;text-transform:uppercase}
+
+/* ── MAIN ── */
+.main{max-width:960px;margin:0 auto;width:100%;padding:0 14px}
+@media(min-width:600px){.main{padding:0 24px}}
+@media(min-width:900px){.main{padding:0 48px}}
+@media(min-width:1200px){.main{padding:0}}
+
+/* ── SECTION HDR ── */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:18px 0 10px}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1.5px;color:var(--tx0)}
+@media(min-width:600px){.sec-title{font-size:22px}}
+.sec-link{font-size:12px;color:var(--accent);font-weight:700;cursor:pointer}
+.sec-count{font-size:13px;font-weight:600;color:var(--tx2)}
+.add-rev{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:var(--accent);background:var(--bg2);border:.5px solid var(--accent);border-radius:20px;padding:5px 12px;cursor:pointer}
+
+/* ── POPULAR ── */
+.pop-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.pop-scroll::-webkit-scrollbar{display:none}
+.pop-card{flex-shrink:0;width:148px;background:var(--bg2);border-radius:var(--r);overflow:hidden;border:.5px solid var(--bg3);cursor:pointer;transition:transform .2s}
+.pop-card:hover{transform:translateY(-3px)}
+@media(min-width:600px){.pop-card{width:175px}}
+@media(min-width:900px){.pop-card{width:200px}}
+.pop-img{height:98px;display:flex;align-items:center;justify-content:center;font-size:34px;position:relative}
+@media(min-width:600px){.pop-img{height:120px}}
+.pop-badge{position:absolute;top:7px;right:7px;background:var(--accent);color:#1a0e00;font-size:8px;font-weight:700;padding:2px 7px;border-radius:6px;letter-spacing:.5px;text-transform:uppercase}
+.pop-body{padding:9px 11px}
+.pop-name{font-size:12px;font-weight:700;color:var(--tx0);margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pop-prices{display:flex;align-items:baseline;gap:5px}
+.pop-price{font-family:'Bebas Neue',sans-serif;font-size:15px;color:var(--accent);letter-spacing:.5px}
+.pop-old{font-size:10px;color:var(--tx3);text-decoration:line-through}
+
+/* ── CATS GRID ── */
+.cats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding-bottom:12px}
+@media(min-width:600px){.cats-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.cats-grid{grid-template-columns:repeat(4,1fr)}}
+.cat-card{border-radius:var(--r);overflow:hidden;cursor:pointer;background:var(--bg2);border:.5px solid var(--bg3);transition:transform .2s}
+.cat-card:hover{transform:translateY(-3px) scale(1.02)}
+.cat-card:active{transform:scale(.97)}
+.cat-top{height:88px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+@media(min-width:600px){.cat-top{height:106px}}
+.cat-tex{position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.025),rgba(255,255,255,.025) 1px,transparent 1px,transparent 14px)}
+.cat-ico{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;position:relative;z-index:1;border:.5px solid rgba(255,255,255,.1)}
+.cat-bot{padding:8px 11px 10px;border-top:.5px solid rgba(255,255,255,.05)}
+.cat-name{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;color:#fff}
+.cat-count{font-size:10px;color:var(--tx2);font-weight:600;margin-top:1px}
+
+/* ── REVIEWS ── */
+.rev-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.rev-scroll::-webkit-scrollbar{display:none}
+.rev-card{flex-shrink:0;width:240px;background:var(--bg2);border-radius:var(--r);border:.5px solid var(--bg3);padding:14px}
+@media(min-width:600px){.rev-card{width:280px}}
+.rev-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.rev-av{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0}
+.rev-nm{font-size:13px;font-weight:700;color:var(--tx0);margin-bottom:2px}
+.rev-dt{font-size:10px;color:var(--tx2)}
+.rev-stars{display:flex;gap:2px;margin-bottom:8px}
+.rev-txt{font-size:12px;color:var(--tx1);line-height:1.6}
+
+/* ── REVIEW FORM ── */
+.rev-form{background:var(--bg2);border:.5px solid var(--bg3);border-radius:var(--r);padding:18px;margin-bottom:24px}
+.rft{font-size:14px;font-weight:700;color:var(--tx0);margin-bottom:14px}
+.rf-inp{width:100%;background:var(--bg3);border:.5px solid var(--bg4);border-radius:9px;padding:9px 13px;color:var(--tx0);font-family:'Cairo',sans-serif;font-size:13px;outline:none;margin-bottom:10px;transition:border-color .2s}
+.rf-inp:focus{border-color:var(--accent)}
+.rf-inp::placeholder{color:var(--tx3)}
+.rf-stars{display:flex;gap:8px;margin-bottom:10px}
+.rf-star{font-size:26px;cursor:pointer;color:var(--bg4);transition:color .1s}
+.rf-star.on{color:var(--accent)}
+.rf-ta{width:100%;background:var(--bg3);border:.5px solid var(--bg4);border-radius:9px;padding:9px 13px;color:var(--tx0);font-family:'Cairo',sans-serif;font-size:13px;outline:none;resize:none;min-height:80px;line-height:1.6;margin-bottom:12px;transition:border-color .2s}
+.rf-ta:focus{border-color:var(--accent)}
+.rf-ta::placeholder{color:var(--tx3)}
+.rf-btn{background:var(--accent);color:#1a0e00;border:none;border-radius:9px;padding:10px 22px;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:filter .15s}
+.rf-btn:hover{filter:brightness(1.1)}
+
+/* ── BACK BAR ── */
+.back-bar{display:flex;align-items:center;gap:10px;padding:16px 0 8px}
+.back-btn{width:32px;height:32px;border-radius:9px;background:var(--bg2);border:.5px solid var(--bg3);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--tx1);font-size:14px}
+.back-btn:hover{background:var(--bg3)}
+.back-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;color:#fff}
+.back-sub{font-size:11px;color:var(--tx2);font-weight:600;margin-top:1px}
+
+/* ── ITEMS LIST ── */
+.items-list{display:flex;flex-direction:column;gap:9px;padding-bottom:24px}
+.item-row{background:var(--bg2);border:.5px solid var(--bg3);border-radius:var(--r);display:flex;overflow:hidden;transition:border-color .15s}
+.item-row:hover{border-color:var(--bg4)}
+.item-thumb{width:82px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:28px;position:relative}
+@media(min-width:600px){.item-thumb{width:108px}}
+.item-thumb::after{content:'';position:absolute;top:0;right:0;bottom:0;width:.5px;background:rgba(255,255,255,.05)}
+.item-body{padding:11px 13px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.item-tag{display:inline-block;font-size:8px;font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:.5px;margin-bottom:4px;text-transform:uppercase}
+.item-name{font-size:13px;font-weight:700;color:var(--tx0);margin-bottom:3px}
+.item-desc{font-size:11px;color:var(--tx2);line-height:1.5;margin-bottom:7px}
+.item-foot{display:flex;align-items:center;justify-content:space-between}
+.item-prices{display:flex;align-items:baseline;gap:5px}
+.item-price{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.5px}
+.item-old{font-size:10px;color:var(--tx3);text-decoration:line-through}
+.item-add{width:28px;height:28px;border-radius:50%;border:none;color:#1a0e00;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .12s;flex-shrink:0}
+.item-add:active{transform:scale(.82)}
+.item-add i{font-size:14px}
+
+/* ── CART DRAWER ── */
+.cart-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:98}
+.cart-ov.open{display:block}
+.cart-drawer{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);width:100%;max-width:520px;z-index:99;background:var(--bg2);border-radius:20px 20px 0 0;border-top:.5px solid var(--bg4);display:flex;flex-direction:column;max-height:75vh;transition:transform .3s ease}
+.cart-drawer.open{transform:translateX(-50%) translateY(0)}
+.cd-handle{width:44px;height:4px;background:var(--bg4);border-radius:2px;margin:12px auto 0;flex-shrink:0}
+.cd-hdr{padding:12px 18px;border-bottom:.5px solid var(--bg3);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.cd-title{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1.5px;color:var(--tx0)}
+.cd-close{background:none;border:none;color:var(--tx2);cursor:pointer;font-size:16px}
+.cd-body{flex:1;overflow-y:auto;padding:0 16px}
+.cd-row{display:flex;align-items:center;gap:9px;padding:10px 0;border-bottom:.5px solid var(--bg3)}
+.cd-row:last-child{border:none}
+.cd-nm{flex:1;font-size:12px;font-weight:700;color:var(--tx0)}
+.cd-qty{display:flex;align-items:center;gap:7px}
+.cd-qbtn{width:22px;height:22px;border-radius:50%;border:none;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;line-height:1}
+.cd-qnum{font-size:12px;font-weight:700;min-width:14px;text-align:center;color:var(--tx0)}
+.cd-price{font-family:'Bebas Neue',sans-serif;font-size:14px;min-width:60px;text-align:left}
+.cd-footer{padding:14px 18px 20px;border-top:.5px solid var(--bg3);flex-shrink:0}
+.cd-total-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.cd-total-row>span:first-child{font-size:13px;color:var(--tx2);font-weight:600}
+.cd-total{font-family:'Bebas Neue',sans-serif;font-size:24px}
+.cd-order{width:100%;height:46px;border:none;border-radius:12px;font-family:'Cairo',sans-serif;font-size:15px;font-weight:700;cursor:pointer;color:#fff;transition:filter .15s}
+.cd-order:hover{filter:brightness(1.1)}
+
+/* ── TOAST ── */
+.toast-wrap{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:200;pointer-events:none}
+.toast{background:var(--bg2);border:.5px solid var(--accent);border-radius:24px;padding:9px 22px;font-size:12px;font-weight:700;color:var(--tx0);opacity:0;transform:translateY(30px);transition:all .3s;white-space:nowrap}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* ── EMPTY / ERROR ── */
+.empty{text-align:center;padding:36px 20px}
+.empty i{font-size:40px;color:var(--tx3);display:block;margin-bottom:12px;opacity:.25}
+.empty p{font-size:13px;font-weight:600;color:var(--tx3)}
+.error-page{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg0);text-align:center;padding:40px}
+.error-page i{font-size:52px;color:var(--tx3);display:block;margin-bottom:16px;opacity:.2}
+.error-page h2{font-size:18px;font-weight:700;color:var(--tx0);margin-bottom:8px}
+.error-page p{font-size:13px;color:var(--tx2);margin-bottom:20px}
+.error-page a{background:var(--accent);color:#1a0e00;padding:10px 24px;border-radius:24px;font-weight:700;font-size:13px;text-decoration:none}
+</style>
 </head>
-<body id="menu-body">
+<body>
 
 <div id="app">
-
   <!-- BANNER -->
-  <div class="banner" id="banner">
-    <canvas id="bg-canvas" class="banner-canvas"></canvas>
-    <div class="banner-ov1"></div>
-    <div class="banner-ov2"></div>
+  <div class="banner">
+    <canvas id="bg-canvas"></canvas>
+    <div class="ov1"></div><div class="ov2"></div>
     <div class="banner-top">
-      <div class="banner-cart" onclick="toggleCartDrawer()" aria-label="السلة">
+      <div class="b-cart" onclick="toggleCart()" aria-label="السلة">
         <i class="ti ti-shopping-cart" aria-hidden="true"></i>
-        <div class="banner-cart-badge" id="cart-badge" style="display:none">0</div>
+        <div class="b-cart-badge" id="cart-badge">0</div>
       </div>
-      <div class="banner-open">
-        <div class="banner-open-dot"></div>
-        <span class="banner-open-txt">مفتوح الآن</span>
-      </div>
-      <div class="banner-menu-btn" aria-label="القائمة">
-        <i class="ti ti-menu-2" aria-hidden="true"></i>
-      </div>
+      <div class="b-open"><div class="b-dot"></div><span>مفتوح الآن</span></div>
+      <div class="b-menu"><i class="ti ti-menu-2" aria-hidden="true"></i></div>
     </div>
     <div class="banner-bottom">
-      <div class="banner-info">
-        <div class="banner-logo" id="banner-logo">CT</div>
-        <div class="banner-fine" id="banner-fine">FINE DINING</div>
-        <div class="banner-name" id="banner-name">CHEF'S TABLE</div>
-        <div class="banner-stars-row">
-          <div class="banner-stars" id="banner-stars">★★★★★</div>
-          <span class="banner-rating" id="banner-rating">4.9 (0)</span>
+      <div>
+        <div class="b-logo" id="b-logo">CT</div>
+        <div class="b-fine" id="b-fine">FINE DINING</div>
+        <div class="b-name" id="b-name">CHEF'S TABLE</div>
+        <div class="b-stars-row">
+          <div class="b-stars" id="b-stars">★★★★★</div>
+          <span class="b-rating" id="b-rating">0.0 (0)</span>
         </div>
       </div>
-      <button class="banner-order-btn" onclick="document.getElementById('popular-sec').scrollIntoView({behavior:'smooth'})">
-        اطلب الآن
-      </button>
+      <button class="b-order" onclick="scrollToMenu()">اطلب الآن</button>
     </div>
   </div>
 
   <!-- STATS -->
-  <div class="stats-bar">
-    <div class="stat-item">
-      <div class="stat-top"><i class="ti ti-star" aria-hidden="true"></i><span class="stat-num" id="stat-rating">0.0</span></div>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-top"><i class="ti ti-star" aria-hidden="true"></i><span class="stat-num" id="s-rating">0.0</span></div>
       <div class="stat-lbl">تقييم</div>
     </div>
-    <div class="stat-item">
-      <div class="stat-top"><i class="ti ti-bowl-chopsticks" aria-hidden="true"></i><span class="stat-num" id="stat-dishes">0</span></div>
+    <div class="stat">
+      <div class="stat-top"><i class="ti ti-bowl-chopsticks" aria-hidden="true"></i><span class="stat-num" id="s-dishes">0</span></div>
       <div class="stat-lbl">طبق</div>
     </div>
-    <div class="stat-item">
+    <div class="stat">
       <div class="stat-top"><i class="ti ti-clock" aria-hidden="true"></i><span class="stat-num">30 د</span></div>
       <div class="stat-lbl">توصيل</div>
     </div>
   </div>
 
   <!-- MAIN -->
-  <div class="main-content">
+  <div class="main" id="main">
 
-    <!-- HOME VIEW -->
+    <!-- HOME -->
     <div id="view-home">
-
-      <!-- POPULAR -->
-      <div class="sec-hdr" id="popular-sec">
+      <div class="sec-hdr" id="menu-anchor">
         <div class="sec-title">الأكثر طلباً 🔥</div>
-        <span class="sec-link" onclick="openAllItems()">عرض الكل ←</span>
+        <span class="sec-link" onclick="openAll()">عرض الكل ←</span>
       </div>
-      <div class="pop-scroll" id="popular-row"></div>
+      <div class="pop-scroll" id="pop-row"></div>
 
-      <!-- CATS -->
       <div class="sec-hdr">
         <div class="sec-title">الأصناف</div>
         <span class="sec-count" id="cats-count">0 صنف</span>
       </div>
       <div class="cats-grid" id="cats-grid"></div>
 
-      <!-- REVIEWS -->
       <div class="sec-hdr">
         <div class="sec-title">التقييمات</div>
-        <span class="add-rev-btn" onclick="document.getElementById('rev-form-sec').scrollIntoView({behavior:'smooth'})">
+        <span class="add-rev" onclick="document.getElementById('rev-form').scrollIntoView({behavior:'smooth'})">
           <i class="ti ti-plus" aria-hidden="true"></i> أضف تقييم
         </span>
       </div>
-      <div class="reviews-scroll" id="reviews-row"></div>
+      <div class="rev-scroll" id="rev-row"></div>
 
-      <!-- REVIEW FORM -->
-      <div class="rev-form-card" id="rev-form-sec">
-        <div class="rfc-title">شاركنا تجربتك 📝</div>
-        <input class="rfc-input" id="rf-name" placeholder="اسمك" maxlength="40">
-        <div class="rfc-stars" id="rfc-stars">
-          <span class="rfc-star on" onclick="setRevStar(1)">★</span>
-          <span class="rfc-star on" onclick="setRevStar(2)">★</span>
-          <span class="rfc-star on" onclick="setRevStar(3)">★</span>
-          <span class="rfc-star on" onclick="setRevStar(4)">★</span>
-          <span class="rfc-star on" onclick="setRevStar(5)">★</span>
+      <div class="rev-form" id="rev-form">
+        <div class="rft">شاركنا تجربتك 📝</div>
+        <input class="rf-inp" id="rf-name" placeholder="اسمك" maxlength="40">
+        <div class="rf-stars" id="rf-stars">
+          <span class="rf-star on" onclick="setStars(1)">★</span>
+          <span class="rf-star on" onclick="setStars(2)">★</span>
+          <span class="rf-star on" onclick="setStars(3)">★</span>
+          <span class="rf-star on" onclick="setStars(4)">★</span>
+          <span class="rf-star on" onclick="setStars(5)">★</span>
         </div>
-        <textarea class="rfc-textarea" id="rf-text" placeholder="شاركنا تجربتك مع المطعم..."></textarea>
-        <button class="rfc-submit" onclick="submitReview()">إرسال التقييم</button>
+        <textarea class="rf-ta" id="rf-text" placeholder="شاركنا تجربتك مع المطعم..."></textarea>
+        <button class="rf-btn" onclick="submitReview()">إرسال التقييم</button>
       </div>
-
     </div>
 
     <!-- ITEMS VIEW -->
     <div id="view-items" style="display:none">
       <div class="back-bar">
-        <button class="back-btn" onclick="showHome()" aria-label="رجوع">
-          <i class="ti ti-arrow-right" aria-hidden="true"></i>
-        </button>
+        <button class="back-btn" onclick="showHome()" aria-label="رجوع"><i class="ti ti-arrow-right" aria-hidden="true"></i></button>
         <div>
-          <div class="back-title" id="items-view-title">الأطباق</div>
-          <div class="back-sub" id="items-view-sub">0 أطباق</div>
+          <div class="back-title" id="iv-title">الأطباق</div>
+          <div class="back-sub" id="iv-sub">0 أطباق</div>
         </div>
       </div>
       <div class="items-list" id="items-list"></div>
@@ -126,17 +300,13 @@
   </div>
 </div>
 
-<!-- CART DRAWER OVERLAY -->
-<div class="cart-overlay" id="cart-overlay" onclick="closeCartDrawer()"></div>
-
-<!-- CART DRAWER -->
+<!-- CART OVERLAY + DRAWER -->
+<div class="cart-ov" id="cart-ov" onclick="closeCart()"></div>
 <div class="cart-drawer" id="cart-drawer">
   <div class="cd-handle"></div>
-  <div class="cd-header">
+  <div class="cd-hdr">
     <div class="cd-title">سلة الطلب</div>
-    <button class="cd-close" onclick="closeCartDrawer()" aria-label="إغلاق">
-      <i class="ti ti-x" aria-hidden="true"></i>
-    </button>
+    <button class="cd-close" onclick="closeCart()" aria-label="إغلاق"><i class="ti ti-x" aria-hidden="true"></i></button>
   </div>
   <div class="cd-body" id="cart-body"></div>
   <div class="cd-footer" id="cart-footer" style="display:none">
@@ -144,16 +314,331 @@
       <span>المجموع</span>
       <span class="cd-total" id="cart-total"></span>
     </div>
-    <button class="cd-order" onclick="placeOrder()" id="cd-order-btn">تأكيد الطلب</button>
+    <button class="cd-order" id="cd-order" onclick="placeOrder()">تأكيد الطلب</button>
   </div>
 </div>
 
 <!-- TOAST -->
-<div class="toast-wrap" id="toast-wrap">
-  <div class="toast-msg" id="toast-msg"></div>
-</div>
+<div class="toast-wrap"><div class="toast" id="toast"></div></div>
 
 <script src="js/storage.js"></script>
-<script src="js/menu.js"></script>
+<script>
+// ────────────────────────────────────────────────
+const CATS_BG=['#1a3a28','#1a3020','#2e1c08','#2a2200','#131a2a','#2a1318','#1a1a2e','#1a2a0a'];
+const AV_COLORS=['#c9a84c','#1B7040','#2980b9','#8e44ad','#e74c3c','#16a085','#e67e22','#e91e8c'];
+let MENU=null, ACCENT='#c9a84c', CART=[], revStars=5, curCat=null;
+
+function revKey(s){return'mc_rev_'+s}
+function loadRevs(s){try{return JSON.parse(localStorage.getItem(revKey(s))||'[]')}catch{return[]}}
+function saveRevs(s,a){localStorage.setItem(revKey(s),JSON.stringify(a))}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded',()=>{
+  const p=new URLSearchParams(location.search);
+  let slug=p.get('slug')||p.get('id');
+
+  // إذا لم يكن هناك slug، حاول أول منيو محفوظ
+  if(!slug){
+    const all=DB.all();
+    if(all.length>0){slug=all[0].slug;}
+  }
+
+  if(!slug){showErr('لم يتم تحديد منيو.');return;}
+  MENU=DB.bySlug(slug);
+  if(!MENU){
+    // حاول بالـ id
+    const all=DB.all();
+    if(all.length>0){MENU=all[0];}
+  }
+  if(!MENU){showErr('المنيو غير موجود — ارجع للداشبورد وافتح المنيو من هناك.');return;}
+
+  document.title=MENU.name+' — MenuCraft Pro';
+  ACCENT=MENU.color||'#c9a84c';
+  document.documentElement.style.setProperty('--accent',ACCENT);
+  MENU._revs=loadRevs(MENU.slug||MENU.id);
+
+  drawBg();
+  updateBanner();
+  renderPop();
+  renderCats();
+  renderRevs();
+  updateRating();
+  initRevStars();
+  window.addEventListener('resize',drawBg);
+});
+
+function scrollToMenu(){document.getElementById('menu-anchor').scrollIntoView({behavior:'smooth'})}
+
+// ── CANVAS BG ──
+function drawBg(){
+  const cv=document.getElementById('bg-canvas');
+  if(!cv)return;
+  cv.width=cv.offsetWidth||800;cv.height=cv.offsetHeight||400;
+  const cx=cv.getContext('2d');
+  const g=cx.createLinearGradient(0,0,cv.width,cv.height);
+  g.addColorStop(0,'#1a0e05');g.addColorStop(.5,'#0d0803');g.addColorStop(1,'#050300');
+  cx.fillStyle=g;cx.fillRect(0,0,cv.width,cv.height);
+  cx.globalAlpha=.055;
+  for(let i=0;i<55;i++){
+    cx.strokeStyle='rgba(201,168,76,.25)';cx.lineWidth=1;
+    cx.beginPath();cx.moveTo(i*cv.width/55+Math.random()*18,0);
+    cx.lineTo(i*cv.width/55+Math.random()*28,cv.height);cx.stroke();
+  }
+  cx.globalAlpha=1;
+  [[cv.width*.12,cv.height*.35,110],[cv.width*.5,cv.height*.2,140],[cv.width*.88,cv.height*.45,120]].forEach(([x,y,r])=>{
+    const rg=cx.createRadialGradient(x,y,0,x,y,r);
+    rg.addColorStop(0,ACCENT+'14');rg.addColorStop(1,'transparent');
+    cx.fillStyle=rg;cx.beginPath();cx.arc(x,y,r,0,Math.PI*2);cx.fill();
+  });
+  const init=(MENU?.name||'CT').split(' ').filter(Boolean).map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  cx.globalAlpha=.035;cx.font=`bold ${Math.round(cv.height*.58)}px serif`;
+  cx.fillStyle=ACCENT;cx.textAlign='center';
+  cx.fillText(init,cv.width*.5,cv.height*.72);cx.globalAlpha=1;
+}
+
+// ── BANNER ──
+function updateBanner(){
+  const name=MENU.name||"Chef's Table";
+  const sub=MENU.sub||'Fine Dining';
+  const init=name.split(' ').filter(Boolean).map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  const logo=document.getElementById('b-logo');
+  logo.textContent=init;logo.style.color=ACCENT;logo.style.borderColor=ACCENT;
+  document.getElementById('b-fine').textContent=sub.toUpperCase();
+  document.getElementById('b-name').textContent=name.toUpperCase();
+  document.getElementById('s-dishes').textContent=(MENU.items||[]).length;
+}
+
+function updateRating(){
+  const revs=MENU._revs||[];
+  const avg=revs.length?(revs.reduce((s,r)=>s+r.stars,0)/revs.length).toFixed(1):'0.0';
+  const stars=document.getElementById('b-stars');
+  stars.innerHTML='★★★★★'.split('').map((s,i)=>`<span style="color:${i<Math.round(parseFloat(avg))?ACCENT:'#2a2a2a'};font-size:13px">${s}</span>`).join('');
+  document.getElementById('b-rating').textContent=`${avg} (${revs.length})`;
+  document.getElementById('s-rating').textContent=avg;
+}
+
+// ── POPULAR ──
+function renderPop(){
+  const items=[...(MENU.items||[])];
+  const cats=MENU.cats||MENU.categories||[];
+  // sort: tagged first, then by random score
+  items.sort((a,b)=>{
+    const as=(a.tag==='الأكثر طلباً'?1000:0)+(parseFloat(a.orders)||Math.floor(Math.random()*300));
+    const bs=(b.tag==='الأكثر طلباً'?1000:0)+(parseFloat(b.orders)||Math.floor(Math.random()*300));
+    return bs-as;
+  });
+  const cur=MENU.currency||'ر.س';
+  document.getElementById('pop-row').innerHTML=items.slice(0,8).map(it=>{
+    const cat=cats.find(c=>c.id===it.catId);
+    const ci=cats.indexOf(cat);
+    return`<div class="pop-card" onclick="addCart('${it.id}')">
+      <div class="pop-img" style="background:${CATS_BG[ci>=0?ci%CATS_BG.length:0]}">
+        <span>${cat?.ico||'🍽️'}</span>
+        ${it.tag?`<div class="pop-badge" style="background:${ACCENT};color:#1a0e00">${it.tag}</div>`:''}
+      </div>
+      <div class="pop-body">
+        <div class="pop-name">${it.name}</div>
+        <div class="pop-prices">
+          ${it.oldPrice?`<span class="pop-old">${it.oldPrice}</span>`:''}
+          <span class="pop-price" style="color:${ACCENT}">${it.price} ${cur}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── CATS ──
+function renderCats(){
+  const cats=MENU.cats||MENU.categories||[];
+  const items=MENU.items||[];
+  document.getElementById('cats-count').textContent=cats.length+' صنف';
+  document.getElementById('cats-grid').innerHTML=cats.map((cat,i)=>`
+    <div class="cat-card" onclick="openCat('${cat.id}')">
+      <div class="cat-top" style="background:${CATS_BG[i%CATS_BG.length]}">
+        <div class="cat-tex"></div>
+        <div class="cat-ico" style="background:${ACCENT}18;border-color:${ACCENT}30">${cat.ico||'🍽️'}</div>
+      </div>
+      <div class="cat-bot">
+        <div class="cat-name">${cat.name}</div>
+        <div class="cat-count">${items.filter(it=>it.catId===cat.id).length} أطباق</div>
+      </div>
+    </div>`).join('');
+}
+
+// ── OPEN CAT ──
+function openCat(catId){
+  curCat=catId;
+  const cats=MENU.cats||MENU.categories||[];
+  const items=(MENU.items||[]).filter(it=>it.catId===catId);
+  const cat=cats.find(c=>c.id===catId);
+  const ci=cats.indexOf(cat);
+  document.getElementById('iv-title').textContent=cat?.name||'';
+  document.getElementById('iv-sub').textContent=items.length+' أطباق';
+  document.getElementById('items-list').innerHTML=items.map(it=>itemRow(it,cat,ci)).join('');
+  document.getElementById('view-home').style.display='none';
+  document.getElementById('view-items').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function openAll(){
+  curCat=null;
+  const cats=MENU.cats||MENU.categories||[];
+  const items=[...(MENU.items||[])].sort((a,b)=>(b.tag==='الأكثر طلباً'?1:0)-(a.tag==='الأكثر طلباً'?1:0));
+  document.getElementById('iv-title').textContent='كل الأطباق';
+  document.getElementById('iv-sub').textContent=items.length+' طبق';
+  document.getElementById('items-list').innerHTML=items.map(it=>{
+    const cat=cats.find(c=>c.id===it.catId);
+    return itemRow(it,cat,cats.indexOf(cat));
+  }).join('');
+  document.getElementById('view-home').style.display='none';
+  document.getElementById('view-items').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function itemRow(it,cat,ci){
+  const cur=MENU.currency||'ر.س';
+  const bg=CATS_BG[ci>=0?ci%CATS_BG.length:0];
+  return`<div class="item-row">
+    <div class="item-thumb" style="background:${bg}">${cat?.ico||'🍽️'}</div>
+    <div class="item-body">
+      ${it.tag?`<div class="item-tag" style="background:${ACCENT}18;color:${ACCENT}">${it.tag}</div>`:'<div style="height:4px"></div>'}
+      <div class="item-name">${it.name}</div>
+      ${it.desc?`<div class="item-desc">${it.desc}</div>`:''}
+      <div class="item-foot">
+        <div class="item-prices">
+          ${it.oldPrice?`<span class="item-old">${it.oldPrice}</span>`:''}
+          <span class="item-price" style="color:${ACCENT}">${it.price} ${cur}</span>
+        </div>
+        <button class="item-add" style="background:${ACCENT}" onclick="addCart('${it.id}')" aria-label="إضافة">
+          <i class="ti ti-plus" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function showHome(){
+  document.getElementById('view-home').style.display='block';
+  document.getElementById('view-items').style.display='none';
+  curCat=null;
+}
+
+// ── REVIEWS ──
+function renderRevs(){
+  const revs=MENU._revs||[];
+  if(!revs.length){
+    document.getElementById('rev-row').innerHTML='<div class="empty" style="min-width:220px"><i class="ti ti-message-circle"></i><p>لا توجد تقييمات — كن الأول!</p></div>';
+    return;
+  }
+  document.getElementById('rev-row').innerHTML=revs.map(r=>`
+    <div class="rev-card">
+      <div class="rev-top">
+        <div class="rev-av" style="background:${r.color}20;color:${r.color};width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0">${r.name[0].toUpperCase()}</div>
+        <div><div class="rev-nm">${r.name}</div><div class="rev-dt">${r.date}</div></div>
+      </div>
+      <div class="rev-stars">${'★★★★★'.split('').map((s,i)=>`<span style="color:${i<r.stars?ACCENT:'#2a2a2a'};font-size:14px">${s}</span>`).join('')}</div>
+      <div class="rev-txt">${r.text}</div>
+    </div>`).join('');
+}
+
+function initRevStars(){
+  document.querySelectorAll('.rf-star').forEach((s,i)=>{s.style.color=i<5?ACCENT:'var(--bg4)'});
+}
+
+function setStars(n){
+  revStars=n;
+  document.querySelectorAll('.rf-star').forEach((s,i)=>{
+    s.classList.toggle('on',i<n);
+    s.style.color=i<n?ACCENT:'var(--bg4)';
+  });
+}
+
+function submitReview(){
+  const name=document.getElementById('rf-name').value.trim();
+  const text=document.getElementById('rf-text').value.trim();
+  if(!name){document.getElementById('rf-name').focus();showToast('⚠️ أدخل اسمك أولاً');return;}
+  if(!text){document.getElementById('rf-text').focus();showToast('⚠️ اكتب تقييمك');return;}
+  const rev={name,stars:revStars,text,date:new Date().toLocaleDateString('ar-SA'),color:AV_COLORS[(MENU._revs||[]).length%AV_COLORS.length]};
+  MENU._revs=[rev,...(MENU._revs||[])];
+  saveRevs(MENU.slug||MENU.id,MENU._revs);
+  document.getElementById('rf-name').value='';
+  document.getElementById('rf-text').value='';
+  setStars(5);
+  renderRevs();updateRating();
+  showToast('✅ شكراً '+name+'! تم إضافة تقييمك');
+  document.getElementById('rev-row').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+// ── CART ──
+function addCart(id){
+  const it=(MENU.items||[]).find(i=>i.id===id);if(!it)return;
+  const ex=CART.find(c=>c.id===id);
+  if(ex)ex.qty++;else CART.push({id,name:it.name,price:parseFloat(it.price)||0,qty:1});
+  updCartBadge();showToast('🛒 أُضيف: '+it.name);
+}
+
+function updCartBadge(){
+  const n=CART.reduce((s,c)=>s+c.qty,0);
+  const b=document.getElementById('cart-badge');
+  b.textContent=n;b.style.display=n?'flex':'none';
+}
+
+function toggleCart(){
+  const d=document.getElementById('cart-drawer');
+  if(d.classList.contains('open')){closeCart();}else{renderCart();d.classList.add('open');document.getElementById('cart-ov').classList.add('open');}
+}
+function closeCart(){
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('cart-ov').classList.remove('open');
+}
+
+function renderCart(){
+  const cur=MENU.currency||'ر.س';
+  const total=Math.round(CART.reduce((s,c)=>s+c.price*c.qty,0));
+  const body=document.getElementById('cart-body');
+  const footer=document.getElementById('cart-footer');
+  if(!CART.length){
+    body.innerHTML='<div class="empty"><i class="ti ti-shopping-cart-off"></i><p>السلة فارغة</p></div>';
+    footer.style.display='none';return;
+  }
+  body.innerHTML=CART.map((c,i)=>`
+    <div class="cd-row">
+      <div class="cd-nm">${c.name}</div>
+      <div class="cd-qty">
+        <button class="cd-qbtn" style="background:var(--bg4)" onclick="chQty(${i},-1)">−</button>
+        <span class="cd-qnum">${c.qty}</span>
+        <button class="cd-qbtn" style="background:${ACCENT};color:#1a0e00" onclick="chQty(${i},1)">+</button>
+      </div>
+      <span class="cd-price" style="color:${ACCENT}">${Math.round(c.price*c.qty)} ${cur}</span>
+    </div>`).join('');
+  document.getElementById('cart-total').textContent=total+' '+cur;
+  document.getElementById('cart-total').style.color=ACCENT;
+  const ob=document.getElementById('cd-order');ob.style.background=ACCENT;ob.style.color='#1a0e00';
+  footer.style.display='block';
+}
+
+function chQty(i,d){CART[i].qty+=d;if(CART[i].qty<=0)CART.splice(i,1);updCartBadge();renderCart();}
+function placeOrder(){const n=CART.reduce((s,c)=>s+c.qty,0);CART=[];updCartBadge();closeCart();showToast('🎉 تم إرسال طلبك ('+n+' عنصر) بنجاح!');}
+
+// ── TOAST ──
+let _tt;
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(_tt);_tt=setTimeout(()=>t.classList.remove('show'),2400);
+}
+
+// ── ERROR ──
+function showErr(msg){
+  document.getElementById('app').innerHTML=`
+    <div class="error-page">
+      <div>
+        <i class="ti ti-mood-sad"></i>
+        <h2>${msg}</h2>
+        <p>ارجع للداشبورد وافتح المنيو من هناك</p>
+        <a href="dashboard.html">← لوحة التحكم</a>
+      </div>
+    </div>`;
+}
+</script>
 </body>
 </html>
