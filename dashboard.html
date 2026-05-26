@@ -4,277 +4,544 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MenuCraft Pro — لوحة التحكم</title>
+<!-- Stitch Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&family=Be+Vietnam+Pro:wght@100;300;400;500;600;700&family=Tajawal:wght@400;500;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.14.0/dist/tabler-icons.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/dashboard.css">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "background": "#fbf9f5",
+        "surface": "#fbf9f5",
+        "surface-container-low": "#f5f3ef",
+        "surface-container": "#efeeea",
+        "surface-container-lowest": "#ffffff",
+        "surface-container-high": "#eae8e4",
+        "surface-container-highest": "#e4e2de",
+        "surface-variant": "#e4e2de",
+        "surface-dim": "#dbdad6",
+        "on-surface": "#1b1c1a",
+        "on-surface-variant": "#444748",
+        "primary": "#000000",
+        "on-primary": "#ffffff",
+        "primary-container": "#1c1b1b",
+        "on-primary-container": "#858383",
+        "secondary": "#675d4e",
+        "secondary-container": "#efe0cd",
+        "on-secondary-container": "#6d6354",
+        "tertiary": "#735c00",
+        "tertiary-container": "#cca730",
+        "tertiary-fixed": "#ffe088",
+        "on-tertiary-fixed": "#241a00",
+        "outline": "#747878",
+        "outline-variant": "#c4c7c7",
+        "inverse-surface": "#30312e",
+        "inverse-on-surface": "#f2f0ed",
+        "inverse-primary": "#c8c6c5",
+        "gold": "#c9a84c",
+        "gold-light": "#e6c364",
+      },
+      fontFamily: {
+        "headline": ["Bodoni Moda", "serif"],
+        "body": ["Be Vietnam Pro", "Tajawal", "sans-serif"],
+        "display": ["Bebas Neue", "sans-serif"],
+        "arabic": ["Tajawal", "sans-serif"],
+      }
+    }
+  }
+}
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+  ::-webkit-scrollbar{width:4px}
+  ::-webkit-scrollbar-track{background:#fbf9f5}
+  ::-webkit-scrollbar-thumb{background:#c4c7c7;border-radius:10px}
+  .glass-effect{backdrop-filter:blur(16px);background:rgba(251,249,245,0.85)}
+  /* Dark sidebar */
+  .dark-side{background:#1b1c1a}
+  /* Phone frame */
+  .phone-frame{border-radius:24px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.35)}
+  /* Gold gradient */
+  .gold-grad{background:linear-gradient(135deg,#c9a84c,#e6c364)}
+  /* Pulsing dot */
+  @keyframes pulse-dot{0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.4)}50%{box-shadow:0 0 0 5px rgba(74,222,128,0)}}
+  .pulse-dot{animation:pulse-dot 2s infinite}
+  /* RTL overrides */
+  [dir="rtl"] .mr-3{margin-right:0;margin-left:.75rem}
+  [dir="rtl"] .ml-64{margin-left:0;margin-right:16rem}
+  [dir="rtl"] .left-0{left:auto;right:0}
+  [dir="rtl"] .right-0{right:auto;left:0}
+  [dir="rtl"] .border-r{border-right:none;border-left:1px solid}
+  [dir="rtl"] .border-r-2{border-right:none;border-left:2px solid}
+  [dir="rtl"] .rounded-r-lg{border-radius:0;border-top-right-radius:0.5rem;border-bottom-right-radius:0.5rem}
+  [dir="rtl"] .rounded-l-lg{border-radius:0;border-top-left-radius:0.5rem;border-bottom-left-radius:0.5rem}
+  [dir="rtl"] .border-r-0{border-right-width:1px;border-left-width:0}
+  /* Custom nav active */
+  .nav-active{background:rgba(239,224,205,0.3);color:#000;font-weight:700;border-right:none;border-left:2px solid #000}
+  /* Fade in */
+  .page{display:none;animation:fadeIn .25s ease both}
+  .page.on{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  /* Phone views */
+  #phone-content{transition:all .3s}
+  .BKGS div:nth-child(1){background:#1a3a28}
+</style>
 </head>
-<body class="dash-body">
-<div id="toast-msg" class="toast-msg" role="status" aria-live="polite"></div>
+<body class="bg-background text-on-surface font-body overflow-x-hidden">
 
-<div class="shell">
+<div id="toast-msg" style="position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(40px);background:#1b1c1a;color:#fff;border:0.5px solid #c9a84c;padding:8px 20px;border-radius:20px;font-size:12px;font-weight:700;opacity:0;transition:all .3s;white-space:nowrap;pointer-events:none;z-index:999;font-family:Tajawal,sans-serif" role="status" aria-live="polite"></div>
 
-  <!-- LEFT SIDEBAR -->
-  <aside class="left-panel" aria-label="قائمة التنقل">
-    <div class="lp-logo">
-      <div class="lp-logo-text">MENU<em>CRAFT</em></div>
-      <div class="lp-logo-sub">Restaurant Menu Builder PRO</div>
+<div class="flex">
+
+<!-- ── SIDEBAR ── -->
+<aside class="fixed right-0 top-0 h-full w-64 dark-side border-l border-outline-variant flex flex-col py-5 z-50">
+  <div class="px-6 mb-8">
+    <h1 class="font-display text-2xl tracking-widest text-white leading-none">MENU<span style="color:#c9a84c">CRAFT</span></h1>
+    <p class="text-xs text-gray-500 mt-1 tracking-widest uppercase font-arabic">Restaurant Builder PRO</p>
+  </div>
+
+  <nav class="flex-1 px-3 space-y-1 overflow-y-auto font-arabic" dir="rtl">
+    <p class="text-[9px] font-bold tracking-[2px] uppercase text-gray-600 px-3 py-1">إدارة المحتوى</p>
+    <button onclick="showPage('info',this)" class="nav-btn nav-active w-full flex items-center px-3 py-2.5 rounded-lg text-sm font-semibold transition-all">
+      <i class="ti ti-building-store ml-3 text-gold" style="font-size:16px;color:#c9a84c"></i>معلومات المطعم
+    </button>
+    <button onclick="showPage('data',this)" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-gray-800 hover:text-white transition-all">
+      <i class="ti ti-table ml-3" style="font-size:16px"></i>بيانات المنيو
+    </button>
+    <button onclick="showPage('design',this)" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-gray-800 hover:text-white transition-all">
+      <i class="ti ti-palette ml-3" style="font-size:16px"></i>التصميم
+    </button>
+    <p class="text-[9px] font-bold tracking-[2px] uppercase text-gray-600 px-3 py-1 mt-3">مكتبتي</p>
+    <button onclick="showPage('menus',this)" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-gray-800 hover:text-white transition-all">
+      <i class="ti ti-layout-grid ml-3" style="font-size:16px"></i>منيوهاتي
+    </button>
+    <p class="text-[9px] font-bold tracking-[2px] uppercase text-gray-600 px-3 py-1 mt-3">أدوات</p>
+    <button onclick="loadSample()" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-gray-800 hover:text-white transition-all">
+      <i class="ti ti-sparkles ml-3" style="font-size:16px"></i>بيانات تجريبية
+    </button>
+    <button onclick="dlTpl()" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-gray-800 hover:text-white transition-all">
+      <i class="ti ti-file-spreadsheet ml-3" style="font-size:16px"></i>نموذج Excel
+    </button>
+    <button onclick="DB.exportAll()" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-gray-800 hover:text-white transition-all">
+      <i class="ti ti-database-export ml-3" style="font-size:16px"></i>تصدير البيانات
+    </button>
+    <button onclick="resetAll()" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-gray-800 hover:text-white transition-all">
+      <i class="ti ti-refresh ml-3" style="font-size:16px"></i>إعادة تعيين
+    </button>
+    <a href="index.html" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:bg-gray-800 hover:text-white transition-all" style="text-decoration:none">
+      <i class="ti ti-home ml-3" style="font-size:16px"></i>الصفحة الرئيسية
+    </a>
+  </nav>
+
+  <div class="px-4 pt-4 border-t border-gray-800 space-y-2">
+    <button onclick="saveMenu()" class="w-full gold-grad text-gray-900 py-3 rounded-lg text-sm font-bold hover:opacity-90 transition-all flex items-center justify-center gap-2 font-arabic">
+      <i class="ti ti-device-floppy" style="font-size:16px"></i>حفظ المنيو
+    </button>
+    <button onclick="syncPhone()" class="w-full border border-gray-700 text-gray-400 py-2.5 rounded-lg text-sm font-semibold hover:bg-gray-800 hover:text-white transition-all flex items-center justify-center gap-2 font-arabic">
+      <i class="ti ti-eye" style="font-size:14px"></i>تحديث المعاينة
+    </button>
+  </div>
+</aside>
+
+<!-- ── MAIN ── -->
+<div class="mr-64 min-h-screen flex flex-col w-full">
+
+  <!-- TOP BAR -->
+  <header class="fixed top-0 left-0 right-64 h-16 glass-effect border-b border-outline-variant flex justify-between items-center px-8 z-40">
+    <div>
+      <div class="font-bold text-sm text-on-surface" id="cp-title">معلومات المطعم</div>
+      <div class="text-xs text-on-surface-variant mt-0.5" id="cp-sub">أدخل تفاصيل مطعمك</div>
     </div>
-    <nav class="lp-nav">
-      <div class="nav-section-lbl">إدارة المحتوى</div>
-      <button class="nav-item active" onclick="showPage('info',this)" aria-current="page">
-        <i class="ti ti-building-store" aria-hidden="true"></i>معلومات المطعم
+    <div class="flex items-center gap-3">
+      <button onclick="loadSample()" class="p-2 rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant" title="بيانات تجريبية">
+        <i class="ti ti-sparkles" style="font-size:18px"></i>
       </button>
-      <button class="nav-item" onclick="showPage('data',this)">
-        <i class="ti ti-table" aria-hidden="true"></i>بيانات المنيو
+      <button onclick="dlTpl()" class="p-2 rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant" title="نموذج Excel">
+        <i class="ti ti-download" style="font-size:18px"></i>
       </button>
-      <button class="nav-item" onclick="showPage('design',this)">
-        <i class="ti ti-palette" aria-hidden="true"></i>التصميم
+      <button onclick="saveMenu()" class="gold-grad text-gray-900 px-4 py-2 rounded-lg text-sm font-bold hover:opacity-90 transition-all flex items-center gap-2 font-arabic">
+        <i class="ti ti-device-floppy" style="font-size:15px"></i>حفظ
       </button>
-      <div class="nav-section-lbl">مكتبتي</div>
-      <button class="nav-item" onclick="showPage('menus',this)">
-        <i class="ti ti-layout-grid" aria-hidden="true"></i>منيوهاتي
-      </button>
-      <div class="nav-section-lbl">أدوات</div>
-      <button class="nav-item" onclick="loadSample()">
-        <i class="ti ti-sparkles" aria-hidden="true"></i>بيانات تجريبية
-      </button>
-      <button class="nav-item" onclick="dlTpl()">
-        <i class="ti ti-file-spreadsheet" aria-hidden="true"></i>نموذج Excel
-      </button>
-      <button class="nav-item" onclick="DB.exportAll()">
-        <i class="ti ti-database-export" aria-hidden="true"></i>تصدير البيانات
-      </button>
-      <button class="nav-item" onclick="resetAll()">
-        <i class="ti ti-refresh" aria-hidden="true"></i>إعادة تعيين
-      </button>
-      <div class="nav-section-lbl">الصفحات</div>
-      <a href="index.html" class="nav-item" style="text-decoration:none">
-        <i class="ti ti-home" aria-hidden="true"></i>الصفحة الرئيسية
-      </a>
-    </nav>
-    <div class="lp-footer">
-      <button class="save-btn" onclick="saveMenu()">
-        <i class="ti ti-device-floppy" aria-hidden="true"></i>حفظ المنيو
-      </button>
-      <button class="preview-btn" onclick="syncPhone()">
-        <i class="ti ti-eye" aria-hidden="true"></i>تحديث المعاينة
-      </button>
-    </div>
-  </aside>
-
-  <!-- CENTER -->
-  <main class="center-panel">
-    <div class="cp-topbar">
-      <div>
-        <div class="cp-title" id="cp-title">معلومات المطعم</div>
-        <div class="cp-subtitle" id="cp-sub">أدخل تفاصيل مطعمك</div>
+      <div class="h-6 w-px bg-outline-variant"></div>
+      <div class="flex items-center gap-3">
+        <div class="text-right">
+          <p class="text-sm font-semibold text-on-surface leading-none">Admin</p>
+          <p class="text-[10px] text-on-surface-variant uppercase tracking-widest mt-0.5">MenuCraft Pro</p>
+        </div>
+        <div class="w-9 h-9 rounded-full gold-grad flex items-center justify-center text-gray-900 font-bold text-sm">MC</div>
       </div>
-      <div class="cp-actions">
-        <button class="icon-btn" onclick="loadSample()" title="بيانات تجريبية" aria-label="تحميل بيانات تجريبية">
-          <i class="ti ti-sparkles" aria-hidden="true"></i>
-        </button>
-        <button class="icon-btn" onclick="dlTpl()" title="نموذج Excel" aria-label="تحميل نموذج Excel">
-          <i class="ti ti-download" aria-hidden="true"></i>
-        </button>
-        <button class="icon-btn" onclick="saveMenu()" title="حفظ" aria-label="حفظ المنيو">
-          <i class="ti ti-device-floppy" aria-hidden="true"></i>
-        </button>
-      </div>
     </div>
+  </header>
 
-    <div class="cp-body">
+  <!-- CONTENT + PHONE -->
+  <div class="mt-16 flex">
+
+    <!-- CENTER CONTENT -->
+    <main class="flex-1 p-8 overflow-y-auto min-h-[calc(100vh-4rem)]" dir="rtl">
 
       <!-- PAGE: INFO -->
       <div class="page on" id="pg-info">
-        <div class="sc">
-          <div class="sc-head"><i class="ti ti-id" aria-hidden="true"></i><span class="sc-title">الهوية</span></div>
-          <div class="sc-body">
-            <div class="g2" style="margin-bottom:10px">
-              <div class="fg"><label class="form-label">اسم المطعم *</label><input class="form-input" id="r-name" placeholder="Chef's Table" oninput="syncPhone()"></div>
-              <div class="fg"><label class="form-label">الأيقونة</label><input class="form-input" id="r-ico" placeholder="🍽️" style="text-align:center;font-size:17px" oninput="syncPhone()"></div>
-              <div class="fg"><label class="form-label">الشعار الفرعي</label><input class="form-input" id="r-sub" placeholder="Fine Dining Experience" oninput="syncPhone()"></div>
-              <div class="fg"><label class="form-label">العملة</label>
-                <select class="form-input" id="r-cur">
-                  <option value="ر.س">ريال (ر.س)</option>
-                  <option value="د.إ">درهم (د.إ)</option>
-                  <option value="฿">باهت (฿)</option>
-                  <option value="$">دولار ($)</option>
-                  <option value="€">يورو (€)</option>
-                  <option value="ج.م">جنيه (ج.م)</option>
-                </select>
-              </div>
-              <div class="fg" style="grid-column:1/-1">
-                <label class="form-label">وصف قصير</label>
-                <textarea class="form-input" id="r-desc" placeholder="أشهى الأطباق بمكونات طازجة ومذاق لا يُنسى..."></textarea>
-              </div>
-            </div>
-          </div>
+        <div class="mb-8">
+          <span class="text-tertiary text-xs font-bold tracking-[0.2em] uppercase mb-2 block font-arabic">إدارة</span>
+          <h2 class="font-headline text-3xl text-primary mb-3">معلومات المطعم</h2>
+          <p class="text-on-surface-variant text-sm font-arabic leading-relaxed max-w-xl">عرّف هوية مطعمك الرقمية — هذه التفاصيل ستظهر لزوارك عبر المنصة.</p>
         </div>
-        <div class="sc">
-          <div class="sc-head"><i class="ti ti-link" aria-hidden="true"></i><span class="sc-title">الرابط والنشر</span></div>
-          <div class="sc-body">
-            <div class="g2">
-              <div class="fg"><label class="form-label">الرابط المخصص</label><input class="form-input" id="r-slug" placeholder="my-restaurant"></div>
-              <div class="fg" style="justify-content:flex-end">
-                <button class="btn-g" onclick="autoSlug()"><i class="ti ti-wand" aria-hidden="true"></i>توليد تلقائي</button>
+
+        <div class="grid grid-cols-12 gap-6">
+          <!-- Identity -->
+          <section class="col-span-12 lg:col-span-8 space-y-6">
+            <div class="bg-surface-container-low rounded-xl p-8 border border-outline-variant">
+              <div class="flex items-center gap-3 mb-6">
+                <i class="ti ti-id text-tertiary" style="font-size:20px;color:#735c00"></i>
+                <h3 class="font-headline text-xl text-primary">الهوية والعلامة التجارية</h3>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div class="flex flex-col gap-2">
+                  <label class="text-sm font-semibold text-on-surface font-arabic">اسم المطعم *</label>
+                  <input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 focus:border-tertiary-container focus:ring-0 transition-all text-sm font-arabic" id="r-name" placeholder="Chef's Table" oninput="syncPhone()">
+                </div>
+                <div class="flex flex-col gap-2">
+                  <label class="text-sm font-semibold text-on-surface font-arabic">الأيقونة</label>
+                  <input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 text-center text-xl focus:border-tertiary-container focus:ring-0 transition-all" id="r-ico" placeholder="🍽️" oninput="syncPhone()">
+                </div>
+                <div class="flex flex-col gap-2">
+                  <label class="text-sm font-semibold text-on-surface font-arabic">الشعار الفرعي</label>
+                  <input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 focus:border-tertiary-container focus:ring-0 transition-all text-sm font-arabic" id="r-sub" placeholder="Fine Dining Experience" oninput="syncPhone()">
+                </div>
+                <div class="flex flex-col gap-2">
+                  <label class="text-sm font-semibold text-on-surface font-arabic">العملة</label>
+                  <select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 focus:border-tertiary-container focus:ring-0 transition-all text-sm font-arabic" id="r-cur">
+                    <option value="ر.س">ريال (ر.س)</option>
+                    <option value="د.إ">درهم (د.إ)</option>
+                    <option value="$">دولار ($)</option>
+                    <option value="€">يورو (€)</option>
+                    <option value="ج.م">جنيه (ج.م)</option>
+                  </select>
+                </div>
+                <div class="flex flex-col gap-2 md:col-span-2">
+                  <label class="text-sm font-semibold text-on-surface font-arabic">وصف قصير</label>
+                  <textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-3 focus:border-tertiary-container focus:ring-0 transition-all text-sm font-arabic resize-none" id="r-desc" rows="3" placeholder="أشهى الأطباق بمكونات طازجة ومذاق لا يُنسى..."></textarea>
+                </div>
               </div>
             </div>
-            <div id="link-box-wrap" style="display:none">
-              <div class="link-box">
-                <span class="link-url" id="link-url-txt"></span>
-                <button onclick="copyLink()" style="background:none;border:none;color:var(--tx3);cursor:pointer;font-size:14px" aria-label="نسخ الرابط">
-                  <i class="ti ti-copy" aria-hidden="true"></i>
-                </button>
+
+            <!-- Publishing -->
+            <div class="bg-surface-container-low rounded-xl p-8 border border-outline-variant">
+              <div class="flex items-center gap-3 mb-6">
+                <i class="ti ti-link" style="font-size:20px;color:#735c00"></i>
+                <h3 class="font-headline text-xl text-primary">الرابط والنشر</h3>
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-sm font-semibold text-on-surface font-arabic">الرابط المخصص</label>
+                <div class="flex items-stretch">
+                  <span class="flex items-center px-4 bg-surface-variant rounded-r-lg border border-l-0 border-outline-variant text-on-surface-variant text-sm font-body">menucraft.app/m/</span>
+                  <input class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-l-lg px-4 py-3 focus:border-tertiary-container focus:ring-0 transition-all text-sm" id="r-slug" placeholder="my-restaurant">
+                </div>
+                <p class="text-xs text-on-surface-variant mt-1 font-arabic">هذا الرابط الذي سيستخدمه زوارك لتصفح قائمتك.</p>
+              </div>
+              <div id="link-box-wrap" class="mt-4 hidden">
+                <div class="flex items-center gap-3 bg-green-50 border border-green-200 rounded-lg px-4 py-3">
+                  <i class="ti ti-check-circle" style="color:#1B7040;font-size:16px"></i>
+                  <span class="text-sm font-arabic text-green-800" id="link-url-txt"></span>
+                  <button onclick="copyLink()" class="mr-auto text-green-600 hover:text-green-800" aria-label="نسخ">
+                    <i class="ti ti-copy" style="font-size:15px"></i>
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          </section>
+
+          <!-- Sidebar: Media & Actions -->
+          <aside class="col-span-12 lg:col-span-4 space-y-6">
+            <!-- Logo Upload -->
+            <div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant">
+              <h3 class="text-sm font-bold text-primary mb-4 flex items-center gap-2 font-arabic">
+                <i class="ti ti-photo" style="font-size:18px;color:#735c00"></i>لوغو المطعم
+              </h3>
+              <div class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-outline-variant rounded-xl bg-surface hover:bg-surface-container transition-colors cursor-pointer" onclick="document.getElementById('logo-inp').click()">
+                <div class="w-20 h-20 rounded-full bg-secondary-container flex items-center justify-center mb-3 overflow-hidden border border-outline-variant">
+                  <i class="ti ti-upload text-3xl" style="color:#675d4e"></i>
+                </div>
+                <p class="text-sm font-bold text-primary font-arabic">ارفع اللوغو</p>
+                <p class="text-xs text-on-surface-variant mt-1">PNG, JPG حتى 5MB</p>
+                <input type="file" id="logo-inp" accept="image/*" class="hidden">
+              </div>
+            </div>
+
+            <!-- Live Preview -->
+            <div class="relative overflow-hidden rounded-xl p-6 bg-inverse-surface text-inverse-on-surface">
+              <div class="absolute inset-0 opacity-10" style="background-image:radial-gradient(#ffe088 1px,transparent 0);background-size:20px 20px"></div>
+              <h4 class="text-xs uppercase tracking-[0.2em] mb-4 relative z-10 font-arabic" style="color:#ffe088">معاينة سريعة</h4>
+              <div class="relative z-10 space-y-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full gold-grad flex items-center justify-center text-gray-900 font-bold text-sm" id="preview-logo">CT</div>
+                  <div>
+                    <p class="font-headline text-lg leading-tight" id="preview-name">Chef's Table</p>
+                    <p class="text-xs opacity-60 font-arabic" id="preview-sub">Fine Dining Experience</p>
+                  </div>
+                </div>
+                <div class="h-px bg-gray-600 opacity-30"></div>
+                <p class="text-sm opacity-70 leading-relaxed font-arabic italic" id="preview-desc">"أشهى الأطباق بمكونات طازجة..."</p>
+              </div>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex flex-col gap-3">
+              <button onclick="saveMenu()" class="w-full gold-grad text-gray-900 py-4 rounded-lg text-sm font-bold hover:opacity-90 transition-all flex items-center justify-center gap-2 font-arabic active:scale-95">
+                <i class="ti ti-device-floppy" style="font-size:16px"></i>حفظ التغييرات
+              </button>
+              <button onclick="autoSlug()" class="w-full border border-tertiary text-tertiary py-3 rounded-lg text-sm font-semibold hover:bg-tertiary/5 transition-all flex items-center justify-center gap-2 font-arabic">
+                <i class="ti ti-wand" style="font-size:15px"></i>توليد رابط تلقائي
+              </button>
+            </div>
+          </aside>
         </div>
       </div>
 
       <!-- PAGE: DATA -->
       <div class="page" id="pg-data">
-        <div class="g2" style="margin-bottom:12px">
-          <div class="sc">
-            <div class="sc-head"><i class="ti ti-file-spreadsheet" aria-hidden="true"></i><span class="sc-title">رفع Excel</span></div>
-            <div class="sc-body">
-              <div class="upload-zone" id="ez" onclick="document.getElementById('ei').click()"
-                ondrop="dropExcel(event)" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')"
-                role="button" tabindex="0" aria-label="رفع ملف Excel">
-                <i class="ti ti-file-spreadsheet" aria-hidden="true"></i>
-                <div class="upload-zone-title">اسحب ملف Excel هنا</div>
-                <div class="upload-zone-sub">.xlsx / .xls — الفئة، الاسم، السعر، الوصف</div>
-                <input type="file" id="ei" accept=".xlsx,.xls,.csv" style="display:none" onchange="loadExcel(this.files[0])" aria-hidden="true">
-              </div>
-              <div id="ex-msg" style="display:none;margin-top:8px;font-size:11px;color:#4ade80;font-weight:600" role="status"></div>
-              <div style="display:flex;gap:7px;margin-top:10px;flex-wrap:wrap">
-                <button class="btn-g" onclick="dlTpl()"><i class="ti ti-download" aria-hidden="true"></i>نموذج Excel</button>
-                <button class="btn-a" onclick="loadSample()"><i class="ti ti-sparkles" aria-hidden="true"></i>بيانات تجريبية</button>
-              </div>
+        <div class="mb-8">
+          <span class="text-tertiary text-xs font-bold tracking-[0.2em] uppercase mb-2 block font-arabic">المنيو</span>
+          <h2 class="font-headline text-3xl text-primary mb-3">بيانات المنيو</h2>
+        </div>
+        <div class="grid grid-cols-2 gap-6 mb-6">
+          <!-- Excel Upload -->
+          <div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant">
+            <div class="flex items-center gap-3 mb-4">
+              <i class="ti ti-file-spreadsheet" style="font-size:20px;color:#735c00"></i>
+              <h3 class="font-headline text-lg text-primary">رفع Excel</h3>
+            </div>
+            <div class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-outline-variant rounded-xl bg-surface hover:bg-surface-container transition-colors cursor-pointer"
+              id="ez" onclick="document.getElementById('ei').click()"
+              ondrop="dropExcel(event)" ondragover="event.preventDefault();this.classList.add('border-tertiary-container')" ondragleave="this.classList.remove('border-tertiary-container')">
+              <i class="ti ti-file-spreadsheet text-3xl mb-3" style="color:#c4c7c7"></i>
+              <p class="text-sm font-bold text-primary font-arabic">اسحب ملف Excel هنا</p>
+              <p class="text-xs text-on-surface-variant mt-1 font-arabic">.xlsx / .xls — الفئة، الاسم، السعر</p>
+              <input type="file" id="ei" accept=".xlsx,.xls,.csv" class="hidden" onchange="loadExcel(this.files[0])">
+            </div>
+            <div id="ex-msg" class="hidden mt-3 text-sm font-arabic" style="color:#1B7040;font-weight:600"></div>
+            <div class="flex gap-3 mt-4">
+              <button onclick="dlTpl()" class="flex-1 border border-outline-variant text-on-surface-variant py-2.5 rounded-lg text-xs font-semibold hover:bg-surface-container transition-all flex items-center justify-center gap-2 font-arabic">
+                <i class="ti ti-download" style="font-size:13px"></i>نموذج Excel
+              </button>
+              <button onclick="loadSample()" class="flex-1 gold-grad text-gray-900 py-2.5 rounded-lg text-xs font-bold flex items-center justify-center gap-2 font-arabic">
+                <i class="ti ti-sparkles" style="font-size:13px"></i>بيانات تجريبية
+              </button>
             </div>
           </div>
-          <div class="sc">
-            <div class="sc-head"><i class="ti ti-photo" aria-hidden="true"></i><span class="sc-title">صور الأطباق</span></div>
-            <div class="sc-body">
-              <div class="upload-zone" id="iz" onclick="document.getElementById('ii').click()"
-                ondrop="dropImg(event)" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')"
-                role="button" tabindex="0" aria-label="رفع صور الأطباق">
-                <i class="ti ti-photo-up" aria-hidden="true"></i>
-                <div class="upload-zone-title">اسحب صور الأطباق</div>
-                <div class="upload-zone-sub">سمِّ الصورة باسم الطبق (.jpg .png)</div>
-                <input type="file" id="ii" accept="image/*" multiple style="display:none" onchange="loadImgs(this.files)" aria-hidden="true">
-              </div>
-              <div id="img-grid" class="img-thumb-grid" style="display:none"></div>
+
+          <!-- Photo Upload -->
+          <div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant">
+            <div class="flex items-center gap-3 mb-4">
+              <i class="ti ti-photo" style="font-size:20px;color:#735c00"></i>
+              <h3 class="font-headline text-lg text-primary">صور الأطباق</h3>
             </div>
+            <div class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-outline-variant rounded-xl bg-surface hover:bg-surface-container transition-colors cursor-pointer"
+              id="iz" onclick="document.getElementById('ii').click()"
+              ondrop="dropImg(event)" ondragover="event.preventDefault();this.classList.add('border-tertiary-container')" ondragleave="this.classList.remove('border-tertiary-container')">
+              <i class="ti ti-photo-up text-3xl mb-3" style="color:#c4c7c7"></i>
+              <p class="text-sm font-bold text-primary font-arabic">اسحب صور الأطباق</p>
+              <p class="text-xs text-on-surface-variant mt-1 font-arabic">سمِّ الصورة باسم الطبق</p>
+              <input type="file" id="ii" accept="image/*" multiple class="hidden" onchange="loadImgs(this.files)">
+            </div>
+            <div id="img-grid" class="hidden mt-3 grid grid-cols-5 gap-1.5"></div>
           </div>
         </div>
-        <div class="sc" style="margin-bottom:12px">
-          <div class="sc-head"><i class="ti ti-plus" aria-hidden="true"></i><span class="sc-title">إضافة طبق يدوياً</span></div>
-          <div class="sc-body">
-            <div class="g3" style="margin-bottom:8px">
-              <div class="fg"><label class="form-label">الفئة</label><input class="form-input" id="m-cat" placeholder="المقبلات"></div>
-              <div class="fg"><label class="form-label">اسم الطبق *</label><input class="form-input" id="m-name" placeholder="شيش طاووق" onkeydown="if(event.key==='Enter')addManual()"></div>
-              <div class="fg"><label class="form-label">السعر</label><input type="number" class="form-input" id="m-price" placeholder="45"></div>
-              <div class="fg"><label class="form-label">قبل الخصم</label><input type="number" class="form-input" id="m-old" placeholder="65"></div>
-              <div class="fg"><label class="form-label">الوصف</label><input class="form-input" id="m-desc" placeholder="وصف الطبق..."></div>
-              <div class="fg"><label class="form-label">شارة</label><input class="form-input" id="m-tag" placeholder="مميز / جديد"></div>
-            </div>
-            <button class="btn-a" onclick="addManual()"><i class="ti ti-plus" aria-hidden="true"></i>إضافة</button>
+
+        <!-- Manual Add -->
+        <div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant mb-6">
+          <div class="flex items-center gap-3 mb-4">
+            <i class="ti ti-plus" style="font-size:20px;color:#735c00"></i>
+            <h3 class="font-headline text-lg text-primary">إضافة طبق يدوياً</h3>
           </div>
+          <div class="grid grid-cols-3 gap-4 mb-4">
+            <div><label class="text-xs font-semibold text-on-surface font-arabic block mb-1.5">الفئة</label><input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2.5 text-sm font-arabic focus:border-tertiary-container focus:ring-0" id="m-cat" placeholder="المقبلات"></div>
+            <div><label class="text-xs font-semibold text-on-surface font-arabic block mb-1.5">اسم الطبق *</label><input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2.5 text-sm font-arabic focus:border-tertiary-container focus:ring-0" id="m-name" placeholder="شيش طاووق" onkeydown="if(event.key==='Enter')addManual()"></div>
+            <div><label class="text-xs font-semibold text-on-surface font-arabic block mb-1.5">السعر</label><input type="number" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:border-tertiary-container focus:ring-0" id="m-price" placeholder="45"></div>
+            <div><label class="text-xs font-semibold text-on-surface font-arabic block mb-1.5">قبل الخصم</label><input type="number" class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2.5 text-sm focus:border-tertiary-container focus:ring-0" id="m-old" placeholder="65"></div>
+            <div><label class="text-xs font-semibold text-on-surface font-arabic block mb-1.5">الوصف</label><input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2.5 text-sm font-arabic focus:border-tertiary-container focus:ring-0" id="m-desc" placeholder="وصف الطبق..."></div>
+            <div><label class="text-xs font-semibold text-on-surface font-arabic block mb-1.5">شارة</label><input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-3 py-2.5 text-sm font-arabic focus:border-tertiary-container focus:ring-0" id="m-tag" placeholder="مميز / جديد"></div>
+          </div>
+          <button onclick="addManual()" class="gold-grad text-gray-900 px-5 py-2.5 rounded-lg text-sm font-bold flex items-center gap-2 font-arabic">
+            <i class="ti ti-plus" style="font-size:15px"></i>إضافة طبق
+          </button>
         </div>
-        <div class="sc">
-          <div class="sc-head">
-            <i class="ti ti-list" aria-hidden="true"></i>
-            <span class="sc-title">قائمة الأطباق</span>
-            <span class="sc-badge" id="items-badge">0 طبق</span>
+
+        <!-- Items Table -->
+        <div class="bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden">
+          <div class="flex items-center gap-3 px-6 py-4 border-b border-outline-variant">
+            <i class="ti ti-list" style="font-size:18px;color:#735c00"></i>
+            <h3 class="font-headline text-lg text-primary">قائمة الأطباق</h3>
+            <span class="mr-auto bg-secondary-container text-on-secondary-container text-xs font-bold px-3 py-1 rounded-full font-arabic" id="items-badge">0 طبق</span>
           </div>
-          <div style="overflow-x:auto;max-height:280px" id="items-table-wrap">
-            <div class="empty-state"><i class="ti ti-bowl-chopsticks"></i><p>لا توجد أطباق بعد</p><small>ارفع Excel أو أضف يدوياً</small></div>
+          <div id="items-table-wrap" style="max-height:320px;overflow-y:auto">
+            <div class="flex flex-col items-center py-10 text-on-surface-variant">
+              <i class="ti ti-bowl-chopsticks text-4xl mb-3 opacity-20"></i>
+              <p class="text-sm font-arabic">لا توجد أطباق بعد</p>
+              <p class="text-xs mt-1 font-arabic">ارفع Excel أو أضف يدوياً</p>
+            </div>
           </div>
         </div>
       </div>
 
       <!-- PAGE: DESIGN -->
       <div class="page" id="pg-design">
-        <div class="g2">
-          <div>
-            <div class="sc" style="margin-bottom:12px">
-              <div class="sc-head"><i class="ti ti-layout-grid" aria-hidden="true"></i><span class="sc-title">ستايل الكروت</span></div>
-              <div class="sc-body">
-                <div class="style-grid" id="style-grid"></div>
-                <button class="btn-g" style="margin-top:10px" onclick="randomStyle()">
-                  <i class="ti ti-dice-5" aria-hidden="true"></i>عشوائي
-                </button>
-              </div>
-            </div>
-            <div class="sc">
-              <div class="sc-head"><i class="ti ti-palette" aria-hidden="true"></i><span class="sc-title">اللون الرئيسي</span></div>
-              <div class="sc-body"><div class="color-row" id="color-row"></div></div>
-            </div>
+        <div class="mb-8">
+          <span class="text-tertiary text-xs font-bold tracking-[0.2em] uppercase mb-2 block font-arabic">التخصيص</span>
+          <h2 class="font-headline text-3xl text-primary mb-3">التصميم</h2>
+          <p class="text-on-surface-variant text-sm font-arabic leading-relaxed">اختر ستايل المنيو واللون الرئيسي</p>
+        </div>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant">
+            <h3 class="font-headline text-lg text-primary mb-4">ستايل الكروت</h3>
+            <div class="grid grid-cols-3 gap-3" id="style-grid"></div>
+            <button onclick="randomStyle()" class="mt-4 w-full border border-outline-variant text-on-surface-variant py-2.5 rounded-lg text-sm font-arabic hover:bg-surface-container transition-all flex items-center justify-center gap-2">
+              <i class="ti ti-dice-5" style="font-size:15px"></i>عشوائي
+            </button>
           </div>
-          <div class="sc">
-            <div class="sc-head"><i class="ti ti-sparkles" aria-hidden="true"></i><span class="sc-title">مولّد أشكال الأطباق</span></div>
-            <div class="sc-body">
-              <button class="btn-a" style="width:100%;justify-content:center;margin-bottom:10px" onclick="runDishGen()">
-                <i class="ti ti-wand" aria-hidden="true"></i>ولّد شكل إبداعي
-              </button>
-              <div class="gen-loader" id="gen-loader" aria-live="polite">
-                <div class="gen-bar-wrap"><div class="gen-bar-fill" id="gen-fill"></div></div>
-                <div class="gen-txt" id="gen-txt">جاري الابتكار...</div>
-              </div>
-              <div id="gen-result"></div>
+          <div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant">
+            <h3 class="font-headline text-lg text-primary mb-4">اللون الرئيسي</h3>
+            <div class="flex gap-3 flex-wrap" id="color-row"></div>
+            <h3 class="font-headline text-lg text-primary mt-6 mb-4">مولّد أشكال الأطباق</h3>
+            <button onclick="runDishGen()" class="w-full gold-grad text-gray-900 py-3 rounded-lg text-sm font-bold flex items-center justify-center gap-2 font-arabic mb-3">
+              <i class="ti ti-wand" style="font-size:15px"></i>ولّد شكل إبداعي
+            </button>
+            <div class="flex items-center gap-3 hidden" id="gen-loader">
+              <div class="flex-1 h-0.5 bg-outline-variant overflow-hidden rounded"><div class="h-full gold-grad rounded transition-all" id="gen-fill" style="width:0"></div></div>
+              <span class="text-xs text-on-surface-variant" id="gen-txt">جاري...</span>
             </div>
+            <div id="gen-result" class="space-y-3"></div>
           </div>
         </div>
       </div>
 
       <!-- PAGE: MENUS -->
       <div class="page" id="pg-menus">
-        <div class="stat-row">
-          <div class="stat-box"><div class="stat-num" style="color:var(--gold)" id="st-m">0</div><div class="stat-lbl">منيو محفوظ</div></div>
-          <div class="stat-box"><div class="stat-num" style="color:#4ade80" id="st-i">0</div><div class="stat-lbl">إجمالي الأطباق</div></div>
-          <div class="stat-box"><div class="stat-num" style="color:#60a5fa" id="st-c">0</div><div class="stat-lbl">إجمالي الفئات</div></div>
+        <div class="mb-8">
+          <span class="text-tertiary text-xs font-bold tracking-[0.2em] uppercase mb-2 block font-arabic">مكتبتي</span>
+          <h2 class="font-headline text-3xl text-primary mb-3">منيوهاتي</h2>
         </div>
-        <div id="menus-list" aria-label="قائمة المنيوهات المحفوظة">
-          <div class="empty-state"><i class="ti ti-layout-grid"></i><p>لا توجد منيوهات محفوظة</p><small>احفظ منيو من قائمة التنقل</small></div>
+        <div class="grid grid-cols-3 gap-4 mb-6">
+          <div class="bg-surface-container-low rounded-xl p-5 border border-outline-variant text-center">
+            <div class="font-display text-4xl mb-1" style="color:#735c00" id="st-m">0</div>
+            <div class="text-xs text-on-surface-variant font-arabic">منيو محفوظ</div>
+          </div>
+          <div class="bg-surface-container-low rounded-xl p-5 border border-outline-variant text-center">
+            <div class="font-display text-4xl mb-1" style="color:#1B7040" id="st-i">0</div>
+            <div class="text-xs text-on-surface-variant font-arabic">إجمالي الأطباق</div>
+          </div>
+          <div class="bg-surface-container-low rounded-xl p-5 border border-outline-variant text-center">
+            <div class="font-display text-4xl mb-1" style="color:#2980b9" id="st-c">0</div>
+            <div class="text-xs text-on-surface-variant font-arabic">إجمالي الفئات</div>
+          </div>
+        </div>
+        <div id="menus-list" class="space-y-3">
+          <div class="flex flex-col items-center py-12 text-on-surface-variant">
+            <i class="ti ti-layout-grid text-4xl mb-3 opacity-20"></i>
+            <p class="text-sm font-arabic">لا توجد منيوهات محفوظة</p>
+          </div>
         </div>
       </div>
 
-    </div>
-  </main>
+    </main>
 
-  <!-- RIGHT PANEL -->
-  <div class="right-panel" aria-label="معاينة المنيو">
-    <div class="rp-label">معاينة مباشرة</div>
-    <div class="phone-frame" role="img" aria-label="معاينة المنيو على الجوال">
-      <div class="phone-statusbar">
-        <div class="psb-time" id="psb-time">9:41</div>
-        <div class="psb-icons">
-          <div class="psb-icon" style="width:14px;height:7px;border-radius:1px"></div>
-          <div class="psb-icon" style="width:8px;height:7px;border-radius:1px"></div>
-          <div class="psb-icon" style="width:6px;height:7px;border-radius:50%"></div>
+    <!-- ── PHONE PREVIEW ── -->
+    <div class="w-72 border-r border-outline-variant bg-surface-container-low flex flex-col items-center py-5 px-4 gap-4 sticky top-16 h-[calc(100vh-4rem)] overflow-y-auto" style="border-right:none;border-left:1px solid #c4c7c7">
+      <p class="text-[9px] font-bold tracking-[2px] uppercase text-on-surface-variant self-start font-arabic">معاينة مباشرة</p>
+
+      <div class="phone-frame w-52" style="background:#06060a;width:210px">
+        <div style="height:24px;background:#0d0d14;display:flex;align-items:center;justify-content:space-between;padding:0 11px">
+          <span style="font-size:10px;font-weight:700;color:#fff" id="psb-time">9:41</span>
+          <div style="display:flex;gap:3px;align-items:center">
+            <div style="background:#3a3a4a;border-radius:1px;width:13px;height:7px"></div>
+            <div style="background:#3a3a4a;border-radius:1px;width:8px;height:7px"></div>
+            <div style="background:#3a3a4a;border-radius:50%;width:7px;height:7px"></div>
+          </div>
         </div>
+        <div id="phone-content" style="min-height:420px;overflow:hidden"></div>
       </div>
-      <div class="phone-content" id="phone-content"></div>
-    </div>
-    <div class="rc-section">
-      <div class="rc-label">العرض</div>
-      <div class="rc-btns">
-        <button class="rc-btn on" onclick="setPhoneView('home',this)">الرئيسية</button>
-        <button class="rc-btn" onclick="setPhoneView('items',this)">الأطباق</button>
-        <button class="rc-btn" onclick="setPhoneView('cart',this)">السلة</button>
+
+      <!-- View Tabs -->
+      <div class="flex gap-1.5 w-full">
+        <button onclick="setPhoneView('home',this)" class="vtab flex-1 py-1.5 rounded-lg border border-outline-variant bg-transparent text-on-surface-variant text-[10px] font-semibold font-arabic transition-all on" style="background:#efe0cd22;border-color:#735c00;color:#735c00">الرئيسية</button>
+        <button onclick="setPhoneView('items',this)" class="vtab flex-1 py-1.5 rounded-lg border border-outline-variant bg-transparent text-on-surface-variant text-[10px] font-semibold font-arabic transition-all">الأطباق</button>
+        <button onclick="setPhoneView('cart',this)" class="vtab flex-1 py-1.5 rounded-lg border border-outline-variant bg-transparent text-on-surface-variant text-[10px] font-semibold font-arabic transition-all">السلة</button>
+      </div>
+
+      <!-- Color Swatches -->
+      <div class="w-full">
+        <p class="text-[9px] font-bold tracking-[1px] uppercase text-on-surface-variant mb-2 font-arabic">اللون</p>
+        <div class="flex gap-2 flex-wrap" id="rc-swatches"></div>
       </div>
     </div>
-    <div class="rc-section">
-      <div class="rc-label">اللون</div>
-      <div class="rc-swatches" id="rc-swatches"></div>
-    </div>
+
   </div>
-
+</div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/dashboard.js"></script>
+<script>
+// Update live preview card from inputs
+function updatePreviewCard(){
+  const name = document.getElementById('r-name')?.value || "Chef's Table";
+  const sub  = document.getElementById('r-sub')?.value  || 'Fine Dining';
+  const desc = document.getElementById('r-desc')?.value || 'أشهى الأطباق بمكونات طازجة...';
+  const init = name.split(' ').filter(Boolean).map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  const el = document.getElementById('preview-logo');
+  const nm = document.getElementById('preview-name');
+  const sb = document.getElementById('preview-sub');
+  const ds = document.getElementById('preview-desc');
+  if(el) el.textContent = init;
+  if(nm) nm.textContent = name;
+  if(sb) sb.textContent = sub;
+  if(ds) ds.textContent = '"' + desc.slice(0,40) + '..."';
+}
+
+// Nav tabs
+function showPage(id, el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nav-btn').forEach(b=>{b.classList.remove('nav-active');b.style.color='';});
+  document.getElementById('pg-'+id).classList.add('on');
+  if(el){el.classList.add('nav-active');}
+  const titles={info:'معلومات المطعم',data:'بيانات المنيو',design:'التصميم',menus:'منيوهاتي'};
+  const subs={info:'أدخل تفاصيل مطعمك',data:'ارفع Excel أو أضف يدوياً',design:'اختر الستايل واللون',menus:'جميع منيوهاتك المحفوظة'};
+  document.getElementById('cp-title').textContent = titles[id]||'';
+  document.getElementById('cp-sub').textContent   = subs[id]||'';
+  if(id==='design') renderDesign();
+  if(id==='menus'){renderMenusList();updateStats();}
+}
+
+// vtab
+function setPhoneView(view, el){
+  document.querySelectorAll('.vtab').forEach(b=>{
+    b.style.background='';b.style.borderColor='';b.style.color='';
+  });
+  el.style.background='#efe0cd22';el.style.borderColor='#735c00';el.style.color='#735c00';
+  if(window.setPhoneViewOrig) window.setPhoneViewOrig(view,el);
+  else if(view==='home') renderPhoneHome();
+  else if(view==='items') renderPhoneItems(S.cats[0]?.id||'c1');
+  else if(view==='cart') renderPhoneCart();
+}
+
+// Patch syncPhone to also update preview card
+const origSync = window.syncPhone;
+window.syncPhone = function(){
+  if(origSync) origSync();
+  updatePreviewCard();
+};
+
+document.addEventListener('DOMContentLoaded',()=>{
+  updatePreviewCard();
+  document.getElementById('r-name')?.addEventListener('input', updatePreviewCard);
+  document.getElementById('r-sub')?.addEventListener('input', updatePreviewCard);
+  document.getElementById('r-desc')?.addEventListener('input', updatePreviewCard);
+});
+</script>
 </body>
 </html>
