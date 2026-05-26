@@ -1,166 +1,281 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>MenuCraft Pro — صانع المنيو الاحترافي</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@1,500&family=Cairo:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.14.0/dist/tabler-icons.min.css">
-<link rel="stylesheet" href="css/main.css">
-<link rel="stylesheet" href="css/landing.css">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,700;1,400&amp;family=Cairo:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-25..0" rel="stylesheet"/>
+<style>
+  :root {
+    --gold: #c5a059;
+    --gold-light: #e2c28d;
+    --surface: #fbf9f5;
+    --surface-dim: #dbdad6;
+    --text-primary: #1a1a1a;
+    --text-secondary: #5a5a5a;
+  }
+  body {
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--surface);
+    color: var(--text-primary);
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .serif {
+    font-family: 'Bodoni Moda', serif;
+  }
+  .gold-gradient {
+    background: linear-gradient(135deg, #c5a059 0%, #e2c28d 100%);
+  }
+  .btn-gold {
+    background: linear-gradient(135deg, #c5a059 0%, #e2c28d 100%);
+    color: white;
+    transition: all 0.3s ease;
+  }
+  .btn-gold:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+  }
+  .btn-outline-dark {
+    border: 1px solid var(--text-primary);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+  }
+  .btn-outline-dark:hover {
+    background: var(--text-primary);
+    color: var(--surface);
+  }
+  .nav-blur {
+    backdrop-filter: blur(10px);
+    background: rgba(251, 249, 245, 0.8);
+    border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+  }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+    color: var(--gold);
+  }
+  .card-premium {
+    background: white;
+    border: 1px solid rgba(197, 160, 89, 0.1);
+    transition: all 0.4s ease;
+  }
+  .card-premium:hover {
+    border-color: var(--gold);
+    transform: translateY(-5px);
+  }
+  .hero-glow {
+    background: radial-gradient(circle at center, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+  }
+</style>
 </head>
-<body class="landing-body">
-
+<body class="antialiased">
 <!-- NAV -->
-<nav class="mc-nav" role="navigation" aria-label="التنقل الرئيسي">
-  <div class="mc-nav-inner">
-    <div class="mc-logo">MENU<span>CRAFT</span> <sup class="mc-logo-pro">PRO</sup></div>
-    <div class="mc-nav-links">
-      <a href="#features">المميزات</a>
-      <a href="#styles">الستايلات</a>
-      <a href="#how">كيف يعمل</a>
-      <a href="dashboard.html" class="mc-nav-cta">
-        <i class="ti ti-layout-dashboard" aria-hidden="true"></i> لوحة التحكم
+<nav aria-label="التنقل الرئيسي" class="nav-blur fixed w-full z-50 py-4" role="navigation">
+<div class="container mx-auto px-6 flex justify-between items-center">
+<div class="text-2xl tracking-widest font-bold text-gray-900 serif">
+      MENU<span class="text-[#c5a059]">CRAFT</span> <sup class="text-[10px] tracking-normal font-sans opacity-60">PRO</sup>
+</div>
+<div class="hidden md:flex items-center gap-8 text-sm font-semibold tracking-wide uppercase">
+<a class="hover:text-[#c5a059] transition-colors" href="#features">المميزات</a>
+<a class="hover:text-[#c5a059] transition-colors" href="#styles">الستايلات</a>
+<a class="hover:text-[#c5a059] transition-colors" href="#how">كيف يعمل</a>
+<a class="btn-gold px-6 py-2 rounded-full flex items-center gap-2" href="dashboard.html">
+<span class="material-symbols-outlined !text-white !text-lg">dashboard</span>
+        لوحة التحكم
       </a>
-    </div>
-  </div>
+</div>
+</div>
 </nav>
-
 <!-- HERO -->
-<section class="hero-section" aria-labelledby="hero-title">
-  <div class="hero-bg-glow" aria-hidden="true"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow">
-      <span class="hero-badge"><i class="ti ti-sparkles" aria-hidden="true"></i> الجيل القادم من المنيوهات الرقمية</span>
-    </div>
-    <h1 class="hero-title" id="hero-title">
-      صمِّم منيو مطعمك<br>
-      <em class="hero-title-em">بأسلوب احترافي</em>
-    </h1>
-    <p class="hero-sub">ارفع ملف Excel، اختر تصميمك، احصل على رابط خاص.<br>بدون برمجة. بدون تصميم. في دقائق.</p>
-    <div class="hero-actions">
-      <a href="dashboard.html" class="btn-hero-primary">
-        <i class="ti ti-rocket" aria-hidden="true"></i> ابدأ مجاناً
-      </a>
-      <a href="#demo" class="btn-hero-ghost">
-        <i class="ti ti-player-play" aria-hidden="true"></i> مشاهدة العرض
-      </a>
-    </div>
-    <div class="hero-stats" aria-label="إحصائيات المنصة">
-      <div class="hero-stat"><span class="hs-num">10+</span><span class="hs-lbl">ستايل إبداعي</span></div>
-      <div class="hs-div" aria-hidden="true"></div>
-      <div class="hero-stat"><span class="hs-num">5</span><span class="hs-lbl">أشكال بطاقات</span></div>
-      <div class="hs-div" aria-hidden="true"></div>
-      <div class="hero-stat"><span class="hs-num">QR</span><span class="hs-lbl">رابط لكل مطعم</span></div>
-    </div>
-  </div>
-  <div class="hero-visual" aria-hidden="true">
-    <div class="phone-mockup">
-      <div class="pm-screen">
-        <div class="pm-bar">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:2px;color:#fff">CHEF'S TABLE</span>
-        </div>
-        <div class="pm-hero-strip" style="background:#0f4424">
-          <div style="padding:12px 13px">
-            <div style="font-size:8px;color:rgba(255,255,255,.5);letter-spacing:1px;margin-bottom:4px">SPECIAL OFFERS</div>
-            <div style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;letter-spacing:2px">CHEF'S TABLE</div>
-          </div>
-          <div style="width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;margin-left:12px;font-size:16px">🍽️</div>
-        </div>
-        <div class="pm-cats-grid">
-          <div class="pm-cat-card" style="background:#1a3a28">🍖<span>STARTERS</span></div>
-          <div class="pm-cat-card" style="background:#1a3020">🥗<span>SALADS</span></div>
-          <div class="pm-cat-card" style="background:#2e1c08">🍕<span>PIZZAS</span></div>
-          <div class="pm-cat-card" style="background:#2a2200">🍮<span>DESSERTS</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<section aria-labelledby="hero-title" class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+<div aria-hidden="true" class="hero-glow absolute inset-0 z-0"></div>
+<div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+<div class="hero-content">
+<div class="mb-6">
+<span class="text-[#c5a059] uppercase tracking-[0.3em] text-xs font-bold border-b border-[#c5a059]/30 pb-1">
+          الجيل القادم من المنيوهات الرقمية
+        </span>
+</div>
+<h1 class="text-6xl md:text-7xl leading-tight mb-6 text-gray-900" id="hero-title">
+        صمِّم منيو مطعمك<br/>
+<em class="serif italic font-normal text-[#c5a059]">بأسلوب احترافي</em>
+</h1>
+<p class="text-lg text-gray-600 mb-10 max-w-lg leading-relaxed">
+        ارفع ملف Excel، اختر تصميمك، احصل على رابط خاص.
+        <span class="block mt-1 opacity-75">بدون برمجة. بدون تصميم. في دقائق.</span>
+</p>
+<div class="flex flex-wrap gap-4 mb-12">
+<a class="btn-gold px-10 py-4 rounded-full text-lg font-bold flex items-center gap-2" href="dashboard.html">
+<span class="material-symbols-outlined !text-white">rocket_launch</span>
+          ابدأ مجاناً
+        </a>
+<a class="btn-outline-dark px-10 py-4 rounded-full text-lg font-semibold flex items-center gap-2" href="#demo">
+<span class="material-symbols-outlined !text-current">play_circle</span>
+          مشاهدة العرض
+        </a>
+</div>
+<div aria-label="إحصائيات المنصة" class="flex items-center gap-10 border-t border-gray-200 pt-8">
+<div>
+<span class="block text-3xl font-bold serif text-gray-900">10+</span>
+<span class="text-xs text-gray-500 uppercase tracking-widest">ستايل إبداعي</span>
+</div>
+<div class="w-px h-10 bg-gray-200"></div>
+<div>
+<span class="block text-3xl font-bold serif text-gray-900">5</span>
+<span class="text-xs text-gray-500 uppercase tracking-widest">أشكال بطاقات</span>
+</div>
+<div class="w-px h-10 bg-gray-200"></div>
+<div>
+<span class="block text-3xl font-bold serif text-gray-900">QR</span>
+<span class="text-xs text-gray-500 uppercase tracking-widest">رابط لكل مطعم</span>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="hidden md:flex justify-center relative">
+<div class="relative z-10 w-[300px] aspect-[9/19] bg-white rounded-[3rem] p-3 shadow-2xl border-[8px] border-gray-900">
+<div class="w-full h-full rounded-[2.2rem] overflow-hidden bg-[#fdfcf9] flex flex-col">
+<div class="h-6 bg-gray-900 w-1/3 mx-auto rounded-b-2xl mb-4"></div>
+<div class="px-4 py-2 border-b border-gray-100 flex justify-between items-center">
+<span class="serif text-[10px] tracking-widest uppercase text-gray-400">Chef's Table</span>
+<span class="material-symbols-outlined !text-sm">menu</span>
+</div>
+<div class="p-4 bg-[#1a1a1a] text-white">
+<div class="text-[8px] tracking-[0.2em] text-[#c5a059] mb-1">LUXURY DINING</div>
+<div class="serif text-xl">THE AUTUMN MENU</div>
+</div>
+<div class="flex-1 p-3 grid grid-cols-2 gap-2 content-start">
+<div class="h-20 bg-[#f5f3ef] rounded-lg border border-gray-100 p-2">
+<div class="w-full h-8 bg-gray-200 rounded mb-2"></div>
+<div class="h-1 w-2/3 bg-gray-300 rounded"></div>
+</div>
+<div class="h-20 bg-[#f5f3ef] rounded-lg border border-gray-100 p-2">
+<div class="w-full h-8 bg-gray-200 rounded mb-2"></div>
+<div class="h-1 w-2/3 bg-gray-300 rounded"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="absolute -bottom-10 -right-10 w-64 h-64 bg-[#c5a059]/10 rounded-full blur-3xl"></div>
+<div class="absolute -top-10 -left-10 w-48 h-48 bg-[#e2c28d]/10 rounded-full blur-3xl"></div>
+</div>
+</div>
 </section>
-
 <!-- FEATURES -->
-<section class="features-section" id="features" aria-labelledby="features-title">
-  <div class="section-eyebrow">لماذا MenuCraft Pro؟</div>
-  <h2 class="section-title" id="features-title">كل ما تحتاجه في مكان واحد</h2>
-  <div class="features-grid">
-    <article class="feat-card">
-      <div class="feat-icon" aria-hidden="true"><i class="ti ti-file-spreadsheet"></i></div>
-      <h3>رفع Excel</h3>
-      <p>ارفع قائمتك كملف Excel وسيقرأ التطبيق كل الأطباق والفئات والأسعار تلقائياً</p>
-    </article>
-    <article class="feat-card">
-      <div class="feat-icon" aria-hidden="true"><i class="ti ti-palette"></i></div>
-      <h3>مولّد الستايلات</h3>
-      <p>10+ تصاميم احترافية بأشكال كروت مختلفة — اختر أو ولّد تصميماً عشوائياً</p>
-    </article>
-    <article class="feat-card">
-      <div class="feat-icon" aria-hidden="true"><i class="ti ti-photo-up"></i></div>
-      <h3>رفع الصور</h3>
-      <p>ارفع صور أطباقك بسهولة، تُحفظ وتُطابق تلقائياً مع أسماء الأطباق</p>
-    </article>
-    <article class="feat-card">
-      <div class="feat-icon" aria-hidden="true"><i class="ti ti-link"></i></div>
-      <h3>رابط خاص QR</h3>
-      <p>لكل مطعم رابط فريد للمشاركة عبر واتساب أو طباعته كـ QR Code</p>
-    </article>
-    <article class="feat-card">
-      <div class="feat-icon" aria-hidden="true"><i class="ti ti-shopping-cart"></i></div>
-      <h3>سلة طلبات</h3>
-      <p>منيو تفاعلي حقيقي مع سلة طلبات وإمكانية الطلب مباشرة من الرابط</p>
-    </article>
-    <article class="feat-card">
-      <div class="feat-icon" aria-hidden="true"><i class="ti ti-device-mobile"></i></div>
-      <h3>تصميم للجوال</h3>
-      <p>المنيو مبني أساساً للجوال مع معاينة مباشرة في لوحة التحكم</p>
-    </article>
-  </div>
+<section aria-labelledby="features-title" class="py-24 bg-white" id="features">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<span class="text-[#c5a059] uppercase tracking-widest text-sm font-bold">لماذا MenuCraft Pro؟</span>
+<h2 class="text-4xl md:text-5xl mt-4 text-gray-900 serif" id="features-title">كل ما تحتاجه في مكان واحد</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<article class="card-premium p-8 rounded-2xl">
+<div class="w-12 h-12 rounded-xl bg-[#fbf9f5] flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">table_chart</span>
+</div>
+<h3 class="text-xl font-bold mb-4 text-gray-900">رفع Excel</h3>
+<p class="text-gray-600 leading-relaxed">ارفع قائمتك كملف Excel وسيقرأ التطبيق كل الأطباق والفئات والأسعار تلقائياً</p>
+</article>
+<article class="card-premium p-8 rounded-2xl">
+<div class="w-12 h-12 rounded-xl bg-[#fbf9f5] flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">palette</span>
+</div>
+<h3 class="text-xl font-bold mb-4 text-gray-900">مولّد الستايلات</h3>
+<p class="text-gray-600 leading-relaxed">10+ تصاميم احترافية بأشكال كروت مختلفة — اختر أو ولّد تصميماً عشوائياً</p>
+</article>
+<article class="card-premium p-8 rounded-2xl">
+<div class="w-12 h-12 rounded-xl bg-[#fbf9f5] flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">add_a_photo</span>
+</div>
+<h3 class="text-xl font-bold mb-4 text-gray-900">رفع الصور</h3>
+<p class="text-gray-600 leading-relaxed">ارفع صور أطباقك بسهولة، تُحفظ وتُطابق تلقائياً مع أسماء الأطباق</p>
+</article>
+<article class="card-premium p-8 rounded-2xl">
+<div class="w-12 h-12 rounded-xl bg-[#fbf9f5] flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">qr_code_2</span>
+</div>
+<h3 class="text-xl font-bold mb-4 text-gray-900">رابط خاص QR</h3>
+<p class="text-gray-600 leading-relaxed">لكل مطعم رابط فريد للمشاركة عبر واتساب أو طباعته كـ QR Code</p>
+</article>
+<article class="card-premium p-8 rounded-2xl">
+<div class="w-12 h-12 rounded-xl bg-[#fbf9f5] flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">shopping_bag</span>
+</div>
+<h3 class="text-xl font-bold mb-4 text-gray-900">سلة طلبات</h3>
+<p class="text-gray-600 leading-relaxed">منيو تفاعلي حقيقي مع سلة طلبات وإمكانية الطلب مباشرة من الرابط</p>
+</article>
+<article class="card-premium p-8 rounded-2xl">
+<div class="w-12 h-12 rounded-xl bg-[#fbf9f5] flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">smartphone</span>
+</div>
+<h3 class="text-xl font-bold mb-4 text-gray-900">تصميم للجوال</h3>
+<p class="text-gray-600 leading-relaxed">المنيو مبني أساساً للجوال مع معاينة مباشرة في لوحة التحكم</p>
+</article>
+</div>
+</div>
 </section>
-
 <!-- HOW IT WORKS -->
-<section class="how-section" id="how" aria-labelledby="how-title">
-  <div class="section-eyebrow">كيف يعمل؟</div>
-  <h2 class="section-title" id="how-title">ثلاث خطوات فقط</h2>
-  <div class="steps-row">
-    <div class="step-card">
-      <div class="step-num" aria-hidden="true">01</div>
-      <div class="step-icon" aria-hidden="true"><i class="ti ti-file-spreadsheet"></i></div>
-      <h3>ارفع Excel</h3>
-      <p>حمّل نموذج Excel الجاهز، أدخل بيانات مطعمك وارفعه في لوحة التحكم</p>
-    </div>
-    <div class="step-arrow" aria-hidden="true"><i class="ti ti-arrow-left"></i></div>
-    <div class="step-card">
-      <div class="step-num" aria-hidden="true">02</div>
-      <div class="step-icon" aria-hidden="true"><i class="ti ti-palette"></i></div>
-      <h3>اختر التصميم</h3>
-      <p>اختر من الستايلات الجاهزة أو ولّد تصميماً إبداعياً عشوائياً بضغطة زر</p>
-    </div>
-    <div class="step-arrow" aria-hidden="true"><i class="ti ti-arrow-left"></i></div>
-    <div class="step-card">
-      <div class="step-num" aria-hidden="true">03</div>
-      <div class="step-icon" aria-hidden="true"><i class="ti ti-share"></i></div>
-      <h3>شارك الرابط</h3>
-      <p>انسخ الرابط الخاص بمطعمك وشاركه مع عملائك فوراً عبر أي قناة</p>
-    </div>
-  </div>
+<section aria-labelledby="how-title" class="py-24 bg-[#fbf9f5]" id="how">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<span class="text-[#c5a059] uppercase tracking-widest text-sm font-bold">كيف يعمل؟</span>
+<h2 class="text-4xl md:text-5xl mt-4 text-gray-900 serif" id="how-title">ثلاث خطوات فقط</h2>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-center gap-12 relative">
+<div class="flex-1 text-center max-w-xs relative">
+<div class="text-6xl font-bold serif text-[#c5a059]/10 absolute -top-8 left-1/2 -translate-x-1/2 z-0">01</div>
+<div class="w-20 h-20 gold-gradient rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl relative z-10">
+<span class="material-symbols-outlined !text-white !text-3xl">upload_file</span>
+</div>
+<h3 class="text-xl font-bold mb-3">ارفع Excel</h3>
+<p class="text-gray-600">حمّل نموذج Excel الجاهز، أدخل بيانات مطعمك وارفعه في لوحة التحكم</p>
+</div>
+<div class="hidden md:block">
+<span class="material-symbols-outlined !text-4xl opacity-20 rotate-180">arrow_forward_ios</span>
+</div>
+<div class="flex-1 text-center max-w-xs relative">
+<div class="text-6xl font-bold serif text-[#c5a059]/10 absolute -top-8 left-1/2 -translate-x-1/2 z-0">02</div>
+<div class="w-20 h-20 gold-gradient rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl relative z-10">
+<span class="material-symbols-outlined !text-white !text-3xl">auto_fix_high</span>
+</div>
+<h3 class="text-xl font-bold mb-3">اختر التصميم</h3>
+<p class="text-gray-600">اختر من الستايلات الجاهزة أو ولّد تصميماً إبداعياً عشوائياً بضغطة زر</p>
+</div>
+<div class="hidden md:block">
+<span class="material-symbols-outlined !text-4xl opacity-20 rotate-180">arrow_forward_ios</span>
+</div>
+<div class="flex-1 text-center max-w-xs relative">
+<div class="text-6xl font-bold serif text-[#c5a059]/10 absolute -top-8 left-1/2 -translate-x-1/2 z-0">03</div>
+<div class="w-20 h-20 gold-gradient rounded-full flex items-center justify-center mx-auto mb-6 shadow-xl relative z-10">
+<span class="material-symbols-outlined !text-white !text-3xl">send</span>
+</div>
+<h3 class="text-xl font-bold mb-3">شارك الرابط</h3>
+<p class="text-gray-600">انسخ الرابط الخاص بمطعمك وشاركه مع عملائك فوراً عبر أي قناة</p>
+</div>
+</div>
+</div>
 </section>
-
 <!-- CTA -->
-<section class="cta-section" aria-labelledby="cta-title">
-  <h2 class="cta-title" id="cta-title">جاهز لإطلاق منيو مطعمك؟</h2>
-  <p class="cta-sub">مجاناً — مفتوح المصدر — بدون تسجيل</p>
-  <a href="dashboard.html" class="btn-hero-primary" style="font-size:15px;padding:14px 36px">
-    <i class="ti ti-rocket" aria-hidden="true"></i> ابدأ الآن
-  </a>
+<section aria-labelledby="cta-title" class="py-24 bg-white border-y border-gray-100">
+<div class="container mx-auto px-6 text-center max-w-3xl">
+<h2 class="text-5xl md:text-6xl mb-6 text-gray-900 serif leading-tight" id="cta-title">جاهز لإطلاق منيو مطعمك؟</h2>
+<p class="text-xl text-gray-500 mb-10">مجاناً — مفتوح المصدر — بدون تسجيل</p>
+<a class="btn-gold px-12 py-5 rounded-full text-xl font-bold inline-flex items-center gap-3" href="dashboard.html">
+<span class="material-symbols-outlined !text-white">auto_awesome</span>
+      ابدأ الآن
+    </a>
+</div>
 </section>
-
 <!-- FOOTER -->
-<footer class="mc-footer">
-  <div class="mc-logo" style="margin-bottom:8px">MENU<span>CRAFT</span> <sup style="font-size:10px;color:#555">PRO</sup></div>
-  <p>مفتوح المصدر على <a href="https://github.com" style="color:var(--gold)">GitHub</a></p>
-  <p style="color:#222;font-size:11px;margin-top:4px">© 2026 MenuCraft Pro — MIT License</p>
+<footer class="py-12 bg-[#fbf9f5] border-t border-gray-100">
+<div class="container mx-auto px-6 text-center">
+<div class="text-2xl tracking-widest font-bold text-gray-900 serif mb-4">
+      MENU<span class="text-[#c5a059]">CRAFT</span> <sup class="text-[10px] tracking-normal font-sans opacity-60">PRO</sup>
+</div>
+<p class="text-gray-500 text-sm mb-4">مفتوح المصدر على <a class="text-[#c5a059] underline underline-offset-4" href="https://github.com">GitHub</a></p>
+<p class="text-gray-400 text-xs tracking-widest uppercase">© 2026 MenuCraft Pro — MIT License</p>
+</div>
 </footer>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</body></html>
