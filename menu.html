@@ -1,661 +1,598 @@
-<!-- Chef's Table Home - Lux Aurum Style -->
 <!DOCTYPE html>
 
 <html dir="rtl" lang="ar"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Lux Aurum | Chef's Table</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Be+Vietnam+Pro:wght@100;400;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "tertiary": "#735c00",
-                    "secondary-container": "#efe0cd",
-                    "on-primary-fixed-variant": "#474746",
-                    "surface-variant": "#e4e2de",
-                    "on-primary-fixed": "#1c1b1b",
-                    "on-secondary-container": "#6d6354",
-                    "primary-container": "#1c1b1b",
-                    "on-tertiary-container": "#4f3e00",
-                    "error-container": "#ffdad6",
-                    "surface-container-low": "#f5f3ef",
-                    "on-background": "#1b1c1a",
-                    "on-tertiary-fixed": "#241a00",
-                    "outline-variant": "#c4c7c7",
-                    "on-tertiary-fixed-variant": "#574500",
-                    "on-primary-container": "#858383",
-                    "on-tertiary": "#ffffff",
-                    "surface-container": "#efeeea",
-                    "on-error-container": "#93000a",
-                    "secondary": "#675d4e",
-                    "surface-dim": "#dbdad6",
-                    "surface-container-highest": "#e4e2de",
-                    "on-secondary": "#ffffff",
-                    "on-surface-variant": "#444748",
-                    "surface": "#fbf9f5",
-                    "secondary-fixed-dim": "#d2c4b2",
-                    "inverse-primary": "#c8c6c5",
-                    "on-error": "#ffffff",
-                    "secondary-fixed": "#efe0cd",
-                    "outline": "#747878",
-                    "surface-container-high": "#eae8e4",
-                    "primary-fixed": "#e5e2e1",
-                    "tertiary-fixed-dim": "#e9c349",
-                    "primary-fixed-dim": "#c8c6c5",
-                    "error": "#ba1a1a",
-                    "inverse-surface": "#30312e",
-                    "inverse-on-surface": "#f2f0ed",
-                    "tertiary-fixed": "#ffe088",
-                    "on-primary": "#ffffff",
-                    "surface-bright": "#fbf9f5",
-                    "tertiary-container": "#cca730",
-                    "background": "#fbf9f5",
-                    "on-secondary-fixed": "#221a0f",
-                    "on-surface": "#1b1c1a",
-                    "primary": "#000000",
-                    "on-secondary-fixed-variant": "#4f4538",
-                    "surface-tint": "#5f5e5e",
-                    "surface-container-lowest": "#ffffff"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "unit": "8px",
-                    "gutter": "24px",
-                    "margin-desktop": "80px",
-                    "max-width": "1440px",
-                    "margin-mobile": "20px"
-            },
-            "fontFamily": {
-                    "headline-lg-mobile": ["Bodoni Moda"],
-                    "body-lg": ["Be Vietnam Pro"],
-                    "headline-display": ["Bodoni Moda"],
-                    "headline-md": ["Bodoni Moda"],
-                    "body-md": ["Be Vietnam Pro"],
-                    "label-md": ["Be Vietnam Pro"],
-                    "headline-lg": ["Bodoni Moda"]
-            },
-            "fontSize": {
-                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                    "headline-display": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
-                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}]
-            }
-          },
-        },
-      }
-    </script>
+<title>MenuCraft Pro — عرض المنيو</title>
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.14.0/dist/tabler-icons.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Cairo:wght@400;600;700;900&amp;display=swap" rel="stylesheet"/>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .glass-nav {
-            backdrop-filter: blur(16px);
-        }
-        .shimmer-hover:hover {
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            background-size: 200% 100%;
-            animation: shimmer 1.5s infinite;
-        }
-        @keyframes shimmer {
-            0% { background-position: 200% 0; }
-            100% { background-position: -200% 0; }
-        }
-        .text-glow {
-            text-shadow: 0 0 15px rgba(233, 195, 73, 0.4);
-        }
-    </style>
+/* ── RESET & BASE ── */
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --accent:#c9a84c;
+  --bg0:#fbf9f5; /* Lux Aurum Surface */
+  --bg1:#f5f3ef; /* Surface Container Low */
+  --bg2:#ffffff; /* Surface Container Lowest */
+  --bg3:#efede9; /* Surface Container */
+  --bg4:#dbdad6; /* Surface Dim */
+  --tx0:#1a1a1a;
+  --tx1:#4a4a4a;
+  --tx2:#7a7a7a;
+  --tx3:#a0a0a0;
+  --r:8px; /* ROUND_EIGHT */
+  --shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Cairo',sans-serif;background:var(--bg0);color:var(--tx0);min-height:100vh;direction:rtl;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:4px}
+
+/* ── BANNER ── */
+.banner{position:relative;height:260px;overflow:hidden;flex-shrink:0;background: #1a1a1a;}
+@media(min-width:600px){.banner{height:320px}}
+@media(min-width:900px){.banner{height:400px}}
+#bg-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.ov1{position:absolute;inset:0;background:rgba(0,0,0,.3)}
+.ov2{position:absolute;inset:0;background:linear-gradient(to top, rgba(251,249,245,1) 0%, rgba(251,249,245,0) 100%)}
+.banner-top{position:absolute;top:0;left:0;right:0;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;z-index:3}
+@media(min-width:600px){.banner-top{padding:16px 28px}}
+@media(min-width:900px){.banner-top{padding:20px 48px}}
+.b-cart{position:relative;width:42px;height:42px;border-radius:var(--r);background:rgba(255,255,255,.9);border:1px solid var(--bg3);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--tx0);box-shadow: var(--shadow)}
+.b-cart-badge{position:absolute;top:-5px;left:-5px;width:18px;height:18px;border-radius:50%;background:var(--accent);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #fff;display:none}
+.b-open{background:rgba(255,255,255,.9);border:1px solid var(--bg3);border-radius:24px;padding:6px 14px;display:flex;align-items:center;gap:7px;box-shadow: var(--shadow)}
+.b-dot{width:7px;height:7px;border-radius:50%;background:#4ade80}
+.b-open span{font-size:11px;font-weight:700;color:var(--tx0)}
+.b-menu{width:42px;height:42px;border-radius:var(--r);background:rgba(255,255,255,.9);border:1px solid var(--bg3);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--tx0);box-shadow: var(--shadow)}
+
+.banner-bottom{position:absolute;bottom:0;left:0;right:0;padding:14px 16px 24px;display:flex;align-items:flex-end;justify-content:space-between;z-index:3}
+@media(min-width:600px){.banner-bottom{padding:18px 28px 32px}}
+@media(min-width:900px){.banner-bottom{padding:22px 48px 40px}}
+.b-logo{width:64px;height:64px;border-radius:var(--r);border:1px solid var(--accent);background:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bodoni Moda',serif;font-size:24px;color:var(--accent);box-shadow: var(--shadow);margin-bottom:12px}
+@media(min-width:600px){.b-logo{width:72px;height:72px;font-size:28px}}
+.b-fine{font-size:10px;font-weight:700;color:var(--accent);letter-spacing:4px;text-transform:uppercase;margin-bottom:6px}
+.b-name{font-family:'Bodoni Moda',serif;font-size:32px;color:var(--tx0);line-height:1;margin-bottom:8px;font-weight:700}
+@media(min-width:600px){.b-name{font-size:44px}}
+@media(min-width:900px){.b-name{font-size:56px}}
+.b-stars-row{display:flex;align-items:center;gap:8px}
+.b-stars{display:flex;gap:2px}
+.b-rating{font-size:12px;color:var(--tx2);font-weight:600}
+.b-order{background:var(--accent);color:#fff;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;padding:10px 24px;border-radius:var(--r);border:none;cursor:pointer;white-space:nowrap;transition:all .2s;box-shadow: 0 4px 10px rgba(201,168,76,0.3)}
+.b-order:hover{transform: translateY(-2px); filter: brightness(1.05)}
+
+/* ── STATS ── */
+.stats{background:var(--bg2);border-bottom:1px solid var(--bg3);display:grid;grid-template-columns:1fr 1fr 1fr;box-shadow: 0 2px 8px rgba(0,0,0,0.02)}
+.stat{display:flex;flex-direction:column;align-items:center;padding:16px 0;border-right:1px solid var(--bg3)}
+.stat:first-child{border:none}
+.stat-top{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.stat-top i{font-size:14px;color:var(--accent)}
+.stat-num{font-family:'Bodoni Moda',serif;font-size:19px;color:var(--tx0);font-weight:700}
+.stat-lbl{font-size:10px;font-weight:700;color:var(--tx2);letter-spacing:1px;text-transform:uppercase}
+
+/* ── MAIN ── */
+.main{max-width:1024px;margin:0 auto;width:100%;padding:0 16px}
+@media(min-width:600px){.main{padding:0 32px}}
+
+/* ── SECTION HDR ── */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:24px 0 16px}
+.sec-title{font-family:'Bodoni Moda',serif;font-size:22px;color:var(--tx0);font-weight:700}
+@media(min-width:600px){.sec-title{font-size:26px}}
+.sec-link{font-size:13px;color:var(--accent);font-weight:700;cursor:pointer}
+.sec-count{font-size:13px;font-weight:600;color:var(--tx2)}
+.add-rev{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:var(--accent);background:#fff;border:1px solid var(--accent);border-radius:var(--r);padding:6px 14px;cursor:pointer;transition: all .2s}
+.add-rev:hover{background: var(--bg0)}
+
+/* ── POPULAR ── */
+.pop-scroll{display:flex;gap:16px;overflow-x:auto;padding:4px 0 12px;-webkit-overflow-scrolling:touch}
+.pop-scroll::-webkit-scrollbar{display:none}
+.pop-card{flex-shrink:0;width:160px;background:var(--bg2);border-radius:var(--r);overflow:hidden;border:1px solid var(--bg3);cursor:pointer;transition:all .3s ease;box-shadow: var(--shadow)}
+.pop-card:hover{transform:translateY(-4px);box-shadow: 0 8px 20px rgba(0,0,0,0.08)}
+@media(min-width:600px){.pop-card{width:190px}}
+.pop-img{height:110px;display:flex;align-items:center;justify-content:center;font-size:38px;position:relative;background: var(--bg1)}
+.pop-badge{position:absolute;top:8px;right:8px;background:var(--accent);color:#fff;font-size:9px;font-weight:800;padding:3px 8px;border-radius:4px;text-transform:uppercase}
+.pop-body{padding:12px 14px}
+.pop-name{font-size:14px;font-weight:700;color:var(--tx0);margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pop-prices{display:flex;align-items:baseline;gap:6px}
+.pop-price{font-family:'Bodoni Moda',serif;font-size:17px;color:var(--accent);font-weight:700}
+.pop-old{font-size:11px;color:var(--tx3);text-decoration:line-through}
+
+/* ── CATS GRID ── */
+.cats-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding-bottom:16px}
+@media(min-width:600px){.cats-grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:900px){.cats-grid{grid-template-columns:repeat(4,1fr)}}
+.cat-card{border-radius:var(--r);overflow:hidden;cursor:pointer;background:var(--bg2);border:1px solid var(--bg3);transition:all .3s ease;box-shadow: var(--shadow)}
+.cat-card:hover{transform:translateY(-4px);box-shadow: 0 8px 20px rgba(0,0,0,0.08)}
+.cat-top{height:100px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;background: var(--bg1)}
+.cat-tex{position:absolute;inset:0;background-image:radial-gradient(var(--accent) 0.5px, transparent 0.5px);background-size: 10px 10px;opacity: 0.1;}
+.cat-ico{width:56px;height:56px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:26px;position:relative;z-index:1;background:#fff;border:1px solid var(--bg3);box-shadow: 0 2px 6px rgba(0,0,0,0.03)}
+.cat-bot{padding:12px 14px;border-top:1px solid var(--bg3);text-align: center}
+.cat-name{font-family:'Bodoni Moda',serif;font-size:15px;color:var(--tx0);font-weight:700}
+.cat-count{font-size:11px;color:var(--tx2);font-weight:600;margin-top:2px}
+
+/* ── REVIEWS ── */
+.rev-scroll{display:flex;gap:16px;overflow-x:auto;padding:4px 0 12px;-webkit-overflow-scrolling:touch}
+.rev-scroll::-webkit-scrollbar{display:none}
+.rev-card{flex-shrink:0;width:260px;background:var(--bg2);border-radius:var(--r);border:1px solid var(--bg3);padding:18px;box-shadow: var(--shadow)}
+@media(min-width:600px){.rev-card{width:300px}}
+.rev-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.rev-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0}
+.rev-nm{font-size:14px;font-weight:700;color:var(--tx0);margin-bottom:2px}
+.rev-dt{font-size:11px;color:var(--tx2)}
+.rev-stars{display:flex;gap:2px;margin-bottom:10px}
+.rev-txt{font-size:13px;color:var(--tx1);line-height:1.6;font-style: italic}
+
+/* ── REVIEW FORM ── */
+.rev-form{background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--r);padding:24px;margin-bottom:32px;box-shadow: var(--shadow)}
+.rft{font-family:'Bodoni Moda',serif;font-size:18px;font-weight:700;color:var(--tx0);margin-bottom:16px}
+.rf-inp{width:100%;background:var(--bg0);border:1px solid var(--bg3);border-radius:var(--r);padding:11px 16px;color:var(--tx0);font-family:'Cairo',sans-serif;font-size:14px;outline:none;margin-bottom:12px;transition:border-color .2s}
+.rf-inp:focus{border-color:var(--accent)}
+.rf-stars{display:flex;gap:8px;margin-bottom:12px}
+.rf-star{font-size:28px;cursor:pointer;color:var(--bg4);transition:color .1s}
+.rf-star.on{color:var(--accent)}
+.rf-ta{width:100%;background:var(--bg0);border:1px solid var(--bg3);border-radius:var(--r);padding:11px 16px;color:var(--tx0);font-family:'Cairo',sans-serif;font-size:14px;outline:none;resize:none;min-height:90px;line-height:1.6;margin-bottom:16px}
+.rf-ta:focus{border-color:var(--accent)}
+.rf-btn{background:var(--accent);color:#fff;border:none;border-radius:var(--r);padding:12px 28px;font-family:'Cairo',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.rf-btn:hover{filter:brightness(1.05); transform: translateY(-1px)}
+
+/* ── BACK BAR ── */
+.back-bar{display:flex;align-items:center;gap:12px;padding:20px 0 12px}
+.back-btn{width:36px;height:36px;border-radius:var(--r);background:var(--bg2);border:1px solid var(--bg3);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--tx1);font-size:16px;box-shadow: var(--shadow)}
+.back-btn:hover{background:var(--bg1)}
+.back-title{font-family:'Bodoni Moda',serif;font-size:22px;color:var(--tx0);font-weight:700}
+.back-sub{font-size:12px;color:var(--tx2);font-weight:600}
+
+/* ── ITEMS LIST ── */
+.items-list{display:flex;flex-direction:column;gap:14px;padding-bottom:32px}
+.item-row{background:var(--bg2);border:1px solid var(--bg3);border-radius:var(--r);display:flex;overflow:hidden;transition:all .2s ease;box-shadow: var(--shadow)}
+.item-row:hover{border-color:var(--accent);box-shadow: 0 6px 15px rgba(0,0,0,0.05)}
+.item-thumb{width:90px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:32px;position:relative;background: var(--bg1)}
+@media(min-width:600px){.item-thumb{width:120px}}
+.item-body{padding:14px 16px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.item-tag{display:inline-block;font-size:9px;font-weight:800;padding:3px 8px;border-radius:4px;margin-bottom:6px;text-transform:uppercase}
+.item-name{font-size:15px;font-weight:700;color:var(--tx0);margin-bottom:4px}
+.item-desc{font-size:12px;color:var(--tx2);line-height:1.5;margin-bottom:10px}
+.item-foot{display:flex;align-items:center;justify-content:space-between}
+.item-prices{display:flex;align-items:baseline;gap:6px}
+.item-price{font-family:'Bodoni Moda',serif;font-size:20px;font-weight:700}
+.item-add{width:32px;height:32px;border-radius:var(--r);border:none;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.item-add:active{transform:scale(.9)}
+
+/* ── CART DRAWER ── */
+.cart-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:98;backdrop-filter: blur(4px)}
+.cart-ov.open{display:block}
+.cart-drawer{position:fixed;bottom:0;left:50%;transform:translateX(-50%) translateY(100%);width:100%;max-width:520px;z-index:99;background:var(--bg2);border-radius:20px 20px 0 0;border-top:1px solid var(--bg3);display:flex;flex-direction:column;max-height:80vh;transition:transform .35s cubic-bezier(0.16, 1, 0.3, 1);box-shadow: 0 -10px 40px rgba(0,0,0,0.1)}
+.cart-drawer.open{transform:translateX(-50%) translateY(0)}
+.cd-handle{width:40px;height:4px;background:var(--bg4);border-radius:2px;margin:12px auto 0}
+.cd-hdr{padding:16px 20px;border-bottom:1px solid var(--bg3);display:flex;align-items:center;justify-content:space-between}
+.cd-title{font-family:'Bodoni Moda',serif;font-size:20px;font-weight:700;color:var(--tx0)}
+.cd-body{flex:1;overflow-y:auto;padding:0 20px}
+.cd-row{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid var(--bg3)}
+.cd-nm{flex:1;font-size:14px;font-weight:700;color:var(--tx0)}
+.cd-qbtn{width:26px;height:26px;border-radius:50%;border:none;color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.cd-price{font-family:'Bodoni Moda',serif;font-size:16px;font-weight:700}
+.cd-footer{padding:18px 20px 28px;border-top:1px solid var(--bg3)}
+.cd-total{font-family:'Bodoni Moda',serif;font-size:28px;font-weight:700}
+.cd-order{width:100%;height:50px;border:none;border-radius:var(--r);font-family:'Cairo',sans-serif;font-size:16px;font-weight:700;cursor:pointer;color:#fff;transition:all .2s;box-shadow: 0 4px 12px rgba(201,168,76,0.3)}
+
+/* ── TOAST ── */
+.toast-wrap{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:200;pointer-events:none}
+.toast{background:var(--tx0);border-radius:30px;padding:10px 24px;font-size:13px;font-weight:700;color:#fff;opacity:0;transform:translateY(20px);transition:all .3s;box-shadow: 0 8px 24px rgba(0,0,0,0.15)}
+.toast.show{opacity:1;transform:translateY(0)}
+
+/* ── EMPTY ── */
+.empty i{font-size:48px;color:var(--bg4);margin-bottom:16px}
+.empty p{font-size:14px;font-weight:600;color:var(--tx2)}
+
+.error-page h2{font-family:'Bodoni Moda',serif;font-size:22px}
+</style>
 </head>
-<body class="bg-background text-on-background font-body-md selection:bg-tertiary-fixed selection:text-on-tertiary-fixed">
-<!-- Top Navigation Bar -->
-<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-lg border-b border-outline-variant/20 shadow-sm">
-<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-max-width mx-auto">
-<div class="font-headline-md text-headline-md font-bold text-primary">LUX AURUM</div>
-<div class="hidden md:flex items-center gap-8 font-body-md text-body-md">
-<a class="text-tertiary-container font-bold border-b-2 border-tertiary-container transition-colors duration-300" href="#">Menu</a>
-<a class="text-on-surface-variant hover:text-tertiary transition-colors duration-300" href="#">Reservations</a>
-<a class="text-on-surface-variant hover:text-tertiary transition-colors duration-300" href="#">Offers</a>
-<a class="text-on-surface-variant hover:text-tertiary transition-colors duration-300" href="#">Profile</a>
+<body>
+<div id="app">
+<!-- BANNER -->
+<div class="banner">
+<canvas id="bg-canvas"></canvas>
+<div class="ov1"></div><div class="ov2"></div>
+<div class="banner-top">
+<div aria-label="السلة" class="b-cart" onclick="toggleCart()">
+<i aria-hidden="true" class="ti ti-shopping-cart"></i>
+<div class="b-cart-badge" id="cart-badge">0</div>
 </div>
-<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md active:scale-95 transition-transform hover:bg-tertiary">
-                Book a Table
-            </button>
+<div class="b-open"><div class="b-dot"></div><span>مفتوح الآن</span></div>
+<div class="b-menu"><i aria-hidden="true" class="ti ti-menu-2"></i></div>
 </div>
-</nav>
-<main>
-<!-- Hero Section -->
-<section class="relative h-[100vh] flex items-center justify-center overflow-hidden">
-<div class="absolute inset-0 z-0">
-<img alt="Luxury Dining Room" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugfFTcbiToR3i4hzohs0HUObOdq2GnXiDj1Qs99wOSfQMXuhXzs_5RktGMqM7QXeayD7qZBGpyqdWHJn20Asx4qZPHX8lpODjpqftLGQIvv8IZXC6xhv_sivZroYGjDlcqbnF8p_cm77wZmA8h0QVU4H2Cy7J5Q3VzZuxUvF-ySR0gKc8y5UfuC4q3CKYVGRVSC06jNg20vgVOC1noeJvctXt8HtAjrA6DsUQHyCtJ3iLuR5zkX05kHow"/>
-<div class="absolute inset-0 bg-black/40"></div>
-</div>
-<div class="relative z-10 text-center px-margin-mobile max-w-4xl">
-<h1 class="font-headline-display text-headline-display text-white mb-8 text-glow leading-tight">
-                    أهلاً بكم في مطبخ النخبة
-                </h1>
-<p class="font-body-lg text-body-lg text-white/90 mb-12 max-w-2xl mx-auto">
-                    تجربة طهي استثنائية تجمع بين عبق التراث وفخامة الحداثة، حيث نعدّ لكم أشهى الأطباق العربية بلمسة عصرية راقية.
-                </p>
-<div class="flex flex-col md:flex-row gap-4 justify-center items-center">
-<button class="bg-primary text-on-primary px-10 py-4 rounded-lg font-label-md text-lg shimmer-hover transition-all duration-300 hover:scale-105">
-                        احجز طاولتك الآن
-                    </button>
-<button class="border border-tertiary-fixed text-tertiary-fixed px-10 py-4 rounded-lg font-label-md text-lg hover:bg-tertiary-fixed/10 transition-all duration-300">
-                        استكشف القائمة
-                    </button>
-</div>
-</div>
-<div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-<span class="material-symbols-outlined text-white text-3xl">expand_more</span>
-</div>
-</section>
-<!-- Featured Dishes (Bento Grid) -->
-<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto">
-<div class="flex justify-between items-end mb-16">
+<div class="banner-bottom">
 <div>
-<span class="text-tertiary font-label-md tracking-widest uppercase mb-4 block">مختاراتنا</span>
-<h2 class="font-headline-lg text-headline-lg text-primary">أطباق مميزة</h2>
-</div>
-<a class="text-tertiary-container font-label-md flex items-center gap-2 hover:gap-4 transition-all" href="#">
-                    عرض الكل <span class="material-symbols-outlined">west</span>
-</a>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-<!-- Large Featured Card -->
-<div class="md:col-span-7 group cursor-pointer overflow-hidden rounded-xl bg-surface-container border border-outline-variant/10">
-<div class="relative h-[500px] overflow-hidden">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A gourmet presentation of traditional slow-cooked lamb on a bed of aromatic saffron rice. The scene is lit with warm, golden studio lighting that highlights the textures of the meat and the steam rising from the dish. The background is a sophisticated charcoal and sand-colored kitchen environment, creating a high-end corporate aesthetic for a premium restaurant." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1iiJ5gnvKzp-lOjhWRigxw8eKVWT9qtYtx2VhIuiMd5-DlIHvmduocn_CDnaA-eWZlKezM4FPu3wPD3MLTTWwgpI63uUUt3Mm6lon5vPQH_DKwSAqfciZUSmAGcjcfwg0Bs96xOlL8hSZHia3L4aHQL6-OJlTaZSvJpJNAhXar0XwMOS8Llj3PYrB7BRKAFBqlZTQJBvqo22bvTkrQzix62_Hbfvjs088FQl75EP4Lup4ll1uw7cwp7thsOSLqRcOLc5F9B-1ZZI"/>
-<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-<div class="absolute bottom-0 p-8">
-<span class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-xs font-bold mb-4 inline-block">الأكثر مبيعاً</span>
-<h3 class="font-headline-md text-headline-md text-white mb-2">خروف الشيف المدخن</h3>
-<p class="text-white/80 font-body-md">نكهة عربية أصيلة مطهوة ببطء لمدة ١٢ ساعة</p>
+<div class="b-logo" id="b-logo">CT</div>
+<div class="b-fine" id="b-fine">FINE DINING</div>
+<div class="b-name" id="b-name">CHEF'S TABLE</div>
+<div class="b-stars-row">
+<div class="b-stars" id="b-stars">★★★★★</div>
+<span class="b-rating" id="b-rating">0.0 (0)</span>
 </div>
 </div>
+<button class="b-order" onclick="scrollToMenu()">اطلب الآن</button>
 </div>
-<!-- Right Side Vertical Grid -->
-<div class="md:col-span-5 grid grid-rows-2 gap-gutter">
-<div class="group cursor-pointer rounded-xl bg-surface-container-low p-6 border border-outline-variant/20 flex gap-6 items-center hover:bg-surface-container transition-colors">
-<div class="w-32 h-32 overflow-hidden rounded-lg flex-shrink-0">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A collection of vibrant Middle Eastern appetizers including smooth hummus topped with pine nuts and olive oil, smoky mutabal, and fresh tabbouleh. The photography uses high-key, warm desert sand tones with soft shadows. Each small bowl is meticulously presented on a cream-colored ceramic tray, evoking a sense of luxury and refinement." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuSM4CIshqwqiKkMAZ_tu8QVTfQh1Nb34T0scPKpV_ekmmD9xQR1u136d1ZyAm7E8TLy5Bl_YU8iiwarxnFDXnXD_aKzFqNgI-pCuMNLqnElhyDMtRHh4Xrhnc7l4rcnwLhUi3VjQVlNWEcOJ29642cqGApzMdDnDDepDra4S24jRD50IL5mvQB-Txe325St4RRGlPqh8DEGh5cqKhFdgsLOW3wR2c9YFuaY4guqrqFG5K9p0axMSEIYMNngw6XWd3R8mQFIm8rLI"/>
 </div>
+<!-- STATS -->
+<div class="stats">
+<div class="stat">
+<div class="stat-top"><i aria-hidden="true" class="ti ti-star"></i><span class="stat-num" id="s-rating">0.0</span></div>
+<div class="stat-lbl">تقييم</div>
+</div>
+<div class="stat">
+<div class="stat-top"><i aria-hidden="true" class="ti ti-tools-kitchen-2"></i><span class="stat-num" id="s-dishes">0</span></div>
+<div class="stat-lbl">طبق</div>
+</div>
+<div class="stat">
+<div class="stat-top"><i aria-hidden="true" class="ti ti-clock"></i><span class="stat-num">30 د</span></div>
+<div class="stat-lbl">توصيل</div>
+</div>
+</div>
+<!-- MAIN -->
+<div class="main" id="main">
+<!-- HOME -->
+<div id="view-home">
+<div class="sec-hdr" id="menu-anchor">
+<div class="sec-title">الأكثر طلباً 🔥</div>
+<span class="sec-link" onclick="openAll()">عرض الكل ←</span>
+</div>
+<div class="pop-scroll" id="pop-row"></div>
+<div class="sec-hdr">
+<div class="sec-title">الأصناف</div>
+<span class="sec-count" id="cats-count">0 صنف</span>
+</div>
+<div class="cats-grid" id="cats-grid"></div>
+<div class="sec-hdr">
+<div class="sec-title">التقييمات</div>
+<span class="add-rev" onclick="document.getElementById('rev-form').scrollIntoView({behavior:'smooth'})">
+<i aria-hidden="true" class="ti ti-plus"></i> أضف تقييم
+        </span>
+</div>
+<div class="rev-scroll" id="rev-row"></div>
+<div class="rev-form" id="rev-form">
+<div class="rft">شاركنا تجربتك 📝</div>
+<input class="rf-inp" id="rf-name" maxlength="40" placeholder="اسمك"/>
+<div class="rf-stars" id="rf-stars">
+<span class="rf-star on" onclick="setStars(1)">★</span>
+<span class="rf-star on" onclick="setStars(2)">★</span>
+<span class="rf-star on" onclick="setStars(3)">★</span>
+<span class="rf-star on" onclick="setStars(4)">★</span>
+<span class="rf-star on" onclick="setStars(5)">★</span>
+</div>
+<textarea class="rf-ta" id="rf-text" placeholder="شاركنا تجربتك مع المطعم..."></textarea>
+<button class="rf-btn" onclick="submitReview()">إرسال التقييم</button>
+</div>
+</div>
+<!-- ITEMS VIEW -->
+<div id="view-items" style="display:none">
+<div class="back-bar">
+<button aria-label="رجوع" class="back-btn" onclick="showHome()"><i aria-hidden="true" class="ti ti-arrow-right"></i></button>
 <div>
-<h3 class="font-headline-md text-2xl text-primary mb-2">مقبلات ملكية</h3>
-<p class="text-on-surface-variant font-body-md line-clamp-2">تشكيلة مختارة من المزة الباردة والساخنة بلمسة الشيف الخاصة</p>
-<span class="text-tertiary font-bold mt-2 block">٨٥ ر.س</span>
+<div class="back-title" id="iv-title">الأطباق</div>
+<div class="back-sub" id="iv-sub">0 أطباق</div>
 </div>
 </div>
-<div class="group cursor-pointer rounded-xl bg-surface-container-low p-6 border border-outline-variant/20 flex gap-6 items-center hover:bg-surface-container transition-colors">
-<div class="w-32 h-32 overflow-hidden rounded-lg flex-shrink-0">
-<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A refined garden salad featuring fresh organic greens, edible gold leaf accents, and a pomegranate vinaigrette. The lighting is bright and airy, reflecting a modern architectural style. The palette is dominated by fresh greens, deep reds, and sand-colored backgrounds, presented in a minimalist, high-end culinary style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk489ZW6gT56bcaHiJSeCZL5T_tVjSq-72M43IvWBMVohBdMN_nuM8JDJ-lfPECYh5Ny8VkKvze_0EPz5lkLMCiyDt4FJBP_0CEBTbQnZCsII48hds-bxUEHozBZmiq-Vp-fgWbHjbiZpkp5KoLjYHQqrQVlPlH0x4ULicP_jh2UIwdfY9-sF_zuuXaIuWrXoa6iwDY1Yy25QHPB0DjhJ82_MWCDsPLONL-_m7dRdcQcgzwooRCcC1UK7I-qZKKwq4_BW2Kun_tRo"/>
-</div>
-<div>
-<h3 class="font-headline-md text-2xl text-primary mb-2">سلطة الواحة</h3>
-<p class="text-on-surface-variant font-body-md line-clamp-2">خضروات موسمية طازجة مع دبس الرمان الفاخر وجبن الماعز المعتق</p>
-<span class="text-tertiary font-bold mt-2 block">٦٥ ر.س</span>
+<div class="items-list" id="items-list"></div>
 </div>
 </div>
 </div>
+<!-- CART OVERLAY + DRAWER -->
+<div class="cart-ov" id="cart-ov" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+<div class="cd-handle"></div>
+<div class="cd-hdr">
+<div class="cd-title">سلة الطلب</div>
+<button class="cd-close" onclick="closeCart()" style="background:none;border:none;color:var(--tx2);font-size:20px;cursor:pointer"><i aria-hidden="true" class="ti ti-x"></i></button>
 </div>
-</section>
-<!-- Our Story Section -->
-<section class="py-24 bg-primary-container text-on-primary-container overflow-hidden">
-<div class="px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto flex flex-col md:flex-row items-center gap-16">
-<div class="flex-1 space-y-8">
-<span class="text-tertiary-fixed font-label-md tracking-widest uppercase">قصتنا</span>
-<h2 class="font-headline-lg text-headline-lg text-white">إرث من المذاق الرفيع</h2>
-<p class="font-body-lg text-on-primary-container/80 leading-relaxed">
-                        بدأت رحلة لوكس أوروم بشغف عميق لنقل المطبخ العربي من إطاره التقليدي إلى آفاق العالمية. نحن نؤمن بأن الطعام ليس مجرد وجبة، بل هو فن يحكي قصة حضارة وتاريخ. 
-                        في كل طبق نقدمه، ندمج أفضل المكونات المحلية مع تقنيات الطهي العالمية لنخلق تجربة حسية لا تُنسى.
-                    </p>
-<div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
-<div>
-<div class="text-4xl font-headline-lg text-tertiary-fixed mb-2">+١٥</div>
-<div class="text-sm text-on-primary-container/60 uppercase">عاماً من الخبرة</div>
+<div class="cd-body" id="cart-body"></div>
+<div class="cd-footer" id="cart-footer" style="display:none">
+<div class="cd-total-row" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+<span style="font-size:14px;color:var(--tx2);font-weight:700">المجموع النهائي</span>
+<span class="cd-total" id="cart-total"></span>
 </div>
-<div>
-<div class="text-4xl font-headline-lg text-tertiary-fixed mb-2">+٥٠</div>
-<div class="text-sm text-on-primary-container/60 uppercase">جائزة تذوق</div>
+<button class="cd-order" id="cd-order" onclick="placeOrder()">تأكيد الطلب الآن</button>
 </div>
 </div>
-</div>
-<div class="flex-1 relative">
-<div class="absolute -top-10 -left-10 w-40 h-40 border-t-2 border-l-2 border-tertiary-fixed/30 rounded-tl-3xl hidden md:block"></div>
-<div class="rounded-2xl overflow-hidden shadow-2xl relative z-10 aspect-[4/5]">
-<img class="w-full h-full object-cover" data-alt="A professional headshot of a master chef in a clean white uniform, plating a delicate dessert in a luxury kitchen environment. The atmosphere is professional and calm, with warm ambient lighting bouncing off metallic surfaces. The color scheme is premium, using deep charcoal and champagne gold accents to convey expertise and high-end quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvM5ng94eUkabJKljB4t2vn5dM_sZ6EKD_o9lxNKcCoE8dEYPhPD6MZqznuVJrHKeOMURlV98WPk7h0bja8jtK0WKwxWp2w9lMKLfBbgELc4z_trgZFt4T_g2lpyDcG9fpKzq5dxjMnGqU1h63fd8EVnoL3X9dg9MBV9aSQ3pagYnjAViEnTqTLyael6xYOCtQhuVbxg8YmNXFnOnc2Di_CMSyflqZiYTJV0AqSKbg8RKUBGvqTasGwXMU_VtQQ4uqiXvI7DHYGFI"/>
-</div>
-<div class="absolute -bottom-10 -right-10 w-40 h-40 border-b-2 border-r-2 border-tertiary-fixed/30 rounded-br-3xl hidden md:block"></div>
-</div>
-</div>
-</section>
-<!-- Customer Reviews -->
-<section class="py-24 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto">
-<div class="text-center mb-16">
-<span class="text-tertiary font-label-md tracking-widest uppercase mb-4 block">آراء الضيوف</span>
-<h2 class="font-headline-lg text-headline-lg text-primary">ماذا يقولون عنا</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
-<div class="bg-surface-container-high p-8 rounded-xl border border-outline-variant/20 hover:shadow-lg transition-shadow">
-<div class="flex text-tertiary-container mb-6">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-</div>
-<p class="font-body-md text-on-surface-variant italic mb-8 leading-relaxed">
-                        "لقد كانت تجربة مذهلة بكل المقاييس. الديكور يجمع بين الفخامة والراحة، والخدمة كانت استثنائية. الطعام هو الأفضل الذي تذوقته في الرياض."
-                    </p>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center font-bold text-on-secondary-container">أ</div>
-<div>
-<div class="font-label-md text-primary">أحمد منصور</div>
-<div class="text-xs text-on-surface-variant">رجل أعمال</div>
-</div>
-</div>
-</div>
-<div class="bg-surface-container-high p-8 rounded-xl border border-outline-variant/20 hover:shadow-lg transition-shadow">
-<div class="flex text-tertiary-container mb-6">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-</div>
-<p class="font-body-md text-on-surface-variant italic mb-8 leading-relaxed">
-                        "الاهتمام بالتفاصيل في هذا المطعم غير مسبوق. التوازن بين النكهات التقليدية واللمسات العصرية جعل العشاء تجربة لا تُنسى حقاً."
-                    </p>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center font-bold text-on-secondary-container">س</div>
-<div>
-<div class="font-label-md text-primary">سارة الشمري</div>
-<div class="text-xs text-on-surface-variant">ناقدة طعام</div>
-</div>
-</div>
-</div>
-<div class="bg-surface-container-high p-8 rounded-xl border border-outline-variant/20 hover:shadow-lg transition-shadow">
-<div class="flex text-tertiary-container mb-6">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">star</span>
-</div>
-<p class="font-body-md text-on-surface-variant italic mb-8 leading-relaxed">
-                        "مكان رائع للمناسبات الخاصة. لقد احتفلنا بذكرى زواجنا هنا وكانت الأجواء والخدمة فوق التوقعات. شكر خاص لطاقم العمل المميز."
-                    </p>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center font-bold text-on-secondary-container">م</div>
-<div>
-<div class="font-label-md text-primary">محمد خالد</div>
-<div class="text-xs text-on-surface-variant">مسافر دولي</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- CTA Section -->
-<section class="py-20 px-margin-mobile">
-<div class="max-w-4xl mx-auto bg-secondary-container rounded-3xl p-12 text-center border border-tertiary-fixed/20 relative overflow-hidden">
-<div class="absolute top-0 right-0 w-32 h-32 bg-tertiary-container/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-<div class="relative z-10">
-<h2 class="font-headline-lg text-headline-lg text-primary mb-6">هل أنت مستعد لتجربة لا تُنسى؟</h2>
-<p class="font-body-lg text-on-secondary-container mb-10">الأماكن محدودة جداً، ننصح بالحجز المسبق لضمان توفر طاولتكم.</p>
-<button class="bg-primary text-on-primary px-12 py-4 rounded-lg font-label-md text-xl active:scale-95 transition-transform">
-                        احجز الآن
-                    </button>
-</div>
-<div class="absolute bottom-0 left-0 w-24 h-24 bg-tertiary-container/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
-</div>
-</section>
-</main>
-<!-- Footer -->
-<footer class="bg-primary-container dark:bg-black w-full border-t border-white/5">
-<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop py-gutter gap-4 max-w-max-width mx-auto">
-<div class="font-headline-sm text-headline-sm text-tertiary-fixed">LUX AURUM</div>
-<div class="flex gap-8 font-body-md text-body-md text-on-primary-container">
-<a class="hover:text-tertiary-fixed-dim transition-colors opacity-80 hover:opacity-100" href="#">Contact</a>
-<a class="hover:text-tertiary-fixed-dim transition-colors opacity-80 hover:opacity-100" href="#">Privacy</a>
-<a class="hover:text-tertiary-fixed-dim transition-colors opacity-80 hover:opacity-100" href="#">Terms</a>
-</div>
-<p class="text-on-primary-container/60 text-sm">© 2024 Lux Aurum. All rights reserved.</p>
-</div>
-</footer>
+<!-- TOAST -->
+<div class="toast-wrap"><div class="toast" id="toast"></div></div>
+<script src="js/storage.js"></script>
 <script>
-        // Smooth reveal on scroll interaction
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-md');
-                nav.classList.replace('bg-surface/80', 'bg-surface/95');
-            } else {
-                nav.classList.remove('shadow-md');
-                nav.classList.replace('bg-surface/95', 'bg-surface/80');
-            }
-        });
+// ────────────────────────────────────────────────
+const CATS_BG=['#f5f3ef','#efede9','#fdfcfb','#f9f8f5'];
+const AV_COLORS=['#c9a84c','#1a1a1a','#4a4a4a','#7a7a7a','#a0a0a0','#b08e35','#d4bc7d','#94742a'];
+let MENU=null, ACCENT='#c9a84c', CART=[], revStars=5, curCat=null;
 
-        // Simple button interaction
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('mouseenter', () => {
-                btn.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-            });
-        });
-    </script>
-</body></html>
+function revKey(s){return'mc_rev_'+s}
+function loadRevs(s){try{return JSON.parse(localStorage.getItem(revKey(s))||'[]')}catch{return[]}}
+function saveRevs(s,a){localStorage.setItem(revKey(s),JSON.stringify(a))}
 
-<!-- قائمة الطعام - Lux Aurum Style -->
-<!DOCTYPE html>
+// ── INIT ──
+document.addEventListener('DOMContentLoaded',()=>{
+  const p=new URLSearchParams(location.search);
+  let slug=p.get('slug')||p.get('id');
 
-<html dir="rtl" lang="ar"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&amp;family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "tertiary": "#735c00",
-                    "secondary-container": "#efe0cd",
-                    "on-primary-fixed-variant": "#474746",
-                    "surface-variant": "#e4e2de",
-                    "on-primary-fixed": "#1c1b1b",
-                    "on-secondary-container": "#6d6354",
-                    "primary-container": "#1c1b1b",
-                    "on-tertiary-container": "#4f3e00",
-                    "error-container": "#ffdad6",
-                    "surface-container-low": "#f5f3ef",
-                    "on-background": "#1b1c1a",
-                    "on-tertiary-fixed": "#241a00",
-                    "outline-variant": "#c4c7c7",
-                    "on-tertiary-fixed-variant": "#574500",
-                    "on-primary-container": "#858383",
-                    "on-tertiary": "#ffffff",
-                    "surface-container": "#efeeea",
-                    "on-error-container": "#93000a",
-                    "secondary": "#675d4e",
-                    "surface-dim": "#dbdad6",
-                    "surface-container-highest": "#e4e2de",
-                    "on-secondary": "#ffffff",
-                    "on-surface-variant": "#444748",
-                    "surface": "#fbf9f5",
-                    "secondary-fixed-dim": "#d2c4b2",
-                    "inverse-primary": "#c8c6c5",
-                    "on-error": "#ffffff",
-                    "secondary-fixed": "#efe0cd",
-                    "outline": "#747878",
-                    "surface-container-high": "#eae8e4",
-                    "primary-fixed": "#e5e2e1",
-                    "tertiary-fixed-dim": "#e9c349",
-                    "primary-fixed-dim": "#c8c6c5",
-                    "error": "#ba1a1a",
-                    "inverse-surface": "#30312e",
-                    "inverse-on-surface": "#f2f0ed",
-                    "tertiary-fixed": "#ffe088",
-                    "on-primary": "#ffffff",
-                    "surface-bright": "#fbf9f5",
-                    "tertiary-container": "#cca730",
-                    "background": "#fbf9f5",
-                    "on-secondary-fixed": "#221a0f",
-                    "on-surface": "#1b1c1a",
-                    "primary": "#000000",
-                    "on-secondary-fixed-variant": "#4f4538",
-                    "surface-tint": "#5f5e5e",
-                    "surface-container-lowest": "#ffffff"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0.25rem",
-                    "lg": "0.5rem",
-                    "xl": "0.75rem",
-                    "full": "9999px"
-            },
-            "spacing": {
-                    "unit": "8px",
-                    "gutter": "24px",
-                    "margin-desktop": "80px",
-                    "max-width": "1440px",
-                    "margin-mobile": "20px"
-            },
-            "fontFamily": {
-                    "headline-lg-mobile": ["Bodoni Moda"],
-                    "body-lg": ["Be Vietnam Pro"],
-                    "headline-display": ["Bodoni Moda"],
-                    "headline-md": ["Bodoni Moda"],
-                    "body-md": ["Be Vietnam Pro"],
-                    "label-md": ["Be Vietnam Pro"],
-                    "headline-lg": ["Bodoni Moda"]
-            },
-            "fontSize": {
-                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
-                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
-                    "headline-display": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
-                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
-                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
-                    "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
-                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}]
-            }
-          },
-        },
-      }
-    </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        .glass-card {
-            background: rgba(251, 249, 245, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(228, 226, 222, 0.4);
-        }
-        body {
-            background-color: #fbf9f5;
-            color: #1b1c1a;
-        }
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #fbf9f5;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #d2c4b2;
-            border-radius: 10px;
-        }
-    </style>
-</head>
-<body class="font-body-md text-body-md overflow-x-hidden">
-<!-- Top Navigation Bar -->
-<nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-lg border-b border-outline-variant/20 shadow-sm">
-<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-max-width mx-auto">
-<div class="font-headline-md text-headline-md font-bold text-primary">LUX AURUM</div>
-<div class="hidden md:flex gap-8 items-center">
-<a class="text-on-surface-variant hover:text-tertiary transition-colors duration-300" href="#">Menu</a>
-<a class="text-on-surface-variant hover:text-tertiary transition-colors duration-300" href="#">Reservations</a>
-<a class="text-on-surface-variant hover:text-tertiary transition-colors duration-300" href="#">Offers</a>
-<a class="text-on-surface-variant hover:text-tertiary transition-colors duration-300" href="#">Profile</a>
-</div>
-<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md active:scale-95 transition-transform">
-                Book a Table
-            </button>
-</div>
-</nav>
-<!-- Hero Section / Header -->
-<header class="pt-32 pb-16 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto text-center">
-<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-4">قائمة الشيف</h1>
-<p class="text-on-surface-variant max-w-2xl mx-auto mb-12 font-body-lg">تذوق الفن في كل لقمة. رحلة طهوية مصممة بعناية لتجمع بين الأصالة العربية والابتكار الحديث.</p>
-<!-- Search Bar -->
-<div class="max-w-xl mx-auto relative group">
-<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-outline">search</span>
-<input class="w-full pr-12 pl-4 py-4 rounded-xl border-none ring-1 ring-outline-variant/30 focus:ring-2 focus:ring-tertiary-container bg-surface-container shadow-sm transition-all outline-none" placeholder="ابحث عن طبقك المفضل..." type="text"/>
-</div>
-</header>
-<main class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop flex flex-col md:flex-row gap-12 pb-32">
-<!-- Sidebar Filter -->
-<aside class="w-full md:w-64 flex-shrink-0">
-<div class="sticky top-24 space-y-2">
-<h3 class="font-label-md text-on-surface-variant mb-4 px-2">الفئات</h3>
-<button class="w-full text-right px-4 py-3 rounded-lg flex items-center justify-between group transition-all bg-tertiary-container text-on-tertiary-container font-bold">
-<span>جميع الأطباق</span>
-<span class="material-symbols-outlined text-sm">restaurant</span>
-</button>
-<button class="w-full text-right px-4 py-3 rounded-lg flex items-center justify-between group transition-all text-on-surface-variant hover:bg-secondary-container/30">
-<span>المقبلات</span>
-<span class="material-symbols-outlined text-sm">flatware</span>
-</button>
-<button class="w-full text-right px-4 py-3 rounded-lg flex items-center justify-between group transition-all text-on-surface-variant hover:bg-secondary-container/30">
-<span>الأطباق الرئيسية</span>
-<span class="material-symbols-outlined text-sm">dinner_dining</span>
-</button>
-<button class="w-full text-right px-4 py-3 rounded-lg flex items-center justify-between group transition-all text-on-surface-variant hover:bg-secondary-container/30">
-<span>المشويات</span>
-<span class="material-symbols-outlined text-sm">kebab_dining</span>
-</button>
-<button class="w-full text-right px-4 py-3 rounded-lg flex items-center justify-between group transition-all text-on-surface-variant hover:bg-secondary-container/30">
-<span>الحلويات</span>
-<span class="material-symbols-outlined text-sm">icecream</span>
-</button>
-<button class="w-full text-right px-4 py-3 rounded-lg flex items-center justify-between group transition-all text-on-surface-variant hover:bg-secondary-container/30">
-<span>المشروبات</span>
-<span class="material-symbols-outlined text-sm">local_bar</span>
-</button>
-</div>
-</aside>
-<!-- Menu Grid -->
-<section class="flex-grow grid grid-cols-1 md:grid-cols-2 gap-8">
-<!-- Dish Card 1 -->
-<article class="group relative flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:shadow-xl transition-all duration-500">
-<div class="aspect-[4/3] overflow-hidden relative">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A premium gourmet presentation of traditional lamb ouzi served on a bed of aromatic saffron rice with roasted almonds and pine nuts. The lighting is warm and dramatic, highlighting the rich textures of the meat and the steam rising from the dish. The setting is a luxury restaurant with soft gold accents and a minimalist desert aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAk489ZW6gT56bcaHiJSeCZL5T_tVjSq-72M43IvWBMVohBdMN_nuM8JDJ-lfPECYh5Ny8VkKvze_0EPz5lkLMCiyDt4FJBP_0CEBTbQnZCsII48hds-bxUEHozBZmiq-Vp-fgWbHjbiZpkp5KoLjYHQqrQVlPlH0x4ULicP_jh2UIwdfY9-sF_zuuXaIuWrXoa6iwDY1Yy25QHPB0DjhJ82_MWCDsPLONL-_m7dRdcQcgzwooRCcC1UK7I-qZKKwq4_BW2Kun_tRo"/>
-<div class="absolute top-4 left-4">
-<span class="bg-tertiary-fixed text-on-tertiary-fixed px-3 py-1 rounded-full text-label-md">الأكثر طلباً</span>
-</div>
-</div>
-<div class="p-6 flex flex-col flex-grow">
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-2xl text-primary">قوزي الغنم الملكي</h3>
-<span class="text-tertiary font-bold">١٤٥ ر.س</span>
-</div>
-<p class="text-on-surface-variant font-body-md mb-6 leading-relaxed">لحم غنم مطهو ببطء لمدة ١٢ ساعة، يقدم مع أرز البسمتي المعطر بالزعفران والمكسرات المحمصة.</p>
-<div class="mt-auto flex gap-2">
-<span class="bg-secondary-container/50 text-on-secondary-container px-2 py-1 rounded text-xs">خالي من الجلوتين</span>
-<span class="bg-secondary-container/50 text-on-secondary-container px-2 py-1 rounded text-xs">حلال</span>
-</div>
-</div>
-</article>
-<!-- Dish Card 2 -->
-<article class="group relative flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:shadow-xl transition-all duration-500">
-<div class="aspect-[4/3] overflow-hidden relative">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="An exquisite arrangement of gourmet Middle Eastern appetizers including velvet hummus with olive oil pearls, smoked mutabal, and crispy falafel. The presentation is modern and minimalist on a textured ceramic plate. High-key lighting emphasizes the fresh greens and deep reds of the pomegranate garnish against a warm sand-toned background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQbN2DM_19KK51MIxgiIDqDEDHYTxXT94Xq19sxxeNqbWRjptFYSYYGg7Hs5QYRf9cwkkINZ8aE2fnCFAbFuCbaS84vRhw7w0yWUGledKv0nbKCNkjrAp_zLbCob3osGdxP4G0ptpA0GBx1TaEV_IagI3WYRn0c62tB34na2_Jc_cKJ9rokeUEWYYnVu2tsyBh39XYqrgGDQtn5Cc0bwhK78oGcFJMbxrY7GMxl1fiAlYjOk6VZhtW3emCItF9vA1JXU5UZyWqEWg"/>
-</div>
-<div class="p-6 flex flex-col flex-grow">
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-2xl text-primary">تشكيلة المقبلات الفاخرة</h3>
-<span class="text-tertiary font-bold">٨٥ ر.س</span>
-</div>
-<p class="text-on-surface-variant font-body-md mb-6 leading-relaxed">مزيج من الحمص بالكمأة، متبل الباذنجان المدخن، والتبولة العضوية مع زيت الزيتون البكر.</p>
-<div class="mt-auto flex gap-2">
-<span class="bg-secondary-container/50 text-on-secondary-container px-2 py-1 rounded text-xs">نباتي</span>
-</div>
-</div>
-</article>
-<!-- Dish Card 3 -->
-<article class="group relative flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:shadow-xl transition-all duration-500">
-<div class="aspect-[4/3] overflow-hidden relative">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Succulent prime beef kebabs and lamb chops grilled over charcoal, presented on a minimalist stone platter. The meat is glistening with juices and garnished with charred vegetables and sumac-dusted onions. The atmosphere evokes a contemporary Middle Eastern grill house with soft amber lighting and premium stone textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8t5UrMYl22jppQFmv8bpb4a_Er2gAsz4kTtLg4X_bSRxlWtCugOEqBsfzRyJM_OlWQKoV-AA5unRMVQK0mNT7fkB4TDdDhvBokQI8CZ0oCiDzUDd3U2cj6NaItxgfHa1jZfeqAxmADMA4XPhMITBaZ5E4cTRac3GjTrESRJqwBXjlLNmd8aTpesPig4FiMLQLixwgEd6vhl0OzlX1imKxrrq4EWdz6c2VOmkzvEmHjvxEV6MGZ1AwV_-tJ44N9uwvWplzmjjv9Ko"/>
-</div>
-<div class="p-6 flex flex-col flex-grow">
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-2xl text-primary">مشويات "أوروم" المشكلة</h3>
-<span class="text-tertiary font-bold">١٩٥ ر.س</span>
-</div>
-<p class="text-on-surface-variant font-body-md mb-6 leading-relaxed">ريش غنم، كباب لحم، وشيش طاووق متبل بخلطة الشيف السرية ومشوي على الفحم الطبيعي.</p>
-<div class="mt-auto flex gap-2">
-<span class="bg-secondary-container/50 text-on-secondary-container px-2 py-1 rounded text-xs">بروتين عالي</span>
-</div>
-</div>
-</article>
-<!-- Dish Card 4 -->
-<article class="group relative flex flex-col bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/10 hover:shadow-xl transition-all duration-500">
-<div class="aspect-[4/3] overflow-hidden relative">
-<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A modern interpretation of Um Ali dessert, served in a glass bowl with a toasted marshmallow top, pistachio dust, and edible gold leaf flakes. The dessert is surrounded by a light mist of liquid nitrogen for a dramatic effect. The aesthetic is clean and luxurious, emphasizing the champagne gold tones and creamy textures." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBA_3B7J5G1Cb6FDWqJ80p6-I3o4BQHjDu9HJJoOCLR3bJB6JvsFokvEFVzQjqfcJWUBsOWhs37IyTuIn_lEDzWFZbCMRRmfOXXESYU8cBh_cyfLtS6gUvpudSZSgOGtBo-_GIvXLUcTB3RuAmk70dAEgM5gFOhYR2insdUVJAwv40V-QcJ7YE1ARP3BGI_aKjVX0qDmcgar8KeEzaIYtmESimgywWfid5e_BTf9bkC9DLmjuQxIxIQ9ayxYH6HwnrRu4CIVebbZew"/>
-</div>
-<div class="p-6 flex flex-col flex-grow">
-<div class="flex justify-between items-start mb-2">
-<h3 class="font-headline-md text-2xl text-primary">أم علي بلمسة عصرية</h3>
-<span class="text-tertiary font-bold">٦٥ ر.س</span>
-</div>
-<p class="text-on-surface-variant font-body-md mb-6 leading-relaxed">رقائق المعجنات المقرمشة مع الحليب الكريمي، الفستق الحلبي، وورق الذهب الصالح للأكل.</p>
-<div class="mt-auto flex gap-2">
-<span class="bg-secondary-container/50 text-on-secondary-container px-2 py-1 rounded text-xs">توقيع المطعم</span>
-</div>
-</div>
-</article>
-</section>
-</main>
-<!-- Footer -->
-<footer class="bg-primary-container text-on-primary-container">
-<div class="max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop py-12 flex flex-col md:flex-row justify-between items-center gap-8">
-<div class="text-center md:text-right">
-<div class="font-headline-sm text-headline-sm text-tertiary-fixed mb-2">LUX AURUM</div>
-<p class="text-on-primary-fixed-variant max-w-xs">تجربة طهوية فريدة تجمع بين التقاليد والفخامة في قلب المدينة.</p>
-</div>
-<div class="flex gap-8">
-<a class="text-on-primary-container hover:text-tertiary-fixed-dim transition-colors" href="#">تواصل معنا</a>
-<a class="text-on-primary-container hover:text-tertiary-fixed-dim transition-colors" href="#">الخصوصية</a>
-<a class="text-on-primary-container hover:text-tertiary-fixed-dim transition-colors" href="#">الشروط</a>
-</div>
-<div class="text-sm opacity-80">
-                © 2024 Lux Aurum. جميع الحقوق محفوظة.
-            </div>
-</div>
-</footer>
-<!-- Micro-interactions Script -->
-<script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.querySelector('input');
-            searchInput.addEventListener('focus', () => {
-                searchInput.parentElement.classList.add('scale-[1.02]');
-            });
-            searchInput.addEventListener('blur', () => {
-                searchInput.parentElement.classList.remove('scale-[1.02]');
-            });
+  if(!slug){
+    const all=DB.all();
+    if(all.length>0){slug=all[0].slug;}
+  }
 
-            // Smooth scroll appearance
-            const cards = document.querySelectorAll('article');
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, { threshold: 0.1 });
+  if(!slug){showErr('لم يتم تحديد منيو.');return;}
+  MENU=DB.bySlug(slug);
+  if(!MENU){
+    const all=DB.all();
+    if(all.length>0){MENU=all[0];}
+  }
+  if(!MENU){showErr('المنيو غير موجود.');return;}
 
-            cards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                card.style.transition = 'all 0.6s ease-out';
-                observer.observe(card);
-            });
-        });
-    </script>
+  document.title=MENU.name+' — MenuCraft Pro';
+  ACCENT=MENU.color||'#c9a84c';
+  document.documentElement.style.setProperty('--accent',ACCENT);
+  MENU._revs=loadRevs(MENU.slug||MENU.id);
+
+  drawBg();
+  updateBanner();
+  renderPop();
+  renderCats();
+  renderRevs();
+  updateRating();
+  initRevStars();
+  window.addEventListener('resize',drawBg);
+});
+
+function scrollToMenu(){document.getElementById('menu-anchor').scrollIntoView({behavior:'smooth'})}
+
+// ── CANVAS BG ──
+function drawBg(){
+  const cv=document.getElementById('bg-canvas');
+  if(!cv)return;
+  cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;
+  const cx=cv.getContext('2d');
+  cx.fillStyle='#1a1a1a';
+  cx.fillRect(0,0,cv.width,cv.height);
+  
+  cx.globalAlpha=.03;
+  for(let i=0;i<40;i++){
+    cx.strokeStyle=ACCENT;cx.lineWidth=1;
+    cx.beginPath();cx.moveTo(Math.random()*cv.width,0);
+    cx.lineTo(Math.random()*cv.width,cv.height);cx.stroke();
+  }
+  
+  cx.globalAlpha=.1;
+  const init=(MENU?.name||'CT').split(' ').filter(Boolean).map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  cx.font=`italic bold ${Math.round(cv.height*.5)}px serif`;
+  cx.fillStyle=ACCENT;cx.textAlign='center';
+  cx.fillText(init,cv.width*.5,cv.height*.65);
+}
+
+// ── BANNER ──
+function updateBanner(){
+  const name=MENU.name||"Chef's Table";
+  const sub=MENU.sub||'Fine Dining';
+  const init=name.split(' ').filter(Boolean).map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  const logo=document.getElementById('b-logo');
+  logo.textContent=init;
+  document.getElementById('b-fine').textContent=sub.toUpperCase();
+  document.getElementById('b-name').textContent=name.toUpperCase();
+  document.getElementById('s-dishes').textContent=(MENU.items||[]).length;
+}
+
+function updateRating(){
+  const revs=MENU._revs||[];
+  const avg=revs.length?(revs.reduce((s,r)=>s+r.stars,0)/revs.length).toFixed(1):'0.0';
+  const stars=document.getElementById('b-stars');
+  stars.innerHTML='★★★★★'.split('').map((s,i)=>`<span style="color:${i<Math.round(parseFloat(avg))?ACCENT:'var(--bg4)'};font-size:14px">${s}</span>`).join('');
+  document.getElementById('b-rating').textContent=`${avg} (${revs.length})`;
+  document.getElementById('s-rating').textContent=avg;
+}
+
+// ── POPULAR ──
+function renderPop(){
+  const items=[...(MENU.items||[])];
+  const cats=MENU.cats||MENU.categories||[];
+  items.sort((a,b)=>((b.tag==='الأكثر طلباً'?1:0)-(a.tag==='الأكثر طلباً'?1:0)));
+  const cur=MENU.currency||'ر.س';
+  document.getElementById('pop-row').innerHTML=items.slice(0,8).map(it=>{
+    const cat=cats.find(c=>c.id===it.catId);
+    return`<div class="pop-card" onclick="addCart('${it.id}')">
+      <div class="pop-img">
+        <span>${cat?.ico||'🍽️'}</span>
+        ${it.tag?`<div class="pop-badge">${it.tag}</div>`:''}
+      </div>
+      <div class="pop-body">
+        <div class="pop-name">${it.name}</div>
+        <div class="pop-prices">
+          ${it.oldPrice?`<span class="pop-old">${it.oldPrice}</span>`:''}
+          <span class="pop-price">${it.price} ${cur}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── CATS ──
+function renderCats(){
+  const cats=MENU.cats||MENU.categories||[];
+  const items=MENU.items||[];
+  document.getElementById('cats-count').textContent=cats.length+' صنف';
+  document.getElementById('cats-grid').innerHTML=cats.map((cat,i)=>`
+    <div class="cat-card" onclick="openCat('${cat.id}')">
+      <div class="cat-top">
+        <div class="cat-tex"></div>
+        <div class="cat-ico">${cat.ico||'🍽️'}</div>
+      </div>
+      <div class="cat-bot">
+        <div class="cat-name">${cat.name}</div>
+        <div class="cat-count">${items.filter(it=>it.catId===cat.id).length} أطباق</div>
+      </div>
+    </div>`).join('');
+}
+
+function openCat(catId){
+  curCat=catId;
+  const cats=MENU.cats||MENU.categories||[];
+  const items=(MENU.items||[]).filter(it=>it.catId===catId);
+  const cat=cats.find(c=>c.id===catId);
+  document.getElementById('iv-title').textContent=cat?.name||'';
+  document.getElementById('iv-sub').textContent=items.length+' أطباق';
+  document.getElementById('items-list').innerHTML=items.map(it=>itemRow(it,cat)).join('');
+  document.getElementById('view-home').style.display='none';
+  document.getElementById('view-items').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function openAll(){
+  curCat=null;
+  const cats=MENU.cats||MENU.categories||[];
+  const items=[...(MENU.items||[])].sort((a,b)=>(b.tag==='الأكثر طلباً'?1:0)-(a.tag==='الأكثر طلباً'?1:0));
+  document.getElementById('iv-title').textContent='قائمة الطعام';
+  document.getElementById('iv-sub').textContent=items.length+' طبق';
+  document.getElementById('items-list').innerHTML=items.map(it=>{
+    const cat=cats.find(c=>c.id===it.catId);
+    return itemRow(it,cat);
+  }).join('');
+  document.getElementById('view-home').style.display='none';
+  document.getElementById('view-items').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function itemRow(it,cat){
+  const cur=MENU.currency||'ر.س';
+  return`<div class="item-row">
+    <div class="item-thumb">${cat?.ico||'🍽️'}</div>
+    <div class="item-body">
+      ${it.tag?`<div class="item-tag" style="background:${ACCENT}15;color:${ACCENT}">${it.tag}</div>`:'<div style="height:4px"></div>'}
+      <div class="item-name">${it.name}</div>
+      ${it.desc?`<div class="item-desc">${it.desc}</div>`:''}
+      <div class="item-foot">
+        <div class="item-prices">
+          <span class="item-price" style="color:${ACCENT}">${it.price} ${cur}</span>
+        </div>
+        <button class="item-add" style="background:var(--tx0)" onclick="addCart('${it.id}')">
+          <i class="ti ti-plus"></i>
+        </button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function showHome(){
+  document.getElementById('view-home').style.display='block';
+  document.getElementById('view-items').style.display='none';
+  curCat=null;
+}
+
+// ── REVIEWS ──
+function renderRevs(){
+  const revs=MENU._revs||[];
+  if(!revs.length){
+    document.getElementById('rev-row').innerHTML='<div class="empty" style="min-width:260px;text-align:center;padding:20px"><i class="ti ti-message-circle"></i><p>لا توجد تقييمات حتى الآن</p></div>';
+    return;
+  }
+  document.getElementById('rev-row').innerHTML=revs.map(r=>`
+    <div class="rev-card">
+      <div class="rev-top">
+        <div class="rev-av" style="background:${ACCENT}15;color:${ACCENT}">${r.name[0].toUpperCase()}</div>
+        <div><div class="rev-nm">${r.name}</div><div class="rev-dt">${r.date}</div></div>
+      </div>
+      <div class="rev-stars">${'★★★★★'.split('').map((s,i)=>`<span style="color:${i<r.stars?ACCENT:'var(--bg4)'};font-size:14px">${s}</span>`).join('')}</div>
+      <div class="rev-txt">${r.text}</div>
+    </div>`).join('');
+}
+
+function initRevStars(){
+  setStars(5);
+}
+
+function setStars(n){
+  revStars=n;
+  document.querySelectorAll('.rf-star').forEach((s,i)=>{
+    s.classList.toggle('on',i<n);
+    s.style.color=i<n?ACCENT:'var(--bg4)';
+  });
+}
+
+function submitReview(){
+  const name=document.getElementById('rf-name').value.trim();
+  const text=document.getElementById('rf-text').value.trim();
+  if(!name||!text){showToast('⚠️ يرجى تعبئة كافة الحقول');return;}
+  const rev={name,stars:revStars,text,date:new Date().toLocaleDateString('ar-SA'),color:AV_COLORS[(MENU._revs||[]).length%AV_COLORS.length]};
+  MENU._revs=[rev,...(MENU._revs||[])];
+  saveRevs(MENU.slug||MENU.id,MENU._revs);
+  document.getElementById('rf-name').value='';
+  document.getElementById('rf-text').value='';
+  setStars(5);
+  renderRevs();updateRating();
+  showToast('✅ شكراً لمشاركتنا رأيك!');
+}
+
+// ── CART ──
+function addCart(id){
+  const it=(MENU.items||[]).find(i=>i.id===id);if(!it)return;
+  const ex=CART.find(c=>c.id===id);
+  if(ex)ex.qty++;else CART.push({id,name:it.name,price:parseFloat(it.price)||0,qty:1});
+  updCartBadge();showToast('🛒 تمت إضافة '+it.name);
+}
+
+function updCartBadge(){
+  const n=CART.reduce((s,c)=>s+c.qty,0);
+  const b=document.getElementById('cart-badge');
+  b.textContent=n;b.style.display=n?'flex':'none';
+}
+
+function toggleCart(){
+  const d=document.getElementById('cart-drawer');
+  if(d.classList.contains('open')){closeCart();}else{renderCart();d.classList.add('open');document.getElementById('cart-ov').classList.add('open');}
+}
+function closeCart(){
+  document.getElementById('cart-drawer').classList.remove('open');
+  document.getElementById('cart-ov').classList.remove('open');
+}
+
+function renderCart(){
+  const cur=MENU.currency||'ر.س';
+  const total=Math.round(CART.reduce((s,c)=>s+c.price*c.qty,0));
+  const body=document.getElementById('cart-body');
+  const footer=document.getElementById('cart-footer');
+  if(!CART.length){
+    body.innerHTML='<div class="empty" style="text-align:center;padding:40px 0"><i class="ti ti-shopping-cart-off"></i><p>سلة طلباتك فارغة</p></div>';
+    footer.style.display='none';return;
+  }
+  body.innerHTML=CART.map((c,i)=>`
+    <div class="cd-row">
+      <div class="cd-nm">${c.name}</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <button class="cd-qbtn" style="background:var(--bg4)" onclick="chQty(${i},-1)">−</button>
+          <span style="font-weight:700;font-size:14px">${c.qty}</span>
+          <button class="cd-qbtn" style="background:var(--accent)" onclick="chQty(${i},1)">+</button>
+        </div>
+        <span class="cd-price" style="color:var(--accent);min-width:60px;text-align:left">${Math.round(c.price*c.qty)} ${cur}</span>
+      </div>
+    </div>`).join('');
+  document.getElementById('cart-total').textContent=total+' '+cur;
+  document.getElementById('cd-order').style.background=ACCENT;
+  footer.style.display='block';
+}
+
+function chQty(i,d){CART[i].qty+=d;if(CART[i].qty<=0)CART.splice(i,1);updCartBadge();renderCart();}
+function placeOrder(){CART=[];updCartBadge();closeCart();showToast('🎉 تم إرسال طلبك بنجاح!');}
+
+// ── TOAST ──
+let _tt;
+function showToast(msg){
+  const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  clearTimeout(_tt);_tt=setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+function showErr(msg){
+  document.getElementById('app').innerHTML=`
+    <div class="error-page" style="height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px">
+      <div>
+        <i class="ti ti-alert-circle" style="font-size:60px;color:var(--bg4);margin-bottom:20px"></i>
+        <h2>${msg}</h2>
+        <a href="dashboard.html" style="display:inline-block;margin-top:20px;color:var(--accent);font-weight:700;text-decoration:none">الرجوع للرئيسية</a>
+      </div>
+    </div>`;
+}
+</script>
 </body></html>
