@@ -98,10 +98,10 @@
 
     try {
       await Auth.signUp(email, pass, name);
-      document.getElementById('successMsg').textContent = '✅ تم إنشاء الحساب! تحقق من بريدك الإلكتروني لتفعيل الحساب.';
+      document.getElementById('successMsg').textContent = '✅ تم إنشاء الحساب! جاري تحويلك...';
       document.getElementById('successMsg').style.display = 'block';
-      btn.textContent = 'تم الإرسال';
-      setTimeout(() => window.location.href = 'login.html', 3000);
+      btn.textContent = 'تم ✓';
+      setTimeout(() => window.location.href = 'onboarding.html', 1500);
     } catch(e) {
       showError(e.message || 'حدث خطأ، يرجى المحاولة مجدداً');
       btn.disabled    = false;

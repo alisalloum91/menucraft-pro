@@ -840,20 +840,14 @@ async function init() {
 
   R = await DB.getMyRestaurant();
   if (!R) {
-    try {
-      const name = user.user_metadata?.restaurant_name || user.email.split('@')[0];
-      R = await DB.createRestaurant(user.id, name);
-      toast('تم إنشاء ملف المطعم تلقائياً ✓');
-    } catch(e) {
-      toast('خطأ في إنشاء المطعم: ' + e.message, true);
-    }
+    // New user — go through onboarding wizard
+    window.location.href = '/onboarding.html';
+    return;
   }
-  if (R) {
-    fillForm();
-    await loadItems();
-    updateLink();
-    syncPreview();
-  }
+  fillForm();
+  await loadItems();
+  updateLink();
+  syncPreview();
 }
 
 init();
