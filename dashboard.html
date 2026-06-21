@@ -481,14 +481,21 @@ document.getElementById('u-email').textContent = user.email;
 document.getElementById('u-init').textContent  = (user.user_metadata?.restaurant_name || user.email)[0].toUpperCase();
 
 R = await DB.getMyRestaurant();
+if (!R) {
+  // Create restaurant automatically if missing
+  try {
+    const name = user.user_metadata?.restaurant_name || user.email.split('@')[0];
+    R = await DB.createRestaurant(user.id, name);
+    toast('تم إنشاء ملف المطعم تلقائياً ✓');
+  } catch(e) {
+    toast('خطأ في إنشاء المطعم: ' + e.message, true);
+  }
+}
 if (R) {
   fillForm();
-  loadItems();
+  await loadItems();
   updateLink();
   syncPreview();
-  loadMenusGrid();
-} else {
-  toast('لم يتم العثور على بيانات المطعم', true);
 }
 
 buildIconGrid();
@@ -749,21 +756,25 @@ async function loadOrders() {
 
 // ── MENUS GRID ────────────────────────────────────────────
 async function loadMenusGrid() {
-  if (!R) return;
-  const items = await DB.getItems(R.id);
   const el = document.getElementById('menus-grid');
-  if (!items.length) { el.innerHTML='<div class="empty" style="grid-column:1/-1"><i class="ti ti-layout-grid"></i><p>لا توجد أصناف محفوظة بعد</p></div>'; return; }
-  const cats = [...new Set(items.map(i=>i.category||'عام'))];
-  el.innerHTML = cats.map(c => {
-    const count = items.filter(i=>(i.category||'عام')===c).length;
-    return `<div class="menu-card">
-      <div class="mc-top">${c.slice(0,2).toUpperCase()}</div>
-      <div class="mc-body">
-        <div class="mc-name">${esc(c)}</div>
-        <div class="mc-date">${count} صنف</div>
-      </div>
-    </div>`;
-  }).join('');
+  if (!R) { el.innerHTML='<div class="empty" style="grid-column:1/-1"><i class="ti ti-layout-grid"></i><p>لا توجد بيانات متاحة</p></div>'; return; }
+  try {
+    const items = await DB.getItems(R.id);
+    if (!items.length) { el.innerHTML='<div class="empty" style="grid-column:1/-1"><i class="ti ti-layout-grid"></i><p>لا توجد أصناف محفوظة بعد</p></div>'; return; }
+    const cats = [...new Set(items.map(i=>i.category||'عام'))];
+    el.innerHTML = cats.map(c => {
+      const count = items.filter(i=>(i.category||'عام')===c).length;
+      return `<div class="menu-card">
+        <div class="mc-top">${esc(c.slice(0,2).toUpperCase())}</div>
+        <div class="mc-body">
+          <div class="mc-name">${esc(c)}</div>
+          <div class="mc-date">${count} صنف</div>
+        </div>
+      </div>`;
+    }).join('');
+  } catch(e) {
+    el.innerHTML = `<div class="empty" style="grid-column:1/-1"><i class="ti ti-alert-circle"></i><p>خطأ في التحميل: ${esc(e.message)}</p></div>`;
+  }
 }
 
 // ── SAMPLE DATA ───────────────────────────────────────────
