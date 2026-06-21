@@ -4,139 +4,151 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>MenuCraft Pro — لوحة التحكم</title>
-<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..900;1,400..900&family=Tajawal:wght@400;500;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.14.0/dist/tabler-icons.min.css" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Tajawal',sans-serif;background:#0f1117;color:#e8eaf0;min-height:100vh;display:flex}
+:root{
+  --gold:#c9a84c;--gold-dark:#b08d3e;--gold-light:#e6c364;
+  --bg:#fbf9f5;--surface:#ffffff;
+  --dark:#1a1a1a;--dark2:#242424;--dark3:#2e2e2e;
+  --text:#1a1a1a;--muted:#6b6b6b;--border:#e8e6e0;
+}
+body{font-family:'Tajawal',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#d0cec8;border-radius:10px}
 
-/* Sidebar */
-.sidebar{width:240px;min-width:240px;background:#161b27;border-left:1px solid #1e2538;display:flex;flex-direction:column;height:100vh;position:sticky;top:0}
-.sidebar-logo{padding:24px 20px;border-bottom:1px solid #1e2538}
-.sidebar-logo h1{font-size:20px;font-weight:800;color:#fff;letter-spacing:1px}
-.sidebar-logo span{color:#4f8ef7}
-.sidebar-logo p{font-size:11px;color:#5a6a8a;margin-top:4px}
+/* ── SIDEBAR ── */
+.sidebar{width:256px;min-width:256px;background:var(--dark);display:flex;flex-direction:column;height:100vh;position:sticky;top:0;border-left:1px solid #111}
+.sidebar-logo{padding:28px 24px 20px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sidebar-logo h1{font-family:'Bodoni Moda',serif;font-size:22px;font-weight:500;color:#fff;letter-spacing:.15em;line-height:1}
+.sidebar-logo h1 span{color:var(--gold)}
+.sidebar-logo p{font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.2em;text-transform:uppercase;margin-top:6px}
 .sidebar-nav{flex:1;padding:16px 12px;overflow-y:auto}
-.nav-section{font-size:10px;font-weight:700;color:#3a4a6a;letter-spacing:2px;text-transform:uppercase;padding:12px 8px 6px}
-.nav-btn{width:100%;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;border:none;background:transparent;color:#8a9bb5;font-family:'Tajawal',sans-serif;font-size:14px;cursor:pointer;transition:all .15s;text-align:right}
-.nav-btn:hover{background:#1e2538;color:#e8eaf0}
-.nav-btn.active{background:rgba(79,142,247,.12);color:#4f8ef7}
+.nav-section{font-size:9px;font-weight:700;color:rgba(255,255,255,.2);letter-spacing:.2em;text-transform:uppercase;padding:14px 10px 6px}
+.nav-btn{width:100%;display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:6px;border:none;background:transparent;color:rgba(255,255,255,.4);font-family:'Tajawal',sans-serif;font-size:14px;cursor:pointer;transition:all .15s;text-align:right}
+.nav-btn:hover{background:rgba(255,255,255,.05);color:rgba(255,255,255,.8)}
+.nav-btn.active{background:rgba(201,168,76,.1);color:var(--gold);border-right:2px solid var(--gold)}
 .nav-btn i{font-size:18px;flex-shrink:0}
-.sidebar-footer{padding:16px 12px;border-top:1px solid #1e2538}
-.user-info{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.user-avatar{width:36px;height:36px;border-radius:50%;background:#4f8ef7;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
-.user-details{flex:1;min-width:0}
-.user-name{font-size:13px;font-weight:700;color:#e8eaf0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.user-email{font-size:11px;color:#5a6a8a;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.btn-logout{width:100%;padding:9px;border-radius:8px;border:1px solid #1e2538;background:transparent;color:#8a9bb5;font-family:'Tajawal',sans-serif;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .15s}
-.btn-logout:hover{background:#2a1a1a;border-color:#ef4444;color:#ef4444}
+.sidebar-footer{padding:16px 16px 20px;border-top:1px solid rgba(255,255,255,.07)}
+.user-box{display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:10px 12px;border-radius:6px;background:rgba(255,255,255,.04)}
+.user-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--dark);flex-shrink:0}
+.user-name{font-size:13px;font-weight:700;color:rgba(255,255,255,.85);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.user-email{font-size:10px;color:rgba(255,255,255,.3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.btn-logout{width:100%;padding:9px;border-radius:6px;border:1px solid rgba(255,255,255,.08);background:transparent;color:rgba(255,255,255,.3);font-family:'Tajawal',sans-serif;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .2s}
+.btn-logout:hover{border-color:rgba(239,68,68,.4);color:#ef4444;background:rgba(239,68,68,.06)}
 
-/* Main */
-.main{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.topbar{background:#161b27;border-bottom:1px solid #1e2538;padding:16px 28px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0}
-.topbar-title{font-size:18px;font-weight:700;color:#e8eaf0}
-.topbar-sub{font-size:12px;color:#5a6a8a;margin-top:2px}
-.btn-primary{padding:9px 18px;border-radius:8px;border:none;background:#4f8ef7;color:#fff;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s}
-.btn-primary:hover{background:#3a7de6}
-.content{flex:1;overflow-y:auto;padding:28px}
+/* ── MAIN ── */
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-height:100vh}
+.topbar{background:rgba(251,249,245,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);padding:18px 32px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:40}
+.topbar-title{font-family:'Bodoni Moda',serif;font-size:18px;font-weight:500;color:var(--dark);letter-spacing:.05em}
+.topbar-sub{font-size:11px;color:var(--muted);margin-top:3px;letter-spacing:.03em}
+.btn-gold{padding:10px 20px;border-radius:6px;border:none;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--dark);font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:7px;transition:all .2s;letter-spacing:.03em}
+.btn-gold:hover{filter:brightness(1.08)}
+.content{flex:1;overflow-y:auto;padding:32px}
 
-/* Page */
+/* ── PAGES ── */
 .page{display:none}
-.page.active{display:block}
+.page.active{display:block;animation:fadeUp .25s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-/* Cards */
-.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:24px}
-.stat-card{background:#161b27;border:1px solid #1e2538;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:8px}
-.stat-card .label{font-size:12px;color:#5a6a8a;font-weight:500}
-.stat-card .value{font-size:28px;font-weight:800;color:#e8eaf0}
-.stat-card .sub{font-size:11px;color:#4f8ef7}
-.stat-card.accent{border-color:rgba(79,142,247,.3);background:rgba(79,142,247,.05)}
+/* ── STAT CARDS ── */
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-bottom:28px}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px 20px;position:relative;overflow:hidden}
+.stat-card::before{content:'';position:absolute;top:0;right:0;width:3px;height:100%;background:var(--border)}
+.stat-card.accent::before{background:linear-gradient(180deg,var(--gold),var(--gold-light))}
+.stat-label{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.stat-value{font-size:32px;font-weight:800;color:var(--dark);line-height:1.1;margin:8px 0 4px}
+.stat-sub{font-size:11px;color:var(--gold);font-weight:600}
 
-/* Section */
-.section{background:#161b27;border:1px solid #1e2538;border-radius:12px;margin-bottom:20px}
-.section-head{padding:18px 20px;border-bottom:1px solid #1e2538;display:flex;justify-content:space-between;align-items:center}
-.section-head h2{font-size:15px;font-weight:700;color:#e8eaf0}
-.section-body{padding:20px}
+/* ── SECTION ── */
+.section{background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:20px;overflow:hidden}
+.section-head{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.section-head h2{font-family:'Bodoni Moda',serif;font-size:15px;font-weight:500;color:var(--dark);letter-spacing:.06em}
+.section-body{padding:22px}
 
-/* Form */
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.form-group{display:flex;flex-direction:column;gap:6px}
+/* ── MENU LINK ── */
+.menu-link-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px 18px;display:flex;align-items:center;gap:14px}
+.menu-link-url{flex:1;font-size:13px;color:var(--gold-dark);font-weight:600;word-break:break-all;dir:ltr;text-align:left}
+.btn-copy{padding:7px 16px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Tajawal',sans-serif;font-size:12px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.btn-copy:hover{background:var(--dark);color:#fff;border-color:var(--dark)}
+
+/* ── FORM ── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form-group{display:flex;flex-direction:column;gap:7px}
 .form-group.full{grid-column:1/-1}
-label{font-size:12px;color:#8a9bb5;font-weight:600;letter-spacing:.5px}
-input,textarea,select{width:100%;padding:10px 14px;border-radius:8px;border:1px solid #1e2538;background:#0f1117;color:#e8eaf0;font-family:'Tajawal',sans-serif;font-size:14px;outline:none;transition:border-color .15s}
-input:focus,textarea:focus,select:focus{border-color:#4f8ef7}
+label{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+input,textarea,select{width:100%;padding:11px 14px;border-radius:7px;border:1px solid var(--border);background:var(--bg);color:var(--dark);font-family:'Tajawal',sans-serif;font-size:14px;outline:none;transition:border-color .15s}
+input:focus,textarea:focus,select:focus{border-color:var(--gold);background:#fff}
 textarea{resize:vertical;min-height:80px}
 
-/* Items table */
-.items-header{display:grid;grid-template-columns:1fr 120px 100px 90px 80px;gap:12px;padding:10px 16px;font-size:11px;color:#5a6a8a;font-weight:700;text-transform:uppercase;letter-spacing:.5px;border-bottom:1px solid #1e2538}
-.item-row{display:grid;grid-template-columns:1fr 120px 100px 90px 80px;gap:12px;padding:12px 16px;border-bottom:1px solid #0f1117;align-items:center;transition:background .15s}
-.item-row:hover{background:#1a1f30}
+/* ── ITEMS TABLE ── */
+.items-header{display:grid;grid-template-columns:1fr 130px 110px 90px 70px;gap:12px;padding:12px 22px;font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.07em;border-bottom:1px solid var(--border);background:var(--bg)}
+.item-row{display:grid;grid-template-columns:1fr 130px 110px 90px 70px;gap:12px;padding:14px 22px;border-bottom:1px solid var(--border);align-items:center;transition:background .15s}
+.item-row:hover{background:var(--bg)}
 .item-row:last-child{border-bottom:none}
-.item-name{font-size:14px;font-weight:600;color:#e8eaf0}
-.item-cat{font-size:12px;color:#5a6a8a}
-.item-price{font-size:14px;font-weight:700;color:#4f8ef7}
-.badge{display:inline-block;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:600}
-.badge-avail{background:rgba(34,197,94,.15);color:#22c55e}
-.badge-unavail{background:rgba(239,68,68,.1);color:#ef4444}
+.item-name{font-size:14px;font-weight:700;color:var(--dark)}
+.item-desc-text{font-size:12px;color:var(--muted);margin-top:2px}
+.item-cat-text{font-size:13px;color:var(--muted)}
+.item-price-text{font-size:14px;font-weight:800;color:var(--dark)}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.03em}
+.badge-avail{background:rgba(34,197,94,.1);color:#16a34a}
+.badge-unavail{background:rgba(239,68,68,.08);color:#dc2626}
 .item-actions{display:flex;gap:6px;justify-content:flex-end}
-.btn-icon{width:30px;height:30px;border-radius:6px;border:1px solid #1e2538;background:transparent;color:#8a9bb5;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-size:15px}
-.btn-icon:hover{background:#1e2538;color:#e8eaf0}
-.btn-icon.danger:hover{background:rgba(239,68,68,.1);border-color:#ef4444;color:#ef4444}
+.btn-icon{width:30px;height:30px;border-radius:6px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .15s;font-size:15px}
+.btn-icon:hover{background:var(--dark);color:#fff;border-color:var(--dark)}
+.btn-icon.danger:hover{background:rgba(239,68,68,.08);border-color:#ef4444;color:#ef4444}
 
-/* Modal */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:none;align-items:center;justify-content:center}
-.modal-overlay.open{display:flex}
-.modal{background:#161b27;border:1px solid #1e2538;border-radius:16px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;padding:24px}
-.modal-title{font-size:17px;font-weight:700;color:#e8eaf0;margin-bottom:20px;display:flex;justify-content:space-between;align-items:center}
-.modal-actions{display:flex;gap:10px;margin-top:20px;justify-content:flex-end}
-.btn-secondary{padding:9px 18px;border-radius:8px;border:1px solid #1e2538;background:transparent;color:#8a9bb5;font-family:'Tajawal',sans-serif;font-size:13px;cursor:pointer;transition:all .15s}
-.btn-secondary:hover{background:#1e2538;color:#e8eaf0}
-.btn-danger{padding:9px 18px;border-radius:8px;border:none;background:rgba(239,68,68,.15);color:#ef4444;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s}
-.btn-danger:hover{background:rgba(239,68,68,.25)}
+/* ── QR ── */
+.qr-container{display:flex;flex-direction:column;align-items:center;gap:20px;padding:32px}
+.qr-frame{background:#fff;padding:16px;border-radius:12px;border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,.07)}
+#qr-canvas{display:block;border-radius:6px}
+.qr-url{font-size:12px;color:var(--gold-dark);font-weight:600;word-break:break-all;text-align:center;max-width:320px}
+.btn-qr-dl{padding:11px 28px;border-radius:7px;border:none;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--dark);font-family:'Tajawal',sans-serif;font-size:14px;font-weight:800;cursor:pointer;letter-spacing:.04em;transition:filter .2s}
+.btn-qr-dl:hover{filter:brightness(1.08)}
 
-/* QR */
-.qr-container{display:flex;flex-direction:column;align-items:center;gap:16px;padding:20px}
-#qr-canvas{border-radius:12px;border:8px solid #fff}
-.qr-url{font-size:12px;color:#4f8ef7;word-break:break-all;text-align:center;max-width:300px}
-.btn-qr-download{padding:10px 24px;border-radius:8px;border:none;background:#4f8ef7;color:#fff;font-family:'Tajawal',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
-
-/* Orders */
-.order-row{padding:14px 16px;border-bottom:1px solid #1e2538;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+/* ── ORDERS ── */
+.order-row{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;transition:background .15s}
+.order-row:hover{background:var(--bg)}
 .order-row:last-child{border-bottom:none}
-.order-id{font-size:12px;color:#5a6a8a;font-weight:600}
-.order-customer{font-size:14px;font-weight:700;color:#e8eaf0}
-.order-items{font-size:12px;color:#8a9bb5;margin-top:2px}
-.order-total{font-size:16px;font-weight:800;color:#4f8ef7}
-.order-time{font-size:11px;color:#5a6a8a;text-align:left}
-.badge-pending{background:rgba(245,158,11,.15);color:#f59e0b}
-.badge-done{background:rgba(34,197,94,.15);color:#22c55e}
+.order-num{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.05em}
+.order-cust{font-size:14px;font-weight:700;color:var(--dark);margin:2px 0}
+.order-items-txt{font-size:12px;color:var(--muted)}
+.order-total{font-size:18px;font-weight:800;color:var(--dark)}
+.order-time{font-size:11px;color:var(--muted);margin-bottom:4px;text-align:left}
+.badge-pending{background:rgba(245,158,11,.1);color:#d97706}
+.badge-done{background:rgba(34,197,94,.1);color:#16a34a}
 
-/* Empty */
-.empty{text-align:center;padding:60px 20px;color:#5a6a8a}
-.empty i{font-size:48px;display:block;margin-bottom:12px;opacity:.4}
-.empty p{font-size:15px}
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(26,26,26,.6);backdrop-filter:blur(6px);z-index:1000;display:none;align-items:center;justify-content:center}
+.modal-overlay.open{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:14px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;padding:28px;box-shadow:0 24px 64px rgba(0,0,0,.15)}
+.modal-title{font-family:'Bodoni Moda',serif;font-size:18px;font-weight:500;color:var(--dark);margin-bottom:22px;display:flex;justify-content:space-between;align-items:center;letter-spacing:.06em}
+.modal-actions{display:flex;gap:10px;margin-top:22px;justify-content:flex-end}
+.btn-outline{padding:10px 20px;border-radius:7px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Tajawal',sans-serif;font-size:13px;cursor:pointer;transition:all .15s}
+.btn-outline:hover{background:var(--bg);border-color:var(--muted)}
+.btn-red{padding:10px 20px;border-radius:7px;border:none;background:rgba(239,68,68,.08);color:#dc2626;font-family:'Tajawal',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all .15s}
+.btn-red:hover{background:rgba(239,68,68,.14)}
 
-/* Toast */
-.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e2538;border:1px solid #4f8ef7;color:#e8eaf0;padding:10px 24px;border-radius:30px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;z-index:9999;transition:all .3s;white-space:nowrap}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* Loading */
-.loading{display:flex;align-items:center;justify-content:center;padding:60px;color:#5a6a8a;gap:10px}
-.spin{width:20px;height:20px;border:2px solid #1e2538;border-top-color:#4f8ef7;border-radius:50%;animation:spin .8s linear infinite}
+/* ── EMPTY / LOADING ── */
+.empty{text-align:center;padding:60px 24px;color:var(--muted)}
+.empty i{font-size:44px;display:block;margin-bottom:10px;opacity:.25}
+.empty p{font-size:15px;font-weight:500}
+.loading{display:flex;align-items:center;justify-content:center;padding:56px;color:var(--muted);gap:10px;font-size:14px}
+.spin{width:18px;height:18px;border:2px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* Menu link */
-.menu-link-box{background:#0f1117;border:1px solid #1e2538;border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px}
-.menu-link-url{flex:1;font-size:13px;color:#4f8ef7;word-break:break-all}
-.btn-copy{padding:6px 14px;border-radius:6px;border:1px solid #1e2538;background:transparent;color:#8a9bb5;font-family:'Tajawal',sans-serif;font-size:12px;cursor:pointer;white-space:nowrap;transition:all .15s}
-.btn-copy:hover{background:#1e2538;color:#e8eaf0}
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--dark);color:var(--gold);border:1px solid rgba(201,168,76,.3);padding:11px 26px;border-radius:30px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;z-index:9999;transition:all .3s;white-space:nowrap;font-family:'Tajawal',sans-serif}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast.err{color:#ef4444;border-color:rgba(239,68,68,.3)}
 
 @media(max-width:900px){
   .sidebar{display:none}
   .form-grid{grid-template-columns:1fr}
   .items-header,.item-row{grid-template-columns:1fr 80px 60px}
-  .item-row .item-cat,.item-row .item-actions .btn-icon:last-child{display:none}
 }
 </style>
 </head>
@@ -145,11 +157,11 @@ textarea{resize:vertical;min-height:80px}
 <!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sidebar-logo">
-    <h1>Menu<span>Craft</span> Pro</h1>
-    <p>لوحة إدارة المطعم</p>
+    <h1>MENU<span>CRAFT</span></h1>
+    <p>Restaurant Management Suite</p>
   </div>
   <nav class="sidebar-nav">
-    <div class="nav-section">القائمة</div>
+    <div class="nav-section">إدارة القائمة</div>
     <button class="nav-btn active" onclick="nav('overview',this)">
       <i class="ti ti-layout-dashboard"></i>الرئيسية
     </button>
@@ -168,13 +180,13 @@ textarea{resize:vertical;min-height:80px}
     </button>
     <div class="nav-section">الإعدادات</div>
     <button class="nav-btn" onclick="nav('settings',this)">
-      <i class="ti ti-settings"></i>معلومات المطعم
+      <i class="ti ti-building-store"></i>معلومات المطعم
     </button>
   </nav>
   <div class="sidebar-footer">
-    <div class="user-info">
+    <div class="user-box">
       <div class="user-avatar" id="user-init">؟</div>
-      <div class="user-details">
+      <div style="flex:1;min-width:0">
         <div class="user-name" id="user-name">جاري التحميل...</div>
         <div class="user-email" id="user-email"></div>
       </div>
@@ -187,37 +199,36 @@ textarea{resize:vertical;min-height:80px}
 
 <!-- MAIN -->
 <div class="main">
-  <!-- TOPBAR -->
   <div class="topbar">
     <div>
       <div class="topbar-title" id="page-title">الرئيسية</div>
-      <div class="topbar-sub" id="page-sub">مرحباً بك في لوحة التحكم</div>
+      <div class="topbar-sub" id="page-sub">نظرة عامة على نشاط مطعمك</div>
     </div>
     <div id="topbar-action"></div>
   </div>
 
   <div class="content">
 
-    <!-- PAGE: OVERVIEW -->
+    <!-- OVERVIEW -->
     <div class="page active" id="pg-overview">
-      <div class="cards-grid" id="overview-cards">
-        <div class="stat-card"><div class="label">زيارات اليوم</div><div class="value" id="ov-today">—</div><div class="sub">منذ منتصف الليل</div></div>
-        <div class="stat-card"><div class="label">زيارات هذا الأسبوع</div><div class="value" id="ov-week">—</div><div class="sub">آخر 7 أيام</div></div>
-        <div class="stat-card accent"><div class="label">إجمالي الزيارات</div><div class="value" id="ov-total">—</div><div class="sub">منذ التسجيل</div></div>
-        <div class="stat-card"><div class="label">الطلبات اليوم</div><div class="value" id="ov-orders">—</div><div class="sub">طلب جديد</div></div>
-        <div class="stat-card"><div class="label">إيرادات اليوم</div><div class="value" id="ov-revenue">—</div><div class="sub">درهم</div></div>
-        <div class="stat-card"><div class="label">أصناف المنيو</div><div class="value" id="ov-items">—</div><div class="sub">صنف مُضاف</div></div>
+      <div class="cards-grid">
+        <div class="stat-card"><div class="stat-label">زيارات اليوم</div><div class="stat-value" id="ov-today">—</div><div class="stat-sub">منذ منتصف الليل</div></div>
+        <div class="stat-card"><div class="stat-label">زيارات الأسبوع</div><div class="stat-value" id="ov-week">—</div><div class="stat-sub">آخر 7 أيام</div></div>
+        <div class="stat-card accent"><div class="stat-label">إجمالي الزيارات</div><div class="stat-value" id="ov-total">—</div><div class="stat-sub">منذ التسجيل</div></div>
+        <div class="stat-card"><div class="stat-label">الطلبات اليوم</div><div class="stat-value" id="ov-orders">—</div><div class="stat-sub">طلب جديد</div></div>
+        <div class="stat-card"><div class="stat-label">إيرادات اليوم</div><div class="stat-value" id="ov-revenue">—</div><div class="stat-sub">درهم</div></div>
+        <div class="stat-card"><div class="stat-label">أصناف المنيو</div><div class="stat-value" id="ov-items">—</div><div class="stat-sub">صنف مُضاف</div></div>
       </div>
 
       <div class="section">
         <div class="section-head">
           <h2>رابط المنيو العام</h2>
-          <a id="menu-open-link" href="#" target="_blank" style="font-size:12px;color:#4f8ef7;text-decoration:none"><i class="ti ti-external-link"></i> فتح</a>
+          <a id="menu-open-link" href="#" target="_blank" style="font-size:12px;color:var(--gold);text-decoration:none;display:flex;align-items:center;gap:4px;font-weight:700"><i class="ti ti-external-link"></i>فتح المنيو</a>
         </div>
         <div class="section-body">
           <div class="menu-link-box">
-            <i class="ti ti-link" style="color:#4f8ef7;font-size:20px;flex-shrink:0"></i>
-            <div class="menu-link-url" id="menu-url">جاري التحميل...</div>
+            <i class="ti ti-link" style="color:var(--gold);font-size:20px;flex-shrink:0"></i>
+            <div class="menu-link-url" id="menu-url" dir="ltr">جاري التحميل...</div>
             <button class="btn-copy" onclick="copyMenuLink()">نسخ</button>
           </div>
         </div>
@@ -229,48 +240,48 @@ textarea{resize:vertical;min-height:80px}
       </div>
     </div>
 
-    <!-- PAGE: ITEMS -->
+    <!-- ITEMS -->
     <div class="page" id="pg-items">
       <div class="section">
         <div class="section-head">
           <h2>أصناف المنيو</h2>
-          <button class="btn-primary" onclick="openAddItem()"><i class="ti ti-plus"></i>إضافة صنف</button>
+          <button class="btn-gold" onclick="openAddItem()"><i class="ti ti-plus"></i>إضافة صنف</button>
         </div>
         <div id="items-list"><div class="loading"><div class="spin"></div>جاري التحميل</div></div>
       </div>
     </div>
 
-    <!-- PAGE: QR -->
+    <!-- QR -->
     <div class="page" id="pg-qr">
       <div class="section">
         <div class="section-head"><h2>رمز QR للمنيو</h2></div>
         <div class="qr-container">
-          <canvas id="qr-canvas"></canvas>
+          <div class="qr-frame"><canvas id="qr-canvas"></canvas></div>
           <div class="qr-url" id="qr-url"></div>
-          <button class="btn-qr-download" onclick="downloadQR()"><i class="ti ti-download"></i> تحميل QR</button>
+          <button class="btn-qr-dl" onclick="downloadQR()"><i class="ti ti-download"></i> تحميل رمز QR</button>
         </div>
       </div>
     </div>
 
-    <!-- PAGE: ANALYTICS -->
+    <!-- ANALYTICS -->
     <div class="page" id="pg-analytics">
       <div class="cards-grid">
-        <div class="stat-card"><div class="label">زيارات اليوم</div><div class="value" id="an-today">—</div></div>
-        <div class="stat-card"><div class="label">زيارات الأسبوع</div><div class="value" id="an-week">—</div></div>
-        <div class="stat-card"><div class="label">زيارات الشهر</div><div class="value" id="an-month">—</div></div>
-        <div class="stat-card accent"><div class="label">إجمالي الزيارات</div><div class="value" id="an-total">—</div></div>
-        <div class="stat-card"><div class="label">موبايل</div><div class="value" id="an-mobile">—</div><div class="sub">زيارة من الجوال</div></div>
-        <div class="stat-card"><div class="label">كمبيوتر</div><div class="value" id="an-desktop">—</div><div class="sub">زيارة من الحاسوب</div></div>
+        <div class="stat-card"><div class="stat-label">زيارات اليوم</div><div class="stat-value" id="an-today">—</div></div>
+        <div class="stat-card"><div class="stat-label">زيارات الأسبوع</div><div class="stat-value" id="an-week">—</div></div>
+        <div class="stat-card"><div class="stat-label">زيارات الشهر</div><div class="stat-value" id="an-month">—</div></div>
+        <div class="stat-card accent"><div class="stat-label">إجمالي الزيارات</div><div class="stat-value" id="an-total">—</div></div>
+        <div class="stat-card"><div class="stat-label">من الجوال</div><div class="stat-value" id="an-mobile">—</div><div class="stat-sub">زيارة</div></div>
+        <div class="stat-card"><div class="stat-label">من الحاسوب</div><div class="stat-value" id="an-desktop">—</div><div class="stat-sub">زيارة</div></div>
       </div>
     </div>
 
-    <!-- PAGE: ORDERS -->
+    <!-- ORDERS -->
     <div class="page" id="pg-orders">
       <div class="cards-grid">
-        <div class="stat-card"><div class="label">إجمالي الطلبات</div><div class="value" id="or-count">—</div></div>
-        <div class="stat-card accent"><div class="label">إجمالي الإيرادات</div><div class="value" id="or-revenue">—</div><div class="sub">درهم</div></div>
-        <div class="stat-card"><div class="label">طلبات اليوم</div><div class="value" id="or-today">—</div></div>
-        <div class="stat-card"><div class="label">إيرادات اليوم</div><div class="value" id="or-today-rev">—</div><div class="sub">درهم</div></div>
+        <div class="stat-card accent"><div class="stat-label">إجمالي الطلبات</div><div class="stat-value" id="or-count">—</div></div>
+        <div class="stat-card accent"><div class="stat-label">إجمالي الإيرادات</div><div class="stat-value" id="or-revenue">—</div><div class="stat-sub">درهم</div></div>
+        <div class="stat-card"><div class="stat-label">طلبات اليوم</div><div class="stat-value" id="or-today">—</div></div>
+        <div class="stat-card"><div class="stat-label">إيرادات اليوم</div><div class="stat-value" id="or-today-rev">—</div><div class="stat-sub">درهم</div></div>
       </div>
       <div class="section">
         <div class="section-head"><h2>قائمة الطلبات</h2></div>
@@ -278,7 +289,7 @@ textarea{resize:vertical;min-height:80px}
       </div>
     </div>
 
-    <!-- PAGE: SETTINGS -->
+    <!-- SETTINGS -->
     <div class="page" id="pg-settings">
       <div class="section">
         <div class="section-head"><h2>معلومات المطعم</h2></div>
@@ -289,38 +300,38 @@ textarea{resize:vertical;min-height:80px}
               <input type="text" id="s-name" placeholder="مثال: مطعم النجوم"/>
             </div>
             <div class="form-group">
-              <label>رابط المنيو (slug)</label>
-              <input type="text" id="s-slug" placeholder="restaurant-name" dir="ltr"/>
+              <label>رابط المنيو (Slug)</label>
+              <input type="text" id="s-slug" dir="ltr" placeholder="restaurant-name"/>
             </div>
             <div class="form-group">
-              <label>عملة المنيو</label>
-              <input type="text" id="s-currency" placeholder="درهم إماراتي (د.إ)"/>
+              <label>العملة</label>
+              <input type="text" id="s-currency" placeholder="د.إ"/>
             </div>
             <div class="form-group">
               <label>رقم الواتساب</label>
-              <input type="text" id="s-phone" placeholder="+971501234567" dir="ltr"/>
+              <input type="text" id="s-phone" dir="ltr" placeholder="+971501234567"/>
             </div>
             <div class="form-group full">
               <label>وصف المطعم</label>
               <textarea id="s-desc" placeholder="اكتب وصفاً مختصراً عن مطعمك..."></textarea>
             </div>
           </div>
-          <div style="margin-top:16px">
-            <button class="btn-primary" onclick="saveSettings()"><i class="ti ti-device-floppy"></i>حفظ التعديلات</button>
+          <div style="margin-top:20px">
+            <button class="btn-gold" onclick="saveSettings()"><i class="ti ti-device-floppy"></i>حفظ التعديلات</button>
           </div>
         </div>
       </div>
     </div>
 
-  </div><!-- /content -->
-</div><!-- /main -->
+  </div>
+</div>
 
 <!-- MODAL: Add/Edit Item -->
 <div class="modal-overlay" id="item-modal">
   <div class="modal">
     <div class="modal-title">
       <span id="modal-title-text">إضافة صنف جديد</span>
-      <button class="btn-icon" onclick="closeModal()" style="border:none"><i class="ti ti-x"></i></button>
+      <button class="btn-icon" onclick="closeModal()" style="border:1px solid var(--border)"><i class="ti ti-x"></i></button>
     </div>
     <div class="form-grid">
       <div class="form-group">
@@ -338,8 +349,8 @@ textarea{resize:vertical;min-height:80px}
       <div class="form-group">
         <label>الحالة</label>
         <select id="item-available">
-          <option value="true">متاح</option>
-          <option value="false">غير متاح</option>
+          <option value="true">متاح ✓</option>
+          <option value="false">غير متاح ✗</option>
         </select>
       </div>
       <div class="form-group full">
@@ -348,8 +359,8 @@ textarea{resize:vertical;min-height:80px}
       </div>
     </div>
     <div class="modal-actions">
-      <button class="btn-secondary" onclick="closeModal()">إلغاء</button>
-      <button class="btn-primary" onclick="saveItem()"><i class="ti ti-check"></i>حفظ</button>
+      <button class="btn-outline" onclick="closeModal()">إلغاء</button>
+      <button class="btn-gold" onclick="saveItem()"><i class="ti ti-check"></i>حفظ الصنف</button>
     </div>
   </div>
 </div>
@@ -368,25 +379,24 @@ if (!user) throw new Error('not authenticated');
 
 document.getElementById('user-name').textContent = user.user_metadata?.restaurant_name || user.email.split('@')[0];
 document.getElementById('user-email').textContent = user.email;
-const init = (user.user_metadata?.restaurant_name || user.email)[0].toUpperCase();
-document.getElementById('user-init').textContent = init;
+document.getElementById('user-init').textContent = (user.user_metadata?.restaurant_name || user.email)[0].toUpperCase();
 
 restaurant = await DB.getMyRestaurant();
 if (restaurant) {
   loadOverview();
   loadQR();
 } else {
-  showToast('لم يتم العثور على بيانات المطعم. تحقق من قاعدة البيانات.', true);
+  showToast('لم يتم العثور على بيانات المطعم', true);
 }
 
-// ── Navigation ────────────────────────────────────────────
-const pageTitles = {
-  overview: ['الرئيسية', 'نظرة عامة على نشاط مطعمك'],
-  items: ['أصناف المنيو', 'أضف وعدّل أصناف القائمة'],
-  qr: ['رمز QR', 'شارك رمز المنيو مع زبائنك'],
-  analytics: ['الإحصائيات', 'تتبع زيارات صفحة المنيو'],
-  orders: ['الطلبات', 'متابعة وإدارة الطلبات الواردة'],
-  settings: ['إعدادات المطعم', 'تعديل بيانات مطعمك'],
+// ── Navigation ─────────────────────────────────────────────
+const pageMeta = {
+  overview: ['الرئيسية','نظرة عامة على نشاط مطعمك'],
+  items:    ['أصناف المنيو','أضف وعدّل أصناف القائمة'],
+  qr:       ['رمز QR','شارك رمز المنيو مع زبائنك'],
+  analytics:['الإحصائيات','تتبع زيارات صفحة المنيو'],
+  orders:   ['الطلبات','متابعة وإدارة الطلبات الواردة'],
+  settings: ['معلومات المطعم','تعديل بيانات مطعمك'],
 };
 
 window.nav = function(id, el) {
@@ -394,19 +404,17 @@ window.nav = function(id, el) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('pg-' + id).classList.add('active');
   el.classList.add('active');
-  const [title, sub] = pageTitles[id] || [id, ''];
+  const [title, sub] = pageMeta[id] || [id,''];
   document.getElementById('page-title').textContent = title;
   document.getElementById('page-sub').textContent = sub;
-  document.getElementById('topbar-action').innerHTML = '';
-
-  if (id === 'items') loadItems();
+  if (id === 'items')     loadItems();
   if (id === 'analytics') loadAnalytics();
-  if (id === 'orders') loadOrders();
-  if (id === 'settings') loadSettings();
-  if (id === 'qr') loadQR();
+  if (id === 'orders')    loadOrders();
+  if (id === 'settings')  loadSettings();
+  if (id === 'qr')        loadQR();
 };
 
-// ── Overview ─────────────────────────────────────────────
+// ── Overview ───────────────────────────────────────────────
 async function loadOverview() {
   if (!restaurant) return;
   const [views, oStats, items] = await Promise.all([
@@ -414,31 +422,31 @@ async function loadOverview() {
     DB.getOrderStats(restaurant.id),
     DB.getItems(restaurant.id),
   ]);
-  document.getElementById('ov-today').textContent = views.today;
-  document.getElementById('ov-week').textContent = views.week;
-  document.getElementById('ov-total').textContent = views.total;
-  document.getElementById('ov-orders').textContent = oStats.todayCount;
+  document.getElementById('ov-today').textContent   = views.today;
+  document.getElementById('ov-week').textContent    = views.week;
+  document.getElementById('ov-total').textContent   = views.total;
+  document.getElementById('ov-orders').textContent  = oStats.todayCount;
   document.getElementById('ov-revenue').textContent = oStats.todayRevenue.toFixed(2);
-  document.getElementById('ov-items').textContent = items.length;
+  document.getElementById('ov-items').textContent   = items.length;
 
-  const menuUrl = `${location.origin}/menu.html?r=${restaurant.slug}`;
-  document.getElementById('menu-url').textContent = menuUrl;
-  document.getElementById('menu-open-link').href = menuUrl;
-  window._menuUrl = menuUrl;
+  const url = `${location.origin}/menu.html?r=${restaurant.slug}`;
+  document.getElementById('menu-url').textContent    = url;
+  document.getElementById('menu-open-link').href     = url;
+  window._menuUrl = url;
 
-  loadLatestOrders();
-}
-
-async function loadLatestOrders() {
-  const el = document.getElementById('ov-orders-list');
   const orders = await DB.getOrders(restaurant.id);
-  if (!orders.length) { el.innerHTML = '<div class="empty"><i class="ti ti-shopping-cart"></i><p>لا توجد طلبات بعد</p></div>'; return; }
-  el.innerHTML = orders.slice(0, 5).map(o => orderRowHtml(o)).join('');
+  const el = document.getElementById('ov-orders-list');
+  if (!orders.length) {
+    el.innerHTML = '<div class="empty"><i class="ti ti-shopping-cart"></i><p>لا توجد طلبات بعد</p></div>';
+  } else {
+    el.innerHTML = orders.slice(0,5).map(orderHtml).join('');
+  }
 }
 
-// ── Items ─────────────────────────────────────────────────
+// ── Items ──────────────────────────────────────────────────
 async function loadItems() {
   const el = document.getElementById('items-list');
+  el.innerHTML = '<div class="loading"><div class="spin"></div>جاري التحميل</div>';
   const items = await DB.getItems(restaurant.id);
   if (!items.length) {
     el.innerHTML = '<div class="empty"><i class="ti ti-tools-kitchen-2"></i><p>لا توجد أصناف. اضغط "إضافة صنف" للبدء</p></div>';
@@ -446,20 +454,19 @@ async function loadItems() {
   }
   el.innerHTML = `
     <div class="items-header">
-      <span>الصنف</span>
-      <span>التصنيف</span>
-      <span>السعر</span>
-      <span>الحالة</span>
-      <span></span>
+      <span>الصنف</span><span>التصنيف</span><span>السعر</span><span>الحالة</span><span></span>
     </div>` + items.map(item => `
     <div class="item-row">
-      <div><div class="item-name">${esc(item.name)}</div>${item.description ? `<div class="item-cat">${esc(item.description).slice(0,50)}</div>` : ''}</div>
-      <div class="item-cat">${esc(item.category || '—')}</div>
-      <div class="item-price">${item.price} ${restaurant.currency || ''}</div>
-      <div><span class="badge ${item.available !== false ? 'badge-avail' : 'badge-unavail'}">${item.available !== false ? 'متاح' : 'غير متاح'}</span></div>
+      <div>
+        <div class="item-name">${esc(item.name)}</div>
+        ${item.description ? `<div class="item-desc-text">${esc(item.description).slice(0,55)}${item.description.length>55?'...':''}</div>` : ''}
+      </div>
+      <div class="item-cat-text">${esc(item.category||'—')}</div>
+      <div class="item-price-text">${item.price} ${restaurant.currency||'د.إ'}</div>
+      <div><span class="badge ${item.available!==false?'badge-avail':'badge-unavail'}">${item.available!==false?'متاح':'غير متاح'}</span></div>
       <div class="item-actions">
-        <button class="btn-icon" onclick="openEditItem(${JSON.stringify(JSON.stringify(item))})"><i class="ti ti-edit"></i></button>
-        <button class="btn-icon danger" onclick="deleteItem('${item.id}')"><i class="ti ti-trash"></i></button>
+        <button class="btn-icon" onclick='openEditItem(${JSON.stringify(JSON.stringify(item))})'><i class="ti ti-edit"></i></button>
+        <button class="btn-icon danger" onclick="delItem('${item.id}')"><i class="ti ti-trash"></i></button>
       </div>
     </div>`).join('');
 }
@@ -467,7 +474,7 @@ async function loadItems() {
 window.openAddItem = function() {
   editingItemId = null;
   document.getElementById('modal-title-text').textContent = 'إضافة صنف جديد';
-  ['item-name','item-category','item-price','item-desc'].forEach(id => document.getElementById(id).value = '');
+  ['item-name','item-category','item-price','item-desc'].forEach(id => document.getElementById(id).value='');
   document.getElementById('item-available').value = 'true';
   document.getElementById('item-modal').classList.add('open');
 };
@@ -476,161 +483,153 @@ window.openEditItem = function(jsonStr) {
   const item = JSON.parse(jsonStr);
   editingItemId = item.id;
   document.getElementById('modal-title-text').textContent = 'تعديل الصنف';
-  document.getElementById('item-name').value = item.name || '';
-  document.getElementById('item-category').value = item.category || '';
-  document.getElementById('item-price').value = item.price || '';
-  document.getElementById('item-desc').value = item.description || '';
-  document.getElementById('item-available').value = item.available !== false ? 'true' : 'false';
+  document.getElementById('item-name').value      = item.name||'';
+  document.getElementById('item-category').value  = item.category||'';
+  document.getElementById('item-price').value     = item.price||'';
+  document.getElementById('item-desc').value      = item.description||'';
+  document.getElementById('item-available').value = item.available!==false?'true':'false';
   document.getElementById('item-modal').classList.add('open');
 };
 
-window.closeModal = function() {
-  document.getElementById('item-modal').classList.remove('open');
-};
+window.closeModal = () => document.getElementById('item-modal').classList.remove('open');
 
 window.saveItem = async function() {
-  const name = document.getElementById('item-name').value.trim();
+  const name  = document.getElementById('item-name').value.trim();
   const price = parseFloat(document.getElementById('item-price').value);
   if (!name || isNaN(price)) { showToast('يرجى تعبئة الاسم والسعر', true); return; }
-
   const item = {
-    id: editingItemId || undefined,
+    ...(editingItemId ? {id: editingItemId} : {}),
     name,
-    category: document.getElementById('item-category').value.trim(),
+    category:    document.getElementById('item-category').value.trim(),
     price,
     description: document.getElementById('item-desc').value.trim(),
-    available: document.getElementById('item-available').value === 'true',
+    available:   document.getElementById('item-available').value === 'true',
   };
-  if (!editingItemId) delete item.id;
-
   try {
     await DB.saveItem(restaurant.id, item);
     closeModal();
-    showToast(editingItemId ? 'تم التعديل بنجاح' : 'تم إضافة الصنف');
+    showToast(editingItemId ? 'تم التعديل بنجاح ✓' : 'تم إضافة الصنف ✓');
     loadItems();
-  } catch(e) {
-    showToast('خطأ: ' + e.message, true);
-  }
+  } catch(e) { showToast('خطأ: ' + e.message, true); }
 };
 
-window.deleteItem = async function(id) {
+window.delItem = async function(id) {
   if (!confirm('هل تريد حذف هذا الصنف؟')) return;
   await DB.deleteItem(id);
   showToast('تم الحذف');
   loadItems();
 };
 
-// ── QR ────────────────────────────────────────────────────
+// ── QR ─────────────────────────────────────────────────────
 async function loadQR() {
   if (!restaurant) return;
   const url = `${location.origin}/menu.html?r=${restaurant.slug}`;
   document.getElementById('qr-url').textContent = url;
   window._menuUrl = url;
   QRCode.toCanvas(document.getElementById('qr-canvas'), url, {
-    width: 250, margin: 2,
-    color: { dark: '#0f1117', light: '#ffffff' }
+    width: 240, margin: 2,
+    color: { dark: '#1a1a1a', light: '#ffffff' }
   });
 }
 
 window.downloadQR = function() {
-  const canvas = document.getElementById('qr-canvas');
   const a = document.createElement('a');
-  a.href = canvas.toDataURL('image/png');
-  a.download = `qr-${restaurant?.slug || 'menu'}.png`;
+  a.href = document.getElementById('qr-canvas').toDataURL('image/png');
+  a.download = `qr-${restaurant?.slug||'menu'}.png`;
   a.click();
 };
 
-// ── Analytics ─────────────────────────────────────────────
+// ── Analytics ──────────────────────────────────────────────
 async function loadAnalytics() {
   if (!restaurant) return;
   const s = await DB.getViewStats(restaurant.id);
-  document.getElementById('an-today').textContent = s.today;
-  document.getElementById('an-week').textContent = s.week;
-  document.getElementById('an-month').textContent = s.month;
-  document.getElementById('an-total').textContent = s.total;
-  document.getElementById('an-mobile').textContent = s.mobile;
+  document.getElementById('an-today').textContent   = s.today;
+  document.getElementById('an-week').textContent    = s.week;
+  document.getElementById('an-month').textContent   = s.month;
+  document.getElementById('an-total').textContent   = s.total;
+  document.getElementById('an-mobile').textContent  = s.mobile;
   document.getElementById('an-desktop').textContent = s.desktop;
 }
 
-// ── Orders ────────────────────────────────────────────────
+// ── Orders ──────────────────────────────────────────────────
 async function loadOrders() {
   if (!restaurant) return;
   const stats = await DB.getOrderStats(restaurant.id);
-  document.getElementById('or-count').textContent = stats.count;
-  document.getElementById('or-revenue').textContent = stats.revenue.toFixed(2);
-  document.getElementById('or-today').textContent = stats.todayCount;
+  document.getElementById('or-count').textContent     = stats.count;
+  document.getElementById('or-revenue').textContent   = stats.revenue.toFixed(2);
+  document.getElementById('or-today').textContent     = stats.todayCount;
   document.getElementById('or-today-rev').textContent = stats.todayRevenue.toFixed(2);
 
   const orders = await DB.getOrders(restaurant.id);
   const el = document.getElementById('orders-list');
-  if (!orders.length) { el.innerHTML = '<div class="empty"><i class="ti ti-shopping-cart"></i><p>لا توجد طلبات بعد</p></div>'; return; }
-  el.innerHTML = orders.map(o => orderRowHtml(o)).join('');
+  if (!orders.length) {
+    el.innerHTML = '<div class="empty"><i class="ti ti-shopping-cart"></i><p>لا توجد طلبات بعد</p></div>';
+  } else {
+    el.innerHTML = orders.map(orderHtml).join('');
+  }
 }
 
-function orderRowHtml(o) {
-  const items = Array.isArray(o.items) ? o.items.map(i => i.name).join('، ') : '—';
-  const time = new Date(o.created_at).toLocaleString('ar-AE');
+function orderHtml(o) {
+  const items = Array.isArray(o.items) ? o.items.map(i=>i.name).join('، ') : '—';
+  const t = new Date(o.created_at).toLocaleString('ar-AE');
   return `<div class="order-row">
     <div>
-      <div class="order-id">#${o.id.slice(0,8).toUpperCase()}</div>
-      <div class="order-customer">${esc(o.customer_name || 'زبون')}</div>
-      <div class="order-items">${esc(items)}</div>
+      <div class="order-num">#${o.id.slice(0,8).toUpperCase()}</div>
+      <div class="order-cust">${esc(o.customer_name||'زبون')}</div>
+      <div class="order-items-txt">${esc(items)}</div>
     </div>
     <div style="text-align:left">
-      <div class="order-total">${o.total?.toFixed(2) || '0.00'} د.إ</div>
-      <div class="order-time">${time}</div>
-      <span class="badge ${o.status === 'completed' ? 'badge-done' : 'badge-pending'}" style="margin-top:4px;display:inline-block">
-        ${o.status === 'completed' ? 'مكتمل' : 'جديد'}
+      <div class="order-time">${t}</div>
+      <div class="order-total">${(o.total||0).toFixed(2)} د.إ</div>
+      <span class="badge ${o.status==='completed'?'badge-done':'badge-pending'}" style="margin-top:4px;display:inline-block">
+        ${o.status==='completed'?'مكتمل':'جديد'}
       </span>
     </div>
   </div>`;
 }
 
-// ── Settings ──────────────────────────────────────────────
+// ── Settings ───────────────────────────────────────────────
 function loadSettings() {
   if (!restaurant) return;
-  document.getElementById('s-name').value = restaurant.name || '';
-  document.getElementById('s-slug').value = restaurant.slug || '';
-  document.getElementById('s-currency').value = restaurant.currency || '';
-  document.getElementById('s-phone').value = restaurant.phone || '';
-  document.getElementById('s-desc').value = restaurant.description || '';
+  document.getElementById('s-name').value     = restaurant.name||'';
+  document.getElementById('s-slug').value     = restaurant.slug||'';
+  document.getElementById('s-currency').value = restaurant.currency||'';
+  document.getElementById('s-phone').value    = restaurant.phone||'';
+  document.getElementById('s-desc').value     = restaurant.description||'';
 }
 
 window.saveSettings = async function() {
   const updates = {
-    name: document.getElementById('s-name').value.trim(),
-    slug: document.getElementById('s-slug').value.trim(),
-    currency: document.getElementById('s-currency').value.trim(),
-    phone: document.getElementById('s-phone').value.trim(),
+    name:        document.getElementById('s-name').value.trim(),
+    slug:        document.getElementById('s-slug').value.trim(),
+    currency:    document.getElementById('s-currency').value.trim(),
+    phone:       document.getElementById('s-phone').value.trim(),
     description: document.getElementById('s-desc').value.trim(),
   };
   try {
     restaurant = await DB.updateRestaurant(restaurant.id, updates);
-    showToast('تم الحفظ بنجاح');
+    showToast('تم الحفظ بنجاح ✓');
     loadQR();
-  } catch(e) {
-    showToast('خطأ: ' + e.message, true);
-  }
+  } catch(e) { showToast('خطأ: ' + e.message, true); }
 };
 
-// ── Helpers ───────────────────────────────────────────────
+// ── Helpers ────────────────────────────────────────────────
 window.copyMenuLink = function() {
-  navigator.clipboard.writeText(window._menuUrl || '').then(() => showToast('تم نسخ الرابط'));
+  navigator.clipboard.writeText(window._menuUrl||'').then(()=>showToast('تم نسخ الرابط ✓'));
 };
 
 window.logout = () => Auth.signOut();
 
-function showToast(msg, err = false) {
+function showToast(msg, err=false) {
   const t = document.getElementById('toast');
   t.textContent = msg;
-  t.style.borderColor = err ? '#ef4444' : '#4f8ef7';
-  t.style.color = err ? '#ef4444' : '#e8eaf0';
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
+  t.className   = 'toast' + (err ? ' err' : '');
+  setTimeout(() => t.classList.add('show'), 10);
+  setTimeout(() => t.classList.remove('show'), 3200);
 }
 
 function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 </script>
 </body>
