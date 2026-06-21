@@ -296,6 +296,29 @@ body{font-family:'Cairo',sans-serif;background:var(--bg0);color:var(--tx0);min-h
 <!-- TOAST -->
 <div class="toast-wrap"><div class="toast" id="toast"></div></div>
 <script src="js/storage.js"></script>
+<script type="module">
+  import { DB } from './js/db.js';
+
+  // Track page view when menu loads via ?r=slug
+  const slug = new URLSearchParams(location.search).get('r');
+  if (slug) {
+    const restaurant = await DB.getRestaurantBySlug(slug);
+    if (restaurant) {
+      // Log view (non-blocking)
+      DB.logView(restaurant.id).catch(() => {});
+      // Store restaurant id for order saving
+      window._restaurantId = restaurant.id;
+    }
+  }
+
+  // Override cart submit to save order to Supabase
+  window._saveOrderToSupabase = async function(items, total, customerName, customerPhone) {
+    if (!window._restaurantId) return;
+    try {
+      await DB.saveOrder(window._restaurantId, items, total, customerName, customerPhone);
+    } catch(e) { console.warn('Order save failed:', e); }
+  };
+</script>
 <script>
 // ────────────────────────────────────────────────
 const CATS_BG=['#f5f3ef','#efede9','#fdfcfb','#f9f8f5'];

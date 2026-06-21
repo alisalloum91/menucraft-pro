@@ -97,6 +97,13 @@ tailwind.config = {
 <button class="nav-btn w-full flex items-center px-4 py-3 rounded-lux text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all" onclick="showPage('menus',this)">
 <i class="ti ti-layout-grid ml-3" style="font-size:18px"></i>منيوهاتي
     </button>
+<p class="text-[9px] font-bold tracking-[2px] uppercase text-gray-600 px-3 py-1 mt-6 mb-2">التحليلات</p>
+<button class="nav-btn w-full flex items-center px-4 py-3 rounded-lux text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all" onclick="showPage('analytics',this);loadAnalytics()">
+<i class="ti ti-chart-bar ml-3" style="font-size:18px"></i>الإحصائيات
+</button>
+<button class="nav-btn w-full flex items-center px-4 py-3 rounded-lux text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all" onclick="showPage('orders',this);loadAnalytics()">
+<i class="ti ti-shopping-cart ml-3" style="font-size:18px"></i>الطلبات
+</button>
 <p class="text-[9px] font-bold tracking-[2px] uppercase text-gray-600 px-3 py-1 mt-6 mb-2">أدوات النظام</p>
 <button class="nav-btn w-full flex items-center px-4 py-3 rounded-lux text-sm text-gray-400 hover:bg-white/5 hover:text-white transition-all" onclick="loadSample()">
 <i class="ti ti-sparkles ml-3" style="font-size:18px"></i>بيانات تجريبية
@@ -140,10 +147,13 @@ tailwind.config = {
 <div class="h-8 w-px bg-outline mx-2"></div>
 <div class="flex items-center gap-4">
 <div class="text-right">
-<p class="text-sm font-bold text-primary leading-none font-lux-heading">Executive Admin</p>
-<p class="text-[10px] text-gold uppercase tracking-widest mt-1">Lux Aurum Member</p>
+<p class="text-sm font-bold text-primary leading-none font-lux-heading" id="header-user-name">جاري التحميل...</p>
+<p class="text-[10px] text-gold uppercase tracking-widest mt-1" id="header-user-email"></p>
 </div>
-<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-gold font-bold text-sm border border-gold/30">LA</div>
+<div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-gold font-bold text-sm border border-gold/30" id="header-user-init">؟</div>
+<button onclick="logout()" title="تسجيل الخروج" class="p-2 rounded-lux hover:bg-surface-container transition-colors text-on-surface-variant" style="margin-right:4px">
+<i class="ti ti-logout" style="font-size:18px"></i>
+</button>
 </div>
 </div>
 </header>
@@ -396,6 +406,85 @@ tailwind.config = {
 <p class="text-sm font-arabic tracking-widest uppercase">لا يوجد أرشيف متاح</p>
 </div>
 </div>
+
+<!-- PAGE: ANALYTICS -->
+<div class="page" id="pg-analytics" style="color:#1a1a1a">
+<div class="mb-10">
+  <span class="text-gold text-[11px] font-bold tracking-[0.3em] uppercase mb-3 block font-arabic">التحليلات</span>
+  <h2 class="font-headline text-4xl text-primary mb-4">إحصائيات الزيارات</h2>
+</div>
+<!-- View Stats Grid -->
+<div class="grid grid-cols-3 gap-6 mb-8">
+  <div class="bg-primary rounded-lux p-8 text-center shadow-lg border border-gold/20">
+    <div class="font-lux-heading text-5xl mb-2 text-gold" id="an-today">—</div>
+    <div class="text-[10px] text-white/50 font-arabic uppercase tracking-[0.2em]">زيارات اليوم</div>
+  </div>
+  <div class="bg-white rounded-lux p-8 text-center shadow-sm border border-outline">
+    <div class="font-lux-heading text-5xl mb-2 text-primary" id="an-week">—</div>
+    <div class="text-[10px] text-on-surface-variant font-arabic uppercase tracking-[0.2em]">آخر 7 أيام</div>
+  </div>
+  <div class="bg-white rounded-lux p-8 text-center shadow-sm border border-outline">
+    <div class="font-lux-heading text-5xl mb-2 text-primary" id="an-month">—</div>
+    <div class="text-[10px] text-on-surface-variant font-arabic uppercase tracking-[0.2em]">آخر 30 يوم</div>
+  </div>
+</div>
+<div class="grid grid-cols-3 gap-6 mb-10">
+  <div class="bg-white rounded-lux p-8 text-center shadow-sm border border-outline">
+    <div class="font-lux-heading text-5xl mb-2 text-primary" id="an-total">—</div>
+    <div class="text-[10px] text-on-surface-variant font-arabic uppercase tracking-[0.2em]">إجمالي الزيارات</div>
+  </div>
+  <div class="bg-white rounded-lux p-8 text-center shadow-sm border border-outline">
+    <div class="font-lux-heading text-5xl mb-2 text-primary" id="an-mobile">—</div>
+    <div class="text-[10px] text-on-surface-variant font-arabic uppercase tracking-[0.2em]">📱 موبايل</div>
+  </div>
+  <div class="bg-white rounded-lux p-8 text-center shadow-sm border border-outline">
+    <div class="font-lux-heading text-5xl mb-2 text-primary" id="an-desktop">—</div>
+    <div class="text-[10px] text-on-surface-variant font-arabic uppercase tracking-[0.2em]">🖥️ سطح المكتب</div>
+  </div>
+</div>
+<!-- QR Code Section -->
+<div class="bg-primary rounded-lux p-8 border border-gold/20" id="qr-section" style="display:none">
+  <h3 class="font-lux-heading text-xl text-gold mb-6 text-center">QR Code المنيو</h3>
+  <div class="flex flex-col items-center gap-4">
+    <canvas id="qr-canvas" style="border-radius:12px"></canvas>
+    <p class="text-[11px] text-white/40 font-arabic text-center" id="qr-url"></p>
+    <button onclick="downloadQR()" class="gold-grad px-6 py-3 rounded-lux text-xs font-bold font-arabic flex items-center gap-2">
+      <i class="ti ti-download" style="font-size:16px"></i> تحميل QR Code
+    </button>
+  </div>
+</div>
+</div>
+
+<!-- PAGE: ORDERS -->
+<div class="page" id="pg-orders" style="color:#1a1a1a">
+<div class="mb-10">
+  <span class="text-gold text-[11px] font-bold tracking-[0.3em] uppercase mb-3 block font-arabic">المبيعات</span>
+  <h2 class="font-headline text-4xl text-primary mb-4">الطلبات الواردة</h2>
+</div>
+<div class="grid grid-cols-3 gap-6 mb-8">
+  <div class="bg-primary rounded-lux p-8 text-center shadow-lg border border-gold/20">
+    <div class="font-lux-heading text-5xl mb-2 text-gold" id="an-today-orders">—</div>
+    <div class="text-[10px] text-white/50 font-arabic uppercase tracking-[0.2em]">طلبات اليوم</div>
+  </div>
+  <div class="bg-white rounded-lux p-8 text-center shadow-sm border border-outline">
+    <div class="font-lux-heading text-5xl mb-2 text-primary" id="an-orders">—</div>
+    <div class="text-[10px] text-on-surface-variant font-arabic uppercase tracking-[0.2em]">إجمالي الطلبات</div>
+  </div>
+  <div class="bg-white rounded-lux p-8 text-center shadow-sm border border-outline">
+    <div class="font-lux-heading text-5xl mb-2 text-primary" id="an-revenue">—</div>
+    <div class="text-[10px] text-on-surface-variant font-arabic uppercase tracking-[0.2em]">إجمالي المبيعات (درهم)</div>
+  </div>
+</div>
+<div class="bg-primary rounded-lux border border-gold/20 overflow-hidden">
+  <div style="padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.08)">
+    <h3 class="font-lux-heading text-lg text-gold">آخر الطلبات</h3>
+  </div>
+  <div id="an-orders-list" style="min-height:120px">
+    <p style="color:rgba(255,255,255,.3);text-align:center;padding:40px;font-size:.85rem;font-family:Tajawal,sans-serif">جاري التحميل...</p>
+  </div>
+</div>
+</div>
+
 </div>
 </main>
 <!-- ── PHONE PREVIEW ── -->
@@ -431,8 +520,95 @@ tailwind.config = {
 </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <script src="js/storage.js"></script>
 <script src="js/dashboard.js"></script>
+<script type="module">
+  import { Auth, DB } from './js/db.js';
+
+  // ── Auth Guard ─────────────────────────────────────────────
+  const user = await Auth.requireAuth();
+  if (!user) return;
+
+  // ── Load restaurant data ───────────────────────────────────
+  const restaurant = await DB.getMyRestaurant();
+
+  // Update header user info
+  if (user.email) {
+    const nameEl = document.querySelector('#header-user-name');
+    const emailEl = document.querySelector('#header-user-email');
+    if (nameEl) nameEl.textContent = restaurant?.name || user.email.split('@')[0];
+    if (emailEl) emailEl.textContent = user.email;
+    const initEl = document.querySelector('#header-user-init');
+    if (initEl && restaurant?.name) initEl.textContent = restaurant.name.slice(0,2).toUpperCase();
+  }
+
+  // ── Analytics ─────────────────────────────────────────────
+  window._restaurant = restaurant;
+
+  window.loadAnalytics = async function() {
+    if (!restaurant) return;
+    const views  = await DB.getViewStats(restaurant.id);
+    const orders = await DB.getOrderStats(restaurant.id);
+
+    document.getElementById('an-today').textContent  = views.today;
+    document.getElementById('an-week').textContent   = views.week;
+    document.getElementById('an-month').textContent  = views.month;
+    document.getElementById('an-total').textContent  = views.total;
+    document.getElementById('an-mobile').textContent = views.mobile;
+    document.getElementById('an-desktop').textContent= views.desktop;
+
+    document.getElementById('an-orders').textContent = orders.count;
+    document.getElementById('an-revenue').textContent= orders.revenue.toFixed(0);
+    document.getElementById('an-today-orders').textContent = orders.todayCount;
+
+    // Load recent orders
+    const ordersList = await DB.getOrders(restaurant.id);
+    const el = document.getElementById('an-orders-list');
+    if (!ordersList.length) {
+      el.innerHTML = '<p style="color:rgba(255,255,255,.3);text-align:center;padding:32px;font-size:.85rem;">لا توجد طلبات بعد</p>';
+      return;
+    }
+    el.innerHTML = ordersList.slice(0,10).map(o => `
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.06);">
+        <div>
+          <div style="color:#fff;font-weight:600;font-size:.9rem;">${o.customer_name || 'زبون'}</div>
+          <div style="color:rgba(255,255,255,.4);font-size:.75rem;">${new Date(o.created_at).toLocaleString('ar-AE')}</div>
+        </div>
+        <div style="text-align:left;">
+          <div style="color:#c9a84c;font-weight:700;">${o.total} درهم</div>
+          <span style="background:${o.status==='pending'?'rgba(245,158,11,.2)':'rgba(16,185,129,.2)'};color:${o.status==='pending'?'#f59e0b':'#10b981'};padding:2px 8px;border-radius:20px;font-size:.7rem;">${o.status==='pending'?'جديد':'مكتمل'}</span>
+        </div>
+      </div>
+    `).join('');
+  };
+
+  // ── QR Code ───────────────────────────────────────────────
+  window.generateQR = async function() {
+    if (!restaurant) return;
+    const url = `${location.origin}/menu.html?r=${restaurant.slug}`;
+    document.getElementById('qr-url').textContent = url;
+    await QRCode.toCanvas(document.getElementById('qr-canvas'), url, {
+      width: 220, margin: 2,
+      color: { dark: '#1a1a1a', light: '#ffffff' }
+    });
+    document.getElementById('qr-section').style.display = 'block';
+  };
+
+  window.downloadQR = function() {
+    const canvas = document.getElementById('qr-canvas');
+    const a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = `qr-${window._restaurant?.slug || 'menu'}.png`;
+    a.click();
+  };
+
+  // ── Logout ────────────────────────────────────────────────
+  window.logout = () => Auth.signOut();
+
+  // Auto-load QR on info page
+  setTimeout(() => { if (restaurant) window.generateQR(); }, 500);
+</script>
 <script>
 // Force Lux Aurum font on phone content renders
 function applyLuxPhoneStyles() {

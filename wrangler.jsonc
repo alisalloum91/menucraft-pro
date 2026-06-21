@@ -1,0 +1,18 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "menucraft-pro",
+  "compatibility_date": "2026-06-21",
+  "workers_dev": true,
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "."
+  },
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "routes": [
+    { "pattern": "menu.scale-x-marketing.com/*", "zone_name": "scale-x-marketing.com" }
+  ]
+}
